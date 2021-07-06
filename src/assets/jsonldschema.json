@@ -1,0 +1,50 @@
+{
+    "@context": "http://schema.org",
+    "@type": "HowTo",
+    "name": "Studely : Etudier en France en toute sérénité ! - Studely",
+    "description": "Premier service financier dédié aux étudiants en mobilité vers la France : justification des ressources financières, logement étudiant, compte bancaire, ...",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.studely.com/assets/static/logo-990.d69d034.e456f2e5d72545ae136097e5b59dec59.svg",
+        "height": "406",
+        "width": "305"
+    },
+    "step": [
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/faq/",
+            "name": "Comment étudier en France sans garant ?",
+            "text": "L’Attestation de virement irrévocable (AVI) ou encore connue sous le nom de caution bancaire pour études est un acte délivré par toute banque ou établissement financier confirmant un dépôt d’ordre de virement mensuel. Il permet de justifier de moyens d’existence auprès de l’Ambassade de France pour une demande de visa pour étudiant."
+        },
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/nos-services/ma-caution-bancaire/",
+            "name": "Comment réussir à avoir un Visa pour étudier en France ?",
+            "text": "Faites-vous accompagner par Studely pour consolider votre demande de Visa et augmenter vos chances pour l’obtenir !"
+        },
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/article/un-projet-d-etudes-en-france-oui-mais-comment-le-financer/",
+            "name": "Comment financer mes études en France ?",
+            "text": "Il est difficile d’obtenir un prêt bancaire pour financer vos études dès votre arrivée en France. Cependant, c’est tout à fait envisageable à partir de votre 2ème année d’études en France. Généralement à des taux d’intérêt très avantageux pour les étudiants, les prêts bancaires garantis par l’État concernent les étudiants de moins de 28 ans quelles que soit leurs filières."
+        },
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/article/un-projet-d-etudes-en-france-oui-mais-comment-le-financer/",
+            "name": "Comment obtenir un logement étudiant en France ?",
+            "text": "Il est difficile d’obtenir un prêt bancaire pour financer vos études dès votre arrivée en France. Cependant, c’est tout à fait envisageable à partir de votre 2ème année d’études en France. Généralement à des taux d’intérêt très avantageux pour les étudiants, les prêts bancaires garantis par l’État concernent les étudiants de moins de 28 ans quelles que soit leurs filières."
+        },
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/nos-services/mon-compte-bancaire/",
+            "name": "Comment faire pour ouvrir un compte bancaire en France ?",
+            "text": "En partenariat avec La Banque Postale, nous permettons aux ressortissants d'un pays non européen de procéder à l'ouverture de leur compte bancaire à distance*, depuis leur pays d’origine."
+        },
+        {
+            "@type": "HowToStep",
+            "url": "https://www.studely.com/article/rentree-2020-avez-vous-pense-a-souscrire-a-des-assurances-completes/?fbclid=IwAR3aKFAGEHHEJdpBAZzL0FIuWUerZt-hP99Idf6xXKTAY5bYgPmiFSoGhe0",
+            "name": "Quelle est le meilleur service d'assurance pour les étudiants ?",
+            "text": "Si vous êtes étudiant international en mobilité vers la France, sachez qu’il est indispensable de souscrire à une assurance complète sécurisant 3 volets : votre voyage, votre santé et votre logement."
+        }
+    ]
+}

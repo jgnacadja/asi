@@ -1,0 +1,316 @@
+@charset "utf-8";
+
+// You can input your own styles here before you import Bulma
+// See [this page](https://bulma.io/documentation/customize/with-node-sass/#6-add-your-own-bulma-styles)
+// Also, for a list of customizable variables, reference [this page](https://bulma.io/documentation/customize/variables/)
+
+// Colors
+$blue-studely: #1c66ac;
+$green-studely: #5cb77d;
+$red-studely: #b83955;
+$black-studely: #282828;
+$white: hsl(0, 0%, 98%);
+
+$primary: $blue-studely;
+
+$light: hsl(0, 0%, 96%);
+$sucess: $green-studely;
+
+// General colors
+$scheme-main: $light;
+
+// Typography
+$family-sans-serif: century-gothic, sans-serif;
+$family-secondary: jaf-domus, sans-serif;
+$body-family: $family-secondary;
+
+$variable-columns: false;
+
+body {
+  font-display: swap;
+}
+
+.column {
+  padding: 0.75rem !important;
+}
+h1,
+.page-title {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+.page-title,
+.section-title,
+.title-14,
+.navbar-item,
+.fig-title,
+.title {
+  font-family: $family-sans-serif;
+  font-display: swap;
+}
+
+h1,
+h2 {
+  font-family: $family-sans-serif;
+  font-display: swap;
+}
+h2,
+.subtitle {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 1.6em;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+h3,
+.section-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 1.6em;
+  font-weight: 12px;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 10px;
+}
+
+section.container {
+  margin: auto;
+}
+
+.signature {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4rem;
+}
+
+.page-title {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: $family-sans-serif;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 5.4rem;
+  font-display: swap;
+}
+
+.section-title {
+  font-family: $family-sans-serif;
+  font-weight: 700;
+  line-height: 1.4rem;
+  text-align: center;
+  font-display: swap;
+}
+
+.title-14 {
+  font-size: 0.8rem;
+  font-weight: 200;
+  line-height: 1.4rem;
+}
+
+.subtitle {
+  margin-left: 20px;
+  margin-right: 20px; //  font-family: Domus, sans-serif;
+  font-weight: 300;
+  line-height: 2.06rem;
+  text-align: center;
+  margin: auto;
+}
+
+.is-bordered {
+  border: solid;
+}
+
+.padding {
+  padding: 50px !important;
+}
+
+.content-24 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 2.063em;
+}
+
+.content-20 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.75em;
+}
+
+.content-16 {
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+.content-14 {
+  font-size: 1.3em;
+  font-weight: 200;
+  line-height: 20px;
+}
+
+.card {
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 425px) {
+  body {
+    font-size: 1em;
+  }
+  h1,
+  .page-title {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 1.6em;
+  }
+  h2,
+  .section-title {
+    font-size: 1.4em;
+  }
+  .subtitle {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 1.2em;
+  }
+  h3 {
+    font-size: 1.1em;
+  }
+  .content-16,
+  .content-14 {
+    font-size: 1em;
+  }
+
+  .content-24 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5em;
+  }
+
+  .parent-section {
+    padding: 0px !important;
+  }
+}
+
+.navbar-link {
+  height: 4em;
+}
+
+.subitemchild:hover {
+  font-weight: bold;
+}
+
+.subitemchild:after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #0c5ba3;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.subitemchild:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.submenuitem:after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.submenuitem:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.carousel-arrow .icon {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+@media only screen and (min-width: 769px) {
+  .parent-section .carousel {
+    height: 100%;
+  }
+
+  .parent-section .carousel-items {
+    height: 100%;
+  }
+
+  .parent-section .carousel-item {
+    height: 100%;
+  }
+
+  .parent-section .carousel-item .hero {
+    height: 100%;
+  }
+
+  .parent-section .carousel-item .g-image {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-link {
+    padding-top: 6% !important;
+  }
+  .sub-navbar {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .carousel-items .has-icons-left {
+    margin-left: -2em;
+  }
+
+  .carousel-items .has-icons-right {
+    margin-right: -2em;
+  }
+}
+
+#dataSource strong {
+  color: white !important;
+}
+
+#readMoreIndex {
+  color: white !important;
+}
+
+/* .carousel-arrow .icon {
+  background: #fafafa !important;
+} */
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.content-12-link a {
+  color: white !important;
+  text-decoration: underline;
+}
+
+#about-content strong {
+  color: white !important;
+}
+
+.is-highlight-carousel .carousel-indicator {
+  bottom: -1.5em !important;
+}

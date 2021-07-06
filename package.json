@@ -1,0 +1,48 @@
+{
+  "name": "my-gridsome-site",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@gridsome/plugin-google-analytics": "^0.1.2",
+    "@gridsome/plugin-sitemap": "^0.4.0",
+    "@gridsome/source-contentful": "^0.6.0",
+    "@gridsome/vue-remark": "^0.2.5",
+    "axios": "^0.21.0",
+    "babel-runtime": "^6.26.0",
+    "buefy": "^0.9.4",
+    "datejs": "^1.0.0-rc3",
+    "emailjs-com": "^2.6.4",
+    "gridsome": "^0.7.0",
+    "gridsome-plugin-algolia": "^2.1.4",
+    "gridsome-plugin-bundle-analyzer": "^1.0.0",
+    "gridsome-plugin-robots-txt": "^1.0.2",
+    "jquery": "^3.5.1",
+    "klaro-gridsome": "^1.0.3",
+    "urijs": "^1.19.2",
+    "vue-disqus": "^4.0.1",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-instantsearch": "^3.4.2",
+    "vue-markdown": "^2.2.4",
+    "vue-smooth-scrollbar": "^0.1.2"
+  },
+  "devDependencies": {
+    "@gridsome/source-filesystem": "^0.6.2",
+    "@gridsome/transformer-remark": "^0.5.0",
+    "@testing-library/vue": "^5.6.1",
+    "@vue/test-utils": "^1.1.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^26.6.3",
+    "gridsome-plugin-htaccess": "^0.2.1",
+    "jest": "^26.6.3",
+    "jest-transform-stub": "^2.0.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.0.5",
+    "vue-jest": "^3.0.7",
+    "webpack-bundle-analyzer": "^4.1.0"
+  }
+}
