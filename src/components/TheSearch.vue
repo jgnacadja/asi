@@ -1,141 +1,266 @@
 <template>
-  <b-field class="b-field">
-    <div class="container">
-      <ais-instant-search
-        :search-client="searchClient"
-        :index-name="ALGOLIA_INDEX_NAME"
-      >
-        <ais-autocomplete>
-          <div slot-scope="{ currentRefinement, indices, refine }">
-            <form id="searchform">
-              <input
-                id="search-field"
-                type="search"
-                class="input input-mobile is-hidden-desktop"
-                :value="currentRefinement"
-                placeholder="Rechercher"
-                @input="refine($event.currentTarget.value)"
-                autocomplete="off"
-              />
-              <input
-                id="search-field"
-                type="search"
-                class="input input-desktop is-hidden-mobile"
-                :class="state"
-                :style="styleObject"
-                :value="currentRefinement"
-                placeholder="Rechercher"
-                @input="refine($event.currentTarget.value)"
-                autocomplete="off"
-              />
-            </form>
-            <div
-              class="columns is-hidden-desktop smooth-scroll-area-m"
-              id="scroll-area"
-              v-if="currentRefinement"
-            >
-              <smooth-scrollbar>
-                <div class="hits">
-                  <ul v-for="index in indices" :key="index.label">
-                    <li
-                      class="column"
-                      style="text-align: center !important"
-                      v-show="index.hits.length == 0"
-                    >
-                      <em>Aucun résultat...</em>
-                    </li>
-                    <li>
-                      <ul>
-                        <li v-for="hit in index.hits" :key="hit.objectID">
-                          <div
-                            class="columns is-mobile post-item is-marginless is-paddingless"
-                          >
-                            <div class="column is-2 post-cover">
-                              <g-image
-                                class="post-coverImage"
-                                :src="hit.coverImage"
-                              />
-                            </div>
-                            <div class="column is-10">
-                              <g-link :to="hit.path">{{ hit.title }}</g-link>
+  <div style="margin-top: -1.5rem">
+    <smooth-scrollbar class="box-result">
+      <div class="box">
+        <div class="hits">
+          <li>
+            <ul>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
 
-                              <br />
-                              <small class="post-author">{{
-                                hit.author
-                              }}</small>
-                              <small class="post-date">{{
-                                format_date(hit.date)
-                              }}</small>
-                              <!-- <hr> -->
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </smooth-scrollbar>
-            </div>
-            <div
-              class="columns is-hidden-mobile smooth-scroll-area-d"
-              id="scroll-area"
-              v-if="currentRefinement"
-            >
-              <smooth-scrollbar>
-                <div class="hits">
-                  <ul v-for="index in indices" :key="index.label">
-                    <li
-                      class="column"
-                      style="text-align: center !important"
-                      v-show="index.hits.length == 0"
-                    >
-                      <em>Aucun résultat...</em>
-                    </li>
-                    <li>
-                      <ul>
-                        <li v-for="hit in index.hits" :key="hit.objectID">
-                          <div
-                            class="columns post-item is-marginless is-paddingless"
-                          >
-                            <div class="column is-2 post-cover">
-                              <g-image
-                                class="post-coverImage"
-                                :src="hit.coverImage"
-                              />
-                            </div>
-                            <div class="column is-10">
-                              <g-link :to="hit.path">{{ hit.title }}</g-link>
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
 
-                              <br />
-                              <small class="post-author">{{
-                                hit.author
-                              }}</small>
-                              <small class="post-date">{{
-                                format_date(hit.date)
-                              }}</small>
-                              <!-- <hr> -->
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
                 </div>
-              </smooth-scrollbar>
-            </div>
-          </div>
-        </ais-autocomplete>
-      </ais-instant-search>
-    </div>
-  </b-field>
+              </li>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
+
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
+
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
+
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
+
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
+
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
+
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
+
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
+
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </div>
+      </div>
+    </smooth-scrollbar>
+  </div>
 </template>
 
 <script>
-import algoliasearch from "algoliasearch/lite";
-
-import moment from "moment";
-
 export default {
+  component: {},
   props: {
     state: {
       type: String,
@@ -146,40 +271,23 @@ export default {
   },
   data() {
     return {
-      ALGOLIA_INDEX_NAME: "prod_studelyapp",
-      searchClient: algoliasearch(
-        "LN9TK4HMD4",
-        "226b34d5d32255c856515a040f9a0830"
-      ),
-      searchInputStyle: "2px solid #48c774",
+      rating: 4,
     };
-  },
-  mounted() {
-    var url = location.href; // = location.href
-    var parts = url.split("/").slice(2);
-    if (parts[1] === "") {
-      this.searchInputStyle = "2px solid #185996";
-    }
-  },
-  computed: {
-    styleObject: function () {
-      return {
-        "--color-hover": this.searchInputStyle,
-      };
-    },
-  },
-  methods: {
-    format_date(value) {
-      if (value) {
-        return moment(String(value)).format("DD MMMM YYYY");
-      }
-    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../variables.scss";
+
+li {
+  list-style-type: none;
+}
+
+.box-result {
+  height: 15em;
+}
+
 .field:not(:last-child) {
   margin-bottom: 0rem !important;
 }
@@ -219,10 +327,8 @@ input.border-round {
   box-shadow: none;
 }
 
-.post-date {
-  position: absolute;
-  right: 2%;
-  padding-top: 1%;
+.post-location {
+  padding-left: 5%;
 }
 
 .post-item {

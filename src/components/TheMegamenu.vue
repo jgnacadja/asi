@@ -10,7 +10,7 @@
         <div class="navbar-brand">
           <g-link to="/">
             <figure class="">
-              <g-image class="studbrand" src="~/assets/logo.svg" fit="inside" />
+              <g-image src="~/assets/logo.svg" fit="inside" />
             </figure>
           </g-link>
           <span

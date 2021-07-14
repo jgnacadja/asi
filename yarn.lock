@@ -10957,6 +10957,13 @@ stackframe@^1.1.1:
   resolved "https://registry.npmjs.org/stackframe/-/stackframe-1.2.0.tgz"
   integrity sha512-GrdeshiRmS1YLMYgzF16olf2jJ/IzxXY9lhKOskuVziubpTYcYqyOwYeJKzQkwy7uN0fYSsbsC4RQaXf9LCrYA==
 
+stars-rating-component-vue@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/stars-rating-component-vue/-/stars-rating-component-vue-1.2.0.tgz#c9e338221db5a57c34274794bc8ef08253c11c1c"
+  integrity sha512-LIcJubte/k6piVlwEtpTU6xQG8t6Iz4BwBUykvhKduSO9ypR869Y6I2J9t/uskPgWnxWlDbhltFaMipmrKDx8Q==
+  dependencies:
+    vue "^2.6.10"
+
 state-toggle@^1.0.0:
   version "1.0.3"
   resolved "https://registry.npmjs.org/state-toggle/-/state-toggle-1.0.3.tgz"

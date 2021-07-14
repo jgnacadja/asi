@@ -22,7 +22,10 @@
                 />
               </p>
               <p class="control">
-                <span class="button is-info">
+                <span
+                  class="button is-info"
+                  @click="isSearching = !isSearching"
+                >
                   <b-icon pack="fas" icon="search" size="is-small" />
                 </span>
               </p>
@@ -31,11 +34,36 @@
           <h5 style="margin-top: -15px">
             Retrouvez les trois meilleurs résultats de votre recherche
           </h5>
+          <TheSearch v-if="isSearching" />
         </div>
       </div>
     </div>
   </Layout>
 </template>
+
+<script>
+import TheSearch from "~/components/TheSearch.vue";
+
+export default {
+  components: {
+    TheSearch,
+  },
+  props: {
+    state: {
+      type: String,
+      default() {
+        return "input-desktop-hidden";
+      },
+    },
+  },
+  data() {
+    return {
+      search: "",
+      isSearching: false,
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 .rm-raduis-select {
