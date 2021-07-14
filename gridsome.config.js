@@ -22,7 +22,7 @@ module.exports = {
 
   plugins: [
     algolia,
-    contentful,
+    //contentful,
     googleAnalytics,
     klaro,
     siteMap,
@@ -31,8 +31,8 @@ module.exports = {
     offerFilesystem,
   ],
   templates: {
-    ContentfulPost: "/article/:title",
-    ContentfulCategory: "/category/:title",
-    ContentfulTag: "/tag/:title",
+    //ContentfulPost: "/article/:title",
+    //ContentfulCategory: "/category/:title",
+    //ContentfulTag: "/tag/:title",
   },
 };
