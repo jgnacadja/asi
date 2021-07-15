@@ -186,6 +186,11 @@ li {
   list-style-type: none;
 }
 
+.box {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .box-result {
   height: 20em;
 }
@@ -196,7 +201,7 @@ li {
 
 @media (min-width: 768px) {
   .result {
-    margin-top: -1.5rem;
+    margin-top: -2rem;
   }
 }
 

@@ -12,21 +12,13 @@
         </div>
         <div class="level-right has-text-centered">
           <small class="has-level-item" style="color: var(--textLight)">
-            <g-link
-              v-bind:class="{
-                'has-text-black': typeNavbar === 'is-white',
-                'has-text-white': typeNavbar === 'is-info',
-              }"
-              to="/cgu/"
+            <g-link class="has-text-black has-text-weight-semibold" to="/cgu/"
               >CGU</g-link
             >
           </small>
           <small class="has-level-item" style="color: var(--textLight)">
             <g-link
-              v-bind:class="{
-                'has-text-black': typeNavbar === 'is-white',
-                'has-text-white': typeNavbar === 'is-info',
-              }"
+              class="has-text-black has-text-weight-semibold"
               to="/mentions-legales/"
               >Mentions légales</g-link
             >
@@ -36,26 +28,6 @@
     </div>
   </div>
 </template>
-
-
-<script scoped>
-export default {
-  data() {
-    return {
-      typeNavbar: "is-info",
-    };
-  },
-  mounted() {
-    var url = location.href; // = location.href
-    var parts = url.split("/").slice(2);
-    if (parts[1] === "") {
-      this.typeNavbar = "is-info";
-    } else {
-      this.typeNavbar = "is-white";
-    }
-  },
-};
-</script>
 
 <style scoped lang="scss">
 @import "../variables.scss";

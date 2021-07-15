@@ -1,35 +1,27 @@
 <template>
-  <div
-    class="hero-head"
-    v-bind:class="{
-      'has-background-primary': typeNavbar === 'is-white',
-    }"
-  >
+  <div class="hero-head has-background-primary">
     <nav class="navbar">
       <div class="container">
-        <div class="navbar-brand">
+        <div class="navbar-brand py-2">
           <g-link to="/">
             <figure class="">
               <g-image src="~/assets/logo.svg" fit="inside" />
             </figure>
           </g-link>
-          <span
-            class="navbar-burger burger has-text-white"
-            data-target="navbarMenu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
+          <b-icon
+            class="is-hidden-desktop"
+            type="is-white"
+            pack="fa"
+            href="/faq"
+            icon="question-circle"
+            size="is-large"
+          />
         </div>
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
             <span class="navbar-item">
-              <g-link class="button is-white is-outlined" to="/">
-                <span class="icon">
-                  <b-icon pack="fa" icon="question-circle" size="is-small" />
-                </span>
-                <span>Comment ça marche</span>
+              <g-link class="has-text-white has-text-weight-semibold" to="/">
+                <span>Comment ça marche ?</span>
               </g-link>
             </span>
           </div>
@@ -39,21 +31,13 @@
   </div>
 </template>
 
-<script scoped>
-export default {
-  data() {
-    return {
-      typeNavbar: "is-info",
-    };
-  },
-  mounted() {
-    var url = location.href; // = location.href
-    var parts = url.split("/").slice(2);
-    if (parts[1] === "") {
-      this.typeNavbar = "is-info";
-    } else {
-      this.typeNavbar = "is-white";
-    }
-  },
-};
-</script>
+<style scoped lang="scss">
+@import "../variables.scss";
+
+.navbar-brand {
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+</style>
