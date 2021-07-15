@@ -15,13 +15,13 @@ const offerFilesystem = require("./plugins/plugin.offerFilesystem");
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Studely",
-  siteUrl: "https://www.studely.com",
+  siteName: "ASI",
+  siteUrl: "https://www.asi.com",
   siteDescription:
-    "Premier service financier dédié aux étudiants en mobilité vers la France : justification des ressources financières, logement étudiant, compte bancaire, assurances complètes",
+    "La plateforme des potentialités d’Afrique",
 
   plugins: [
-    algolia,
+    //algolia,
     //contentful,
     googleAnalytics,
     klaro,

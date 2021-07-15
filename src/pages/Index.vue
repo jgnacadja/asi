@@ -48,6 +48,11 @@ export default {
   components: {
     TheSearch,
   },
+  metaInfo() {
+    return {
+      title: "Africa Startups Insights",
+    };
+  },
   props: {
     state: {
       type: String,

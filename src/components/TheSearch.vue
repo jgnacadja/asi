@@ -1,108 +1,10 @@
 <template>
-  <div style="margin-top: -1.5rem">
+  <div class="result">
     <smooth-scrollbar class="box-result">
       <div class="box">
         <div class="hits">
           <li>
             <ul>
-              <li>
-                <div
-                  class="
-                    columns
-                    post-item
-                    is-marginless is-paddingless is-mobile
-                  "
-                >
-                  <div class="column is-2 post-cover">
-                    <g-image
-                      class="post-coverImage"
-                      src="~/assets/fintech.png"
-                      fit="inside"
-                    />
-                  </div>
-                  <div
-                    class="
-                      column
-                      is-8-desktop is-7
-                      has-text-left has-text-weight-bold
-                    "
-                  >
-                    SkyeMail.com
-
-                    <br />
-                    <small class="post-author has-text-primary">
-                      Fintech
-                    </small>
-                    <small class="post-location">
-                      <b-icon pack="fa" icon="map-marker" size="is-small" />
-                      Accra, Ghana
-                    </small>
-                    <!-- <hr> -->
-                  </div>
-
-                  <div class="column is-2-desktop is-3">
-                    <div
-                      class="
-                        has-text-weight-bold
-                        is-size-3-desktop is-size-4-mobile
-                      "
-                      style="margin-top: -1rem"
-                    >
-                      3.5
-                    </div>
-                    <div class="post-location">250 votes</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="
-                    columns
-                    post-item
-                    is-marginless is-paddingless is-mobile
-                  "
-                >
-                  <div class="column is-2 post-cover">
-                    <g-image
-                      class="post-coverImage"
-                      src="~/assets/fintech.png"
-                      fit="inside"
-                    />
-                  </div>
-                  <div
-                    class="
-                      column
-                      is-8-desktop is-7
-                      has-text-left has-text-weight-bold
-                    "
-                  >
-                    SkyeMail.com
-
-                    <br />
-                    <small class="post-author has-text-primary">
-                      Fintech
-                    </small>
-                    <small class="post-location">
-                      <b-icon pack="fa" icon="map-marker" size="is-small" />
-                      Accra, Ghana
-                    </small>
-                    <!-- <hr> -->
-                  </div>
-
-                  <div class="column is-2-desktop is-3">
-                    <div
-                      class="
-                        has-text-weight-bold
-                        is-size-3-desktop is-size-4-mobile
-                      "
-                      style="margin-top: -1rem"
-                    >
-                      3.5
-                    </div>
-                    <div class="post-location">250 votes</div>
-                  </div>
-                </div>
-              </li>
               <li>
                 <div
                   class="
@@ -285,7 +187,17 @@ li {
 }
 
 .box-result {
-  height: 15em;
+  height: 20em;
+}
+
+.result {
+  margin-top: -3rem;
+}
+
+@media (min-width: 768px) {
+  .result {
+    margin-top: -1.5rem;
+  }
 }
 
 .field:not(:last-child) {
