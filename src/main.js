@@ -269,9 +269,6 @@ export default function(Vue, { router, head, isClient }) {
     rel: "stylesheet",
     href: "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
   });
-  head.script.push({
-    src: "crisp.js",
-  });
 
   // pixel twitter
   head.script.push({
