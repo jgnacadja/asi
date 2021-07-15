@@ -12,7 +12,6 @@
             class="is-hidden-desktop"
             type="is-white"
             pack="fa"
-            href="/faq"
             icon="question-circle"
             size="is-large"
           />
