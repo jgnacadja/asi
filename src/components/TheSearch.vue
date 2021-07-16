@@ -50,7 +50,7 @@
                     >
                       3.5
                     </div>
-                    <div class="has-text-centered">
+                    <div class="has-text-centered is-hidden-mobile">
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
 
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
@@ -110,7 +110,7 @@
                     >
                       3.5
                     </div>
-                    <div class="has-text-centered">
+                    <div class="has-text-centered is-hidden-mobile">
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
 
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
@@ -170,7 +170,7 @@
                     >
                       3.5
                     </div>
-                    <div class="has-text-centered">
+                    <div class="has-text-centered is-hidden-mobile">
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
 
                       <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
