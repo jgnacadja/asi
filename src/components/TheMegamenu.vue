@@ -19,7 +19,7 @@
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
             <span class="navbar-item">
-              <g-link class="has-text-white has-text-weight-semibold" to="/">
+              <g-link class="has-text-white" to="/">
                 <span>Comment ça marche ?</span>
               </g-link>
             </span>
@@ -37,6 +37,4 @@
   justify-content: space-around;
   align-items: center;
 }
-
-
 </style>

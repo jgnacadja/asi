@@ -50,6 +50,23 @@
                     >
                       3.5
                     </div>
+                    <ul class="flex justify-center">
+                      <li>
+                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
+                      </li>
+                      <li>
+                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
+                      </li>
+                      <li>
+                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
+                      </li>
+                      <li>
+                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
+                      </li>
+                      <li>
+                        <i class="far fa-star fa-sm has-text-light mr-1"></i>
+                      </li>
+                    </ul>
                     <div class="post-location">250 votes</div>
                   </div>
                 </div>
