@@ -50,71 +50,16 @@
                     >
                       3.5
                     </div>
-                    <ul class="flex justify-center">
-                      <li>
-                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
-                      </li>
-                      <li>
-                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
-                      </li>
-                      <li>
-                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
-                      </li>
-                      <li>
-                        <i class="far fa-star fa-sm has-text-warning mr-1"></i>
-                      </li>
-                      <li>
-                        <i class="far fa-star fa-sm has-text-light mr-1"></i>
-                      </li>
-                    </ul>
-                    <div class="post-location">250 votes</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="
-                    columns
-                    post-item
-                    is-marginless is-paddingless is-mobile
-                  "
-                >
-                  <div class="column is-2 post-cover">
-                    <g-image
-                      class="post-coverImage"
-                      src="~/assets/fintech.png"
-                      fit="inside"
-                    />
-                  </div>
-                  <div
-                    class="
-                      column
-                      is-8-desktop is-7
-                      has-text-left has-text-weight-bold
-                    "
-                  >
-                    SkyeMail.com
+                    <div class="has-text-centered">
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
 
-                    <br />
-                    <small class="post-author has-text-primary">
-                      Fintech
-                    </small>
-                    <small class="post-location">
-                      <b-icon pack="fa" icon="map-marker" size="is-small" />
-                      Accra, Ghana
-                    </small>
-                    <!-- <hr> -->
-                  </div>
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
 
-                  <div class="column is-2-desktop is-3">
-                    <div
-                      class="
-                        has-text-weight-bold
-                        is-size-3-desktop is-size-4-mobile
-                      "
-                      style="margin-top: -1rem"
-                    >
-                      3.5
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
                     </div>
                     <div class="post-location">250 votes</div>
                   </div>
@@ -164,6 +109,77 @@
                       style="margin-top: -1rem"
                     >
                       3.5
+                    </div>
+                    <div class="has-text-centered">
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
+                    </div>
+                    <div class="post-location">250 votes</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="
+                    columns
+                    post-item
+                    is-marginless is-paddingless is-mobile
+                  "
+                >
+                  <div class="column is-2 post-cover">
+                    <g-image
+                      class="post-coverImage"
+                      src="~/assets/fintech.png"
+                      fit="inside"
+                    />
+                  </div>
+                  <div
+                    class="
+                      column
+                      is-8-desktop is-7
+                      has-text-left has-text-weight-bold
+                    "
+                  >
+                    SkyeMail.com
+
+                    <br />
+                    <small class="post-author has-text-primary">
+                      Fintech
+                    </small>
+                    <small class="post-location">
+                      <b-icon pack="fa" icon="map-marker" size="is-small" />
+                      Accra, Ghana
+                    </small>
+                    <!-- <hr> -->
+                  </div>
+
+                  <div class="column is-2-desktop is-3">
+                    <div
+                      class="
+                        has-text-weight-bold
+                        is-size-3-desktop is-size-4-mobile
+                      "
+                      style="margin-top: -1rem"
+                    >
+                      3.5
+                    </div>
+                    <div class="has-text-centered">
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="fas fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
+
+                      <i class="far fa-star fa-sm has-text-warning ml-1"></i>
                     </div>
                     <div class="post-location">250 votes</div>
                   </div>
@@ -209,7 +225,7 @@ li {
 }
 
 .box-result {
-  height: 20em;
+  height: 25em;
 }
 
 .result {
