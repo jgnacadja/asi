@@ -21,7 +21,7 @@ module.exports = {
     "La plateforme des potentialités d’Afrique",
 
   plugins: [
-    //algolia,
+    algolia,
     //contentful,
     googleAnalytics,
     klaro,

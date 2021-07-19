@@ -18,27 +18,12 @@
                   <option>Fintech</option>
                 </select>
               </div>
-              <p class="control is-expanded">
-                <input
-                  class="input rm-raduis-input"
-                  type="text"
-                  placeholder="Rechercher"
-                />
-              </p>
-              <p class="control">
-                <span
-                  class="button has-text-white rm-raduis-search"
-                  @click="isSearching = !isSearching"
-                >
-                  <b-icon pack="fas" icon="search" size="is-small" />
-                </span>
-              </p>
+              <TheSearch />
             </div>
           </div>
           <h5 class="caption" style="margin-top: -25px">
             Retrouvez les trois meilleurs résultats de votre recherche
           </h5>
-          <TheSearch v-if="isSearching" />
         </div>
       </div>
     </div>
@@ -65,16 +50,14 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      search: "",
-      isSearching: false,
-    };
-  },
 };
 </script>
 
 <style lang="scss">
+.is-fullwidth {
+  width: 100%;
+}
+
 .rm-raduis-select {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
