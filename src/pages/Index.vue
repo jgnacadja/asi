@@ -12,12 +12,6 @@
           </h2>
           <div class="box is-shadowless">
             <div class="field is-grouped">
-              <div class="select">
-                <select class="rm-raduis-select">
-                  <option>Tous les domaines</option>
-                  <option>Fintech</option>
-                </select>
-              </div>
               <TheSearch />
             </div>
           </div>

@@ -7,7 +7,28 @@
     <ais-autocomplete>
       <div slot-scope="{ currentRefinement, indices, refine }">
         <form class="field is-grouped" style="width: 100%">
-          <p class="control is-expanded">
+          <ais-menu-select attribute="market">
+            <select
+              class="select rm-raduis-select"
+              slot-scope="{ items, canRefine, refine }"
+              :disabled="!canRefine"
+              @change="refine($event.currentTarget.value)"
+            >
+              <option value="">Tous les domaines</option>
+              <option
+                v-for="item in items"
+                :key="item.value"
+                :value="item.value"
+                :selected="item.isRefined"
+              >
+                {{ item.label }}
+              </option>
+            </select>
+          </ais-menu-select>
+          <p
+            class="control is-expanded"
+            @change="refine($event.currentTarget.value)"
+          >
             <input
               class="input rm-raduis-input"
               type="text"
@@ -36,7 +57,7 @@
                   >
                     <em>Aucun résultat...</em>
                   </li>
-                  <li v-for="hit in index.hits" :key="hit.objectID">
+                  <li v-for="hit in index.hits" :key="hit.objectID" li>
                     <div
                       class="
                         columns
@@ -129,17 +150,12 @@ export default {
   component: {},
   data() {
     return {
-      rating: 4,
-      search: "",
       ALGOLIA_INDEX_NAME: "asi",
       searchClient: algoliasearch(
         "CGXKUPOJ8Y",
         "14e786e8fe7d0f1093b0a70ba55550cc"
       ),
     };
-  },
-  mounted() {
-    console.log(this.indices);
   },
 };
 </script>
@@ -153,12 +169,19 @@ li {
 
 .box-result {
   height: 15em;
-  width: 43.5%;
+  width: 62%;
   position: absolute;
 }
 
 .result {
   margin-top: -0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .box-result {
+    left: 20px;
+    width: 94.5%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -173,5 +196,58 @@ li {
     left: 20px;
     width: 88%;
   }
+}
+
+.select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  box-sizing: inherit;
+  margin: 0;
+  font-family: poppins, sans-serif;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  align-items: center;
+  border: 1px solid transparent;
+  box-shadow: none;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top;
+  border-color: #dbdbdb;
+  border-radius: 4px;
+  color: #363636;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  width: 12em;
+  outline: none;
+  text-rendering: auto !important;
+  height: 3.5em;
+  padding-right: 0px;
+  background: #f5f5f5;
+}
+
+.select::after,
+.select::before {
+  color: red !important;
+  border-color: #485fc7 !important;
+}
+
+.rm-raduis-select {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.rm-raduis-input {
+  border-radius: 0px;
+}
+
+.rm-raduis-search {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  background: #ff9b26;
 }
 </style>
