@@ -7,7 +7,7 @@
     <ais-autocomplete>
       <div slot-scope="{ currentRefinement, indices, refine }">
         <form class="field is-grouped" style="width: 100%">
-          <ais-menu-select attribute="market">
+          <ais-menu-select :attribute="attribute">
             <select
               class="select rm-raduis-select"
               slot-scope="{ items, canRefine, refine }"
@@ -25,13 +25,10 @@
               </option>
             </select>
           </ais-menu-select>
-          <p
-            class="control is-expanded"
-            @change="refine($event.currentTarget.value)"
-          >
+          <p class="control is-expanded">
             <input
               class="input rm-raduis-input"
-              type="text"
+              type="search"
               placeholder="Rechercher"
               :value="currentRefinement"
               @input="refine($event.currentTarget.value)"
@@ -155,6 +152,7 @@ export default {
         "CGXKUPOJ8Y",
         "14e786e8fe7d0f1093b0a70ba55550cc"
       ),
+      attribute: "market",
     };
   },
 };
