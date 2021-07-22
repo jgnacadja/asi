@@ -57,7 +57,7 @@
                   >
                     <em>Aucun résultat...</em>
                   </li>
-                  <li v-for="hit in index.hits" :key="hit.objectID" li>
+                  <li v-for="hit in index.hits" :key="hit.objectID">
                     <div
                       class="
                         columns
