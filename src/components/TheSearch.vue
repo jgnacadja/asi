@@ -64,101 +64,109 @@
                         i === index.hits.slice(0, 3).length - 1,
                     }"
                   >
-                    <div
-                      class="
-                        columns
-                        post-item
-                        is-marginless is-paddingless is-mobile
-                      "
-                    >
-                      <div class="column is-2 post-cover">
-                        <g-image
-                          class="post-coverImage"
-                          src="~/assets/fintech.png"
-                          fit="inside"
-                        />
-                      </div>
+                    <g-link :to="baseUrl + hit.objectID">
                       <div
                         class="
-                          column
-                          is-8-desktop is-7
-                          has-text-left has-text-weight-bold
+                          columns
+                          post-item
+                          is-marginless is-paddingless is-mobile
+                          has-text-black
                         "
                       >
-                        {{ hit.name }}
-
-                        <br />
-                        <small
-                          class="
-                            post-author
-                            has-text-primary
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                        >
-                          {{ hit.market }}
-                        </small>
-                        <small
-                          class="
-                            post-location
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                        >
-                          <b-icon pack="fa" icon="map-marker" size="is-small" />
-                          {{ hit.startup_country }}
-                        </small>
-                        <!-- <hr> -->
-                      </div>
-
-                      <div class="column is-2-desktop is-3">
-                        <div
-                          class="
-                            has-text-weight-bold
-                            post-vote
-                            is-size-4-desktop
-                          "
-                        >
-                          <span v-if="hit.stats">{{ hit.stats }}</span>
-                          <span v-if="!hit.stats">0.0</span>
-                        </div>
-                        <div class="has-text-centered is-hidden-mobile">
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
+                        <div class="column is-2 post-cover">
+                          <g-image
+                            class="post-coverImage"
+                            src="~/assets/fintech.png"
+                            fit="inside"
+                          />
                         </div>
                         <div
                           class="
-                            post-location
-                            is-size-7-mobile
-                            has-text-weight-light
+                            column
+                            is-8-desktop is-7
+                            has-text-left has-text-weight-bold
                           "
                         >
-                          0 votes
+                          {{ hit.name }}
+
+                          <br />
+                          <small
+                            class="
+                              post-author
+                              has-text-primary
+                              is-size-7-mobile
+                              has-text-weight-light
+                            "
+                            v-if="hit.market !== 'Indefini'"
+                          >
+                            {{ hit.market }}
+                          </small>
+                          <small
+                            class="
+                              post-location
+                              is-size-7-mobile
+                              has-text-weight-light
+                            "
+                          >
+                            <b-icon
+                              pack="fa"
+                              icon="map-marker"
+                              size="is-small"
+                            />
+                            {{ hit.startup_country }}
+                          </small>
+                          <!-- <hr> -->
+                        </div>
+
+                        <div class="column is-2-desktop is-3">
+                          <div
+                            class="
+                              has-text-weight-bold
+                              post-vote
+                              is-size-4-desktop
+                            "
+                          >
+                            <span v-if="hit.stats">{{ hit.stats }}</span>
+                            <span v-if="!hit.stats">0.0</span>
+                          </div>
+                          <div class="has-text-centered is-hidden-mobile">
+                            <i
+                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                              class="fa-star fa-sm has-text-warning ml-1"
+                            ></i>
+
+                            <i
+                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                              class="fa-star fa-sm has-text-warning ml-1"
+                            ></i>
+
+                            <i
+                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                              class="fa-star fa-sm has-text-warning ml-1"
+                            ></i>
+
+                            <i
+                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                              class="fa-star fa-sm has-text-warning ml-1"
+                            ></i>
+
+                            <i
+                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                              class="fa-star fa-sm has-text-warning ml-1"
+                            ></i>
+                          </div>
+                          <div
+                            class="
+                              post-location
+                              is-size-7-mobile
+                              has-text-weight-light
+                            "
+                          >
+                            0 votes
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </g-link>
                   </li>
                   <hr />
                 </ul>
@@ -178,6 +186,7 @@ export default {
   component: {},
   data() {
     return {
+      baseUrl: "http://asi.dev.rintio.com/detail/",
       ALGOLIA_INDEX_NAME: "asi",
       searchClient: algoliasearch(
         "CGXKUPOJ8Y",
@@ -191,6 +200,10 @@ export default {
 
 <style scoped lang="scss">
 @import "../variables.scss";
+
+/* .post-item:hover{
+  background-color: rgba(28, 102, 172, 0.1);
+} */
 
 li {
   list-style-type: none;
