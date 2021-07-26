@@ -54,7 +54,7 @@
                   >
                     <em>Aucun résultat...</em>
                   </li>
-                  <li v-for="hit in index.hits" :key="hit.objectID">
+                  <li v-for="hit in index.hits.slice(0, 3)" :key="hit.objectID">
                     <div
                       class="
                         columns
@@ -79,10 +79,23 @@
                         {{ hit.name }}
 
                         <br />
-                        <small class="post-author has-text-primary">
+                        <small
+                          class="
+                            post-author
+                            has-text-primary
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
                           {{ hit.market }}
                         </small>
-                        <small class="post-location">
+                        <small
+                          class="
+                            post-location
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
                           <b-icon pack="fa" icon="map-marker" size="is-small" />
                           {{ hit.startup_country }}
                         </small>
@@ -94,8 +107,8 @@
                           class="
                             has-text-weight-bold
                             is-size-3-desktop is-size-4-mobile
+                            post-vote
                           "
-                          style="margin-top: -1rem"
                         >
                           <span v-if="hit.stats">{{ hit.stats }}</span>
                           <span v-if="!hit.stats">0.0</span>
@@ -126,7 +139,15 @@
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
                         </div>
-                        <div class="post-location">0 votes</div>
+                        <div
+                          class="
+                            post-location
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
+                          0 votes
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -247,5 +268,15 @@ li {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
   background: #ff9b26;
+}
+
+.post-vote {
+  margin-top: -1rem;
+}
+
+@media (max-width: 768px) {
+  .post-vote {
+    margin-top: 0rem;
+  }
 }
 </style>
