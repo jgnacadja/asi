@@ -15,9 +15,6 @@
               <TheSearch />
             </div>
           </div>
-          <h5 class="caption" style="margin-top: -25px">
-            Retrouvez les trois meilleurs résultats de votre recherche
-          </h5>
         </div>
       </div>
     </div>
