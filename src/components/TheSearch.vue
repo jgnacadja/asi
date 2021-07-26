@@ -200,6 +200,7 @@ li {
   height: 15em;
   width: 62%;
   position: absolute;
+  z-index: 20;
 }
 
 .result {
