@@ -1,6 +1,6 @@
 <template>
   <div class="hero-footer">
-    <div class="column is-8 is-offset-2">
+    <div class="container py-4">
       <br />
       <nav class="level">
         <div class="level-left">
