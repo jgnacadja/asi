@@ -64,7 +64,7 @@
                         i === index.hits.slice(0, 3).length - 1,
                     }"
                   >
-                    <g-link :to="baseUrl + hit.objectID">
+                    <g-link :to="parseUri(hit.objectID)">
                       <div
                         class="
                           columns
@@ -194,6 +194,12 @@ export default {
       ),
       attribute: "market",
     };
+  },
+  methods: {
+    parseUri(objectId) {
+      const parseId = escape(objectId);
+      return `${this.baseUrl}${parseId}`;
+    },
   },
 };
 </script>
