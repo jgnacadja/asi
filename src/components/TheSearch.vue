@@ -54,7 +54,16 @@
                   >
                     <em>Aucun résultat...</em>
                   </li>
-                  <li v-for="hit in index.hits.slice(0, 3)" :key="hit.objectID">
+                  <li
+                    v-for="(hit, i) in index.hits.slice(0, 3)"
+                    :key="hit.objectID"
+                    class="custom-hr-top"
+                    v-bind:class="{
+                      'custom-hr': i !== index.hits.slice(0, 3).length - 1,
+                      'custom-hr-bottom':
+                        i === index.hits.slice(0, 3).length - 1,
+                    }"
+                  >
                     <div
                       class="
                         columns
@@ -106,8 +115,8 @@
                         <div
                           class="
                             has-text-weight-bold
-                            is-size-3-desktop is-size-4-mobile
                             post-vote
+                            is-size-4-desktop
                           "
                         >
                           <span v-if="hit.stats">{{ hit.stats }}</span>
@@ -151,6 +160,7 @@
                       </div>
                     </div>
                   </li>
+                  <hr />
                 </ul>
               </div>
             </div>
@@ -278,5 +288,23 @@ li {
   .post-vote {
     margin-top: 0rem;
   }
+
+  .custom-hr {
+    border-bottom: 1px solid #c4c4c4;
+    margin-bottom: 1rem;
+  }
+
+  .custom-hr-top {
+    margin-top: -1rem;
+  }
+
+  .custom-hr-bottom {
+    margin-bottom: -1.2rem;
+  }
+}
+
+.custom-hr {
+  border-bottom: 1px solid #c4c4c4;
+  margin-bottom: 1rem;
 }
 </style>
