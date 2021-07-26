@@ -7,7 +7,7 @@
     <ais-autocomplete>
       <div slot-scope="{ currentRefinement, indices, refine }">
         <form class="field is-grouped" style="width: 100%">
-          <ais-menu-select :attribute="attribute">
+          <ais-menu-select :attribute="attribute" class="is-hidden-mobile">
             <select
               class="select rm-raduis-select"
               slot-scope="{ items, canRefine, refine }"
@@ -177,22 +177,22 @@ li {
 
 @media (max-width: 1024px) {
   .box-result {
-    left: 20px;
-    width: 94.5%;
+    left: 30px;
+    width: 93%;
   }
 }
 
 @media (max-width: 768px) {
   .box-result {
-    left: 20px;
-    width: 94.5%;
+    left: 0px;
+    width: 100%;
   }
 }
 
 @media (max-width: 515px) {
   .box-result {
-    left: 20px;
-    width: 88%;
+    left: 0px;
+    width: 100%;
   }
 }
 

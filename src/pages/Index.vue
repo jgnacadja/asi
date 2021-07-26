@@ -10,7 +10,7 @@
           <h2 class="subtitle has-text-weight-bold">
             La plateforme des potentialités d’Afrique
           </h2>
-          <div class="box is-shadowless">
+          <div class="box is-shadowless is-paddinless-mobile">
             <div class="field is-grouped">
               <TheSearch />
             </div>
@@ -135,5 +135,12 @@ export default {
 
 .field.is-grouped .button {
   width: 4rem;
+}
+
+@media (max-width: 768px) {
+  .is-paddinless-mobile {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }
 </style>
