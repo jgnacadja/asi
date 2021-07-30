@@ -6,10 +6,13 @@
   >
     <ais-autocomplete>
       <div slot-scope="{ currentRefinement, indices, refine }">
-        <form class="field is-grouped" style="width: 100%">
-          <ais-menu-select :attribute="attribute" class="is-hidden-mobile">
+        <form class="columns is-mobile field is-grouped" style="width: 100%">
+          <ais-menu-select
+            :attribute="attribute"
+            class="is-hidden-mobile column is-3 is-marginless is-paddingless"
+          >
             <select
-              class="select rm-raduis-select"
+              class="select rm-raduis-select is-fullwidth"
               slot-scope="{ items, canRefine, refine }"
               :disabled="!canRefine"
               @change="refine($event.currentTarget.value)"
@@ -25,155 +28,167 @@
               </option>
             </select>
           </ais-menu-select>
-          <p class="control is-expanded">
-            <input
-              class="input rm-raduis-input"
-              type="search"
-              placeholder="Rechercher"
-              :value="currentRefinement"
-              @input="refine($event.currentTarget.value)"
-              autocomplete="off"
-            />
-          </p>
-          <p class="control">
-            <span class="button has-text-white rm-raduis-search">
+          <div
+            class="
+              column
+              is-10 is-8-desktop is-marginless is-paddingless is-fullwidth
+            "
+          >
+            <p class="control is-expanded mobile-input">
+              <input
+                class="input rm-raduis-input"
+                type="search"
+                placeholder="Rechercher"
+                :value="currentRefinement"
+                @input="refine($event.currentTarget.value)"
+                autocomplete="off"
+              />
+            </p>
+            <div v-if="currentRefinement" class="result">
+              <smooth-scrollbar class="box box-result">
+                <div class="is-box">
+                  <div class="hits">
+                    <ul v-for="index in indices" :key="index.name">
+                      <li
+                        class="column"
+                        style="text-align: center !important"
+                        v-show="index.hits.length == 0"
+                      >
+                        <em>Aucun résultat...</em>
+                      </li>
+                      <li
+                        v-for="(hit, i) in index.hits.slice(0, 3)"
+                        :key="hit.objectID"
+                        class="custom-hr-top"
+                        v-bind:class="{
+                          'custom-hr': i !== index.hits.slice(0, 3).length - 1,
+                          'custom-hr-bottom':
+                            i === index.hits.slice(0, 3).length - 1,
+                        }"
+                      >
+                        <g-link :to="parseUri(hit.objectID)">
+                          <div
+                            class="
+                              columns
+                              post-item
+                              is-marginless is-paddingless is-mobile
+                              has-text-black
+                            "
+                          >
+                            <div class="column is-2 post-cover">
+                              <g-image
+                                class="post-coverImage"
+                                src="~/assets/fintech.png"
+                                fit="inside"
+                              />
+                            </div>
+                            <div
+                              class="
+                                column
+                                is-8-desktop is-7
+                                has-text-left has-text-weight-bold
+                              "
+                            >
+                              {{ hit.name }}
+
+                              <br />
+                              <small
+                                class="
+                                  post-author
+                                  has-text-primary
+                                  is-size-7-mobile
+                                  has-text-weight-light
+                                "
+                                v-if="hit.market !== 'Indefini'"
+                              >
+                                {{ hit.market }}
+                              </small>
+                              <small
+                                class="
+                                  post-location
+                                  is-size-7-mobile
+                                  has-text-weight-light
+                                "
+                              >
+                                <b-icon
+                                  pack="fa"
+                                  icon="map-marker"
+                                  size="is-small"
+                                />
+                                {{ hit.startup_country }}
+                              </small>
+                              <!-- <hr> -->
+                            </div>
+
+                            <div class="column is-2-desktop is-3">
+                              <div
+                                class="
+                                  has-text-weight-bold
+                                  post-vote
+                                  is-size-4-desktop
+                                "
+                              >
+                                <span v-if="hit.stats">{{ hit.stats }}</span>
+                                <span v-if="!hit.stats">0.0</span>
+                              </div>
+                              <div class="has-text-centered is-hidden-mobile">
+                                <i
+                                  v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                                  class="fa-star fa-sm has-text-warning ml-1"
+                                ></i>
+
+                                <i
+                                  v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                                  class="fa-star fa-sm has-text-warning ml-1"
+                                ></i>
+
+                                <i
+                                  v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                                  class="fa-star fa-sm has-text-warning ml-1"
+                                ></i>
+
+                                <i
+                                  v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                                  class="fa-star fa-sm has-text-warning ml-1"
+                                ></i>
+
+                                <i
+                                  v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                                  class="fa-star fa-sm has-text-warning ml-1"
+                                ></i>
+                              </div>
+                              <div
+                                class="
+                                  post-location
+                                  is-size-7-mobile
+                                  has-text-weight-light
+                                "
+                              >
+                                0 votes
+                              </div>
+                            </div>
+                          </div>
+                        </g-link>
+                      </li>
+                      <hr />
+                    </ul>
+                  </div>
+                </div>
+              </smooth-scrollbar>
+            </div>
+          </div>
+          <p
+            class="
+              control
+              column
+              is-1-desktop is-marginless is-paddingless is-fullwidth
+            "
+          >
+            <span class="button has-text-white rm-raduis-search is-fullwidth">
               <b-icon pack="fas" icon="search" size="is-small" />
             </span>
           </p>
         </form>
-
-        <div v-if="currentRefinement" class="result">
-          <smooth-scrollbar class="box box-result">
-            <div class="is-box">
-              <div class="hits">
-                <ul v-for="index in indices" :key="index.name">
-                  <li
-                    class="column"
-                    style="text-align: center !important"
-                    v-show="index.hits.length == 0"
-                  >
-                    <em>Aucun résultat...</em>
-                  </li>
-                  <li
-                    v-for="(hit, i) in index.hits.slice(0, 3)"
-                    :key="hit.objectID"
-                    class="custom-hr-top"
-                    v-bind:class="{
-                      'custom-hr': i !== index.hits.slice(0, 3).length - 1,
-                      'custom-hr-bottom':
-                        i === index.hits.slice(0, 3).length - 1,
-                    }"
-                  >
-                    <g-link :to="parseUri(hit.objectID)">
-                      <div
-                        class="
-                          columns
-                          post-item
-                          is-marginless is-paddingless is-mobile
-                          has-text-black
-                        "
-                      >
-                        <div class="column is-2 post-cover">
-                          <g-image
-                            class="post-coverImage"
-                            src="~/assets/fintech.png"
-                            fit="inside"
-                          />
-                        </div>
-                        <div
-                          class="
-                            column
-                            is-8-desktop is-7
-                            has-text-left has-text-weight-bold
-                          "
-                        >
-                          {{ hit.name }}
-
-                          <br />
-                          <small
-                            class="
-                              post-author
-                              has-text-primary
-                              is-size-7-mobile
-                              has-text-weight-light
-                            "
-                            v-if="hit.market !== 'Indefini'"
-                          >
-                            {{ hit.market }}
-                          </small>
-                          <small
-                            class="
-                              post-location
-                              is-size-7-mobile
-                              has-text-weight-light
-                            "
-                          >
-                            <b-icon
-                              pack="fa"
-                              icon="map-marker"
-                              size="is-small"
-                            />
-                            {{ hit.startup_country }}
-                          </small>
-                          <!-- <hr> -->
-                        </div>
-
-                        <div class="column is-2-desktop is-3">
-                          <div
-                            class="
-                              has-text-weight-bold
-                              post-vote
-                              is-size-4-desktop
-                            "
-                          >
-                            <span v-if="hit.stats">{{ hit.stats }}</span>
-                            <span v-if="!hit.stats">0.0</span>
-                          </div>
-                          <div class="has-text-centered is-hidden-mobile">
-                            <i
-                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                              class="fa-star fa-sm has-text-warning ml-1"
-                            ></i>
-
-                            <i
-                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                              class="fa-star fa-sm has-text-warning ml-1"
-                            ></i>
-
-                            <i
-                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                              class="fa-star fa-sm has-text-warning ml-1"
-                            ></i>
-
-                            <i
-                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                              class="fa-star fa-sm has-text-warning ml-1"
-                            ></i>
-
-                            <i
-                              v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                              class="fa-star fa-sm has-text-warning ml-1"
-                            ></i>
-                          </div>
-                          <div
-                            class="
-                              post-location
-                              is-size-7-mobile
-                              has-text-weight-light
-                            "
-                          >
-                            0 votes
-                          </div>
-                        </div>
-                      </div>
-                    </g-link>
-                  </li>
-                  <hr />
-                </ul>
-              </div>
-            </div>
-          </smooth-scrollbar>
-        </div>
       </div>
     </ais-autocomplete>
   </ais-instant-search>
@@ -215,7 +230,7 @@ li {
   list-style-type: none;
 }
 
-.box-result {
+/* .box-result {
   height: 15em;
   width: 62%;
   position: absolute;
@@ -245,7 +260,7 @@ li {
     left: 0px;
     width: 100%;
   }
-}
+} */
 
 .select {
   -webkit-font-smoothing: antialiased;
@@ -326,5 +341,20 @@ li {
 .custom-hr {
   border-bottom: 1px solid #c4c4c4;
   margin-bottom: 1rem;
+}
+
+.is-paddingless,
+.is-marginless {
+  padding: 0 !important;
+}
+
+.is-fullwidth {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mobile-input {
+    margin-left: 0.6rem;
+  }
 }
 </style>
