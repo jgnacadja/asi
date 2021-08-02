@@ -19,7 +19,7 @@
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
             <span class="navbar-item">
-              <g-link class="has-text-white" to="/">
+              <g-link class="has-text-white" to="/comment-ca-marche">
                 <span>Comment ça marche ?</span>
               </g-link>
             </span>
