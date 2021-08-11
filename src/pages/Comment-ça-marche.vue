@@ -2,8 +2,8 @@
   <Layout>
     <section class="container mx-auto">
       <div class="has-text-centered mt-6">
-        <p class="title is-1 has-text-info">Comment ça marche ?</p>
-        <p class="subtitle is-6">African Startups Insights est une plateforme numérique spécialement <br/> dédiée aux entreprises africaines.</p>
+        <p class="title is-2 has-text-info">Comment ça marche ?</p>
+        <p class="subtitle is-6 mt-4">African Startups Insights est une plateforme numérique spécialement <br/> dédiée aux entreprises africaines.</p>
       </div>
 
       <div class="columns my-6 mx-auto is-align-content-center has-text-centered">
@@ -40,7 +40,7 @@
       </div>
 
       <div>
-        <p class="title is-4 has-text-info">FAQs</p>
+        <p class="title is-4 has-text-info ml-5">FAQs</p>
 
         <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
           <template #trigger="props">

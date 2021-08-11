@@ -8,13 +8,15 @@
               <g-image src="~/assets/logo.svg" fit="inside" />
             </figure>
           </g-link>
-          <b-icon
-            class="is-hidden-desktop"
-            type="is-white"
-            pack="fa"
-            icon="question-circle"
-            size="is-large"
-          />
+          <g-link class="has-text-white" to="/comment-ca-marche">
+            <b-icon
+              class="is-hidden-desktop"
+              type="is-white"
+              pack="fa"
+              icon="question-circle"
+              size="is-large"
+            />
+          </g-link>
         </div>
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
