@@ -6,58 +6,34 @@
         <p class="subtitle is-6">African Startups Insights est une plateforme numérique spécialement <br/> dédiée aux entreprises africaines.</p>
       </div>
 
-      <div class="columns my-6 mx-auto has-text-centered">
+      <div class="columns my-6 mx-auto is-align-content-center has-text-centered">
         <div class="column">
-          <svg
-            width="80" 
-            height="80" 
-            viewBox="0 0 125 125" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
+          <g-image 
+            class="image is-96x96 mx-auto"
+            src="~/assets/search.png"
+            alt=""
           >
-            <circle 
-              cx="62.5" 
-              cy="62.5" 
-              r="62.5" 
-              fill="#FF9B26"
-            />
-          </svg>
+          </g-image>
           <p class="title is-5 has-text-info my-4">Recherchez votre domaine d’activité </p>
           <p class="subtitle is-6 mt-6">Entrez dans la barre le domaine d’activité ou le pays de votre choix. ASI vous présente une liste de startups. </p>
         </div>
         <div class="column">
-          <svg
-            width="80" 
-            height="80" 
-            viewBox="0 0 125 125" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
+          <g-image 
+            src="~/assets/business.png"
+            alt=""
+            class="image is-96x96 mx-auto"
           >
-            <circle 
-              cx="62.5" 
-              cy="62.5" 
-              r="62.5" 
-              fill="#FF9B26"
-            />
-          </svg>
+          </g-image>
           <p class="title is-5 has-text-info my-4">Consultez la carte d’identité et l’influence des startups </p>
           <p class="subtitle is-6 my-5">Analysez les performances et l’influence des startups de votre choix auprès de leurs utilisateurs</p>
         </div>
         <div class="column">
-          <svg
-            width="80" 
-            height="80" 
-            viewBox="0 0 125 125" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
+          <g-image 
+            src="~/assets/call.png"
+            alt=""
+            class="image is-96x96 mx-auto"
           >
-            <circle 
-              cx="62.5" 
-              cy="62.5" 
-              r="62.5" 
-              fill="#FF9B26"
-            />
-          </svg>
+          </g-image>
           <p class="title is-5 has-text-info my-4">Contactez la ou les startup(s) de votre choix</p>
           <p class="subtitle is-6 my-5">Retrouvez l’adresse et les contacts des  startups de votre choix et mettez vous en relation avec elles.</p>
         </div>
@@ -75,6 +51,7 @@
                 columns
                 is-variable is-mobile
                 has-background-white
+                my-6
               "
               aria-controls="contentIdForA11y3"
             >
@@ -149,6 +126,7 @@
                 columns
                 is-variable is-mobile
                 has-background-white
+                my-6
               "
               aria-controls="contentIdForA11y3"
             >
