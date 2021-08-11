@@ -15,7 +15,10 @@
           >
           </g-image>
           <p class="title is-5 has-text-info my-4">Recherchez votre domaine d’activité </p>
-          <p class="subtitle is-6 mt-6">Entrez dans la barre le domaine d’activité ou le pays de votre choix. ASI vous présente une liste de startups.</p>
+          <p class="subtitle is-6 mt-6">Entrez le domaine d'activité ou le pays de 
+            votre choix dans la barre de recherche. ASI vous une liste de startups.<br />
+            Ou entrez directement le nom de la startup.
+          </p>
         </div>
         <div class="column">
           <g-image 
@@ -82,7 +85,7 @@
               has-text-justified
             "
           >
-            <div class="column is-12" v-html="content">
+            <div class="column is-12">
               Non, ASI n’est pas sélective en ce qui concerne le domaine d’activité des startups. 
               Quel que soit le domaine souhaité, ASI vous propose un large choix dans plusieurs pays d’Afrique.  
             </div>
@@ -128,7 +131,7 @@
               has-text-justified
             "
           >
-            <div class="column is-12" v-html="content">
+            <div class="column is-12">
               Nos moteurs de collectes parcourent la toile à la recherche d’informations existantes sur les startups. 
               ASI collecte donc près de 90% de données grâce aux sites webs, aux réseaux sociaux, aux moteurs de recherches etc. 
               pouvant évaluer l’influence de nos Startups.
