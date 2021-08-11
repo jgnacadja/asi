@@ -15,7 +15,7 @@
           >
           </g-image>
           <p class="title is-5 has-text-info my-4">Recherchez votre domaine d’activité </p>
-          <p class="subtitle is-6 mt-6">Entrez dans la barre le domaine d’activité ou le pays de votre choix. ASI vous présente une liste de startups. </p>
+          <p class="subtitle is-6 mt-6">Entrez dans la barre le domaine d’activité ou le pays de votre choix. ASI vous présente une liste de startups.</p>
         </div>
         <div class="column">
           <g-image 
@@ -34,8 +34,8 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info my-4">Contactez la ou les startup(s) de votre choix</p>
-          <p class="subtitle is-6 my-5">Retrouvez l’adresse et les contacts des  startups de votre choix et mettez vous en relation avec elles.</p>
+          <p class="title is-5 has-text-info my-4">Evaluer la ou les startup(s) de votre choix</p>
+          <p class="subtitle is-6 my-5">Trouvez votre préférence en fonction des notes qui leur sont attribuées.</p>
         </div>
       </div>
 
@@ -56,7 +56,52 @@
               aria-controls="contentIdForA11y3"
             >
               <div class="column is-10 has-text-justified margin-title">
-                <p class="has-text-info">Consultez la carte d’identité et l’influence des startups</p>
+                <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
+              </div>
+              <div class="column is-2">
+                <b-button type="is-white" class="is-pulled-right">
+                  <figure class="image is-32x32">
+                    <g-image
+                      :class="{ rotate: props.open }"
+                      alt="faq"
+                      src="~/assets/faq/expend.svg"
+                      height="20"
+                    />
+                  </figure>
+                </b-button>
+              </div>
+            </div>
+          </template>
+          <div
+            class="
+              panel-block
+              has-background-white
+              columns
+              is-multiline
+              is-centered
+              has-text-justified
+            "
+          >
+            <div class="column is-12" v-html="content">
+              Non, ASI n’est pas sélective en ce qui concerne le domaine d’activité des startups. 
+              Quel que soit le domaine souhaité, ASI vous propose un large choix dans plusieurs pays d’Afrique.  
+            </div>
+          </div>
+        </b-collapse>
+        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
+          <template #trigger="props">
+            <div
+              role="button"
+              class="
+                panel-heading
+                columns
+                is-variable is-mobile
+                has-background-white
+              "
+              aria-controls="contentIdForA11y3"
+            >
+              <div class="column is-10 has-text-justified margin-title">
+                <p class="has-text-info">Quelle est la fiabilité des données trouvées sur ASI?</p>
               </div>
               <div class="column is-2">
                 <b-button type="is-white" class="is-pulled-right">
@@ -83,41 +128,15 @@
               has-text-justified
             "
           >
-            <div class="column is-12" v-html="content"></div>
-          </div>
-        </b-collapse>
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
-          <template #trigger="">
-            <div
-              role="button"
-              class="
-                panel-heading
-                columns
-                is-variable is-mobile
-                has-background-white
-              "
-              aria-controls="contentIdForA11y3"
-            >
-              <div class="column is-10 has-text-justified margin-title">
-                <p class="has-text-info">Consultez la carte d’identité et l’influence des startups</p>
-              </div>
+            <div class="column is-12" v-html="content">
+              Nos moteurs de collectes parcourent la toile à la recherche d’informations existantes sur les startups. 
+              ASI collecte donc près de 90% de données grâce aux sites webs, aux réseaux sociaux, aux moteurs de recherches etc. 
+              pouvant évaluer l’influence de nos Startups.
+
             </div>
-          </template>
-          <div
-            class="
-              panel-block
-              has-background-white
-              columns
-              is-multiline
-              has-background-white
-              is-centered
-              has-text-justified
-            "
-          >
-            <div class="column is-12" v-html="content"></div>
           </div>
         </b-collapse>
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
+        <!-- <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
           <template #trigger="">
             <div
               role="button"
@@ -179,7 +198,7 @@
           >
             <div class="column is-12" v-html="content"></div>
           </div>
-        </b-collapse>
+        </b-collapse> -->
       </div>
     </section> 
   </Layout>
