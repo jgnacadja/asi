@@ -16,7 +16,7 @@
           </g-image>
           <p class="title is-5 has-text-info my-4">Recherchez votre domaine d’activité </p>
           <p class="subtitle is-6 mt-6">Entrez le domaine d'activité ou le pays de 
-            votre choix dans la barre de recherche. ASI vous une liste de startups.<br />
+            votre choix dans la barre de recherche. ASI vous présente une liste de startups.<br />
             Ou entrez directement le nom de la startup.
           </p>
         </div>
