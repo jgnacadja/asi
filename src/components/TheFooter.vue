@@ -1,24 +1,24 @@
 <template>
-  <div class="hero-footer">
+  <div class="hero-footer has-background-grey">
     <div class="container py-4">
       <br />
       <nav class="level">
         <div class="level-left">
           <div class="level-item">
-            <small class="level-item" style="color: var(--textLight)">
+            <small class="level-item has-text-weight-bold has-text-black">
               2020&copy; ASI powered by RINTIO
             </small>
           </div>
         </div>
         <div class="level-right has-text-centered">
           <small class="has-level-item" style="color: var(--textLight)">
-            <g-link class="has-text-black has-text-weight-semibold" to="/cgu/"
+            <g-link class="has-text-black has-text-weight-bold" to="/cgu/"
               >CGU</g-link
             >
           </small>
           <small class="has-level-item" style="color: var(--textLight)">
             <g-link
-              class="has-text-black has-text-weight-semibold"
+              class="has-text-black has-text-weight-bold"
               to="/mentions-legales/"
               >Mentions légales</g-link
             >
@@ -37,6 +37,9 @@
   margin-right: 10px;
 }
 
+.has-background-primary{
+  opacity: 30%;
+}
 @media (min-width: 768px) {
   .has-level-item {
     align-items: center;

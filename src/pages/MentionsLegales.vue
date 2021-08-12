@@ -231,7 +231,7 @@
           <br />
           ASI fourni à titre principal et gratuit un moteur de recherche 
           dynamique actualisé en temps réel, accessible via son site
-          <a href="mailto:https://asi.rintio.com ">https://asi.rintio.com </a>
+          <a href="https://asi.rintio.com ">https://asi.rintio.com </a>
           <br /><br />
           Vous reconnaissez disposer de la compétence et des moyens nécessaires 
           pour accéder à ce Service et l’utiliser. L’utilisation de nos Services 

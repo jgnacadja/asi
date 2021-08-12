@@ -38,8 +38,10 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info mt-4">Evaluer la ou les startup(s) de votre choix</p>
-          <p class="subtitle is-6 mt-6">Trouvez votre préférence en fonction des notes qui leur sont attribuées.</p>
+          <p class="title is-5 has-text-info mt-4">Evaluer la startup sélectionnéé</p>
+          <p class="subtitle is-6 mt-6">Donner votre avis sur la startup pour lui 
+            permettre d'être plus en vue.
+          </p>
         </div>
       </div>
 
@@ -51,14 +53,13 @@
             <div
               role="button"
               class="
-                panel-heading
                 columns
                 is-variable is-mobile
                 has-background-white
               "
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10  margin-title">
+              <div class="column is-10 margin-title">
                 <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
               </div>
               <div class="column is-2">
@@ -96,7 +97,6 @@
             <div
               role="button"
               class="
-                panel-heading
                 columns
                 is-variable is-mobile
                 has-background-white
