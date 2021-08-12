@@ -75,13 +75,13 @@
                               has-text-black
                             "
                           >
-                            <div class="column is-2 post-cover">
+                            <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
                                 src="~/assets/fintech.png"
                                 fit="inside"
                               />
-                            </div>
+                            </div> -->
                             <div
                               class="
                                 column
@@ -120,7 +120,7 @@
                               <!-- <hr> -->
                             </div>
 
-                            <div class="column is-2-desktop is-3">
+                            <div class="column is-2-desktop is-7">
                               <div
                                 class="
                                   has-text-weight-bold
