@@ -149,7 +149,7 @@
 export default {
   metaInfo() {
     return {
-      title: "How is works",
+      title: "Comment ça marche ?",
     };
   },
   data() {

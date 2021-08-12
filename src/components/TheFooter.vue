@@ -1,6 +1,6 @@
 <template>
   <div class="hero-footer has-background-grey">
-    <div class="container py-4">
+    <div class="container pb-4">
       <br />
       <nav class="level">
         <div class="level-left">
