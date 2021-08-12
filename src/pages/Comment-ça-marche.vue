@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <section class="container mx-auto">
-      <div class="has-text-centered mt-6">
-        <p class="title is-2 has-text-info">Comment ça marche ?</p>
+      <div class="has-text-centered my-6">
+        <p class="title is-2 has-text-info has-text-weight-bold">Comment ça marche ?</p>
         <p class="subtitle is-6 mt-4">African Startups Insights est une plateforme numérique spécialement <br/> dédiée aux entreprises africaines.</p>
       </div>
 
@@ -14,10 +14,9 @@
             alt=""
           >
           </g-image>
-          <p class="title is-5 has-text-info my-4">Recherchez votre domaine d’activité </p>
-          <p class="subtitle is-6 mt-6">Entrez le domaine d'activité ou le pays de 
-            votre choix dans la barre de recherche. ASI vous présente une liste de startups.<br />
-            Ou entrez directement le nom de la startup.
+          <p class="title is-5 has-text-info mt-4">Entrez le nom de la startup </p>
+          <p class="subtitle is-6 mt-6">Renseigner dans la barre de recherche le nom 
+            de votre startup ou trouvez-en une après avoir sélectionné votre domaine d'activité. 
           </p>
         </div>
         <div class="column">
@@ -27,8 +26,10 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info my-4">Consultez la carte d’identité et l’influence des startups </p>
-          <p class="subtitle is-6 my-5">Analysez les performances et l’influence des startups de votre choix auprès de leurs utilisateurs</p>
+          <p class="title is-5 has-text-info mt-4">Accéder aux informations liées à la startup sélectionnée </p>
+          <p class="subtitle is-6 mt-5">Analysez les performances et l’influence de la startup 
+            auprès de ses utilisteurs.
+          </p>
         </div>
         <div class="column">
           <g-image 
@@ -37,13 +38,13 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info my-4">Evaluer la ou les startup(s) de votre choix</p>
-          <p class="subtitle is-6 my-5">Trouvez votre préférence en fonction des notes qui leur sont attribuées.</p>
+          <p class="title is-5 has-text-info mt-4">Evaluer la ou les startup(s) de votre choix</p>
+          <p class="subtitle is-6 mt-6">Trouvez votre préférence en fonction des notes qui leur sont attribuées.</p>
         </div>
       </div>
 
-      <div>
-        <p class="title is-4 has-text-info ml-5">FAQs</p>
+      <div class="my-6">
+        <p class="title is-2 has-text-weight-bold has-text-info pb-4 has-text-centered">FAQs</p>
 
         <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
           <template #trigger="props">
@@ -54,11 +55,10 @@
                 columns
                 is-variable is-mobile
                 has-background-white
-                my-6
               "
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10 has-text-justified margin-title">
+              <div class="column is-10  margin-title">
                 <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
               </div>
               <div class="column is-2">
@@ -100,6 +100,7 @@
                 columns
                 is-variable is-mobile
                 has-background-white
+                mt-6
               "
               aria-controls="contentIdForA11y3"
             >
@@ -139,69 +140,6 @@
             </div>
           </div>
         </b-collapse>
-        <!-- <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
-          <template #trigger="">
-            <div
-              role="button"
-              class="
-                panel-heading
-                columns
-                is-variable is-mobile
-                has-background-white
-                my-6
-              "
-              aria-controls="contentIdForA11y3"
-            >
-              <div class="column is-10 has-text-justified margin-title">
-                <p class="has-text-info">Consultez la carte d’identité et l’influence des startups</p>
-              </div>
-            </div>
-          </template>
-          <div
-            class="
-              panel-block
-              has-background-white
-              columns
-              is-multiline
-              has-background-white
-              is-centered
-              has-text-justified
-            "
-          >
-            <div class="column is-12" v-html="content"></div>
-          </div>
-        </b-collapse>
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
-          <template #trigger="">
-            <div
-              role="button"
-              class="
-                panel-heading
-                columns
-                is-variable is-mobile
-                has-background-white
-              "
-              aria-controls="contentIdForA11y3"
-            >
-              <div class="column is-10 has-text-justified margin-title">
-                <p class="has-text-info">Consultez la carte d’identité et l’influence des startups</p>
-              </div>
-            </div>
-          </template>
-          <div
-            class="
-              panel-block
-              has-background-white
-              columns
-              is-multiline
-              has-background-white
-              is-centered
-              has-text-justified
-            "
-          >
-            <div class="column is-12" v-html="content"></div>
-          </div>
-        </b-collapse> -->
       </div>
     </section> 
   </Layout>
