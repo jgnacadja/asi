@@ -3,7 +3,7 @@
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
 
     <div class="hero-body">
-      <div class="container has-text-centered">
+      <div class="container has-text-centered mx-auto">
         <div class="column is-column is-8-desktop is-offset-2-desktop">
           <h1 class="title">BIENVENUE SUR</h1>
           <br />

@@ -6,7 +6,7 @@
   >
     <ais-autocomplete>
       <div slot-scope="{ currentRefinement, indices, refine }">
-        <form class="columns is-mobile field is-grouped" style="width: 100%">
+        <form class="columns is-mobile field is-grouped mx-auto" style="width: 100%">
           <ais-menu-select
             :attribute="attribute"
             class="is-hidden-mobile column is-3 is-marginless is-paddingless"
@@ -30,8 +30,7 @@
           </ais-menu-select>
           <div
             class="
-              column
-              is-10 is-8-desktop is-marginless is-paddingless is-fullwidth
+             column is-8-desktop column is-8-tablet column is-10-mobile is-marginless is-paddingless 
             "
           >
             <p class="control is-expanded mobile-input">
