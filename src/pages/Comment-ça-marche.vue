@@ -48,38 +48,24 @@
       <div class="my-6">
         <p class="title is-2 has-text-weight-bold has-text-info pb-4 has-text-centered">FAQs</p>
 
-        <!-- <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?
-            </p>
-            <button class="card-header-icon" aria-label="more options">
-              <span class="icon">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-          </header>
-        </div> -->
-
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card">
+        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card column is-8-desktop column is-10-touch mx-auto mb-4">
           <template #trigger="props">
             <div
               role="button"
               class="
+                faq1
                 columns
-                is-variable is-mobile
-                
-              "
-              style="height:100px"
+                is-variable is-mobile is-vcentered 
+              "        
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10 margin-title mx-4 my-4">
+              <div class="column margin-title">
                 <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
               </div>
-              <div class="column is-2">
-                <button class="card-header-icon py-4" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+              <div class="column is-1 is-variable is-mobbile">
+                <button class="card-header-icon" aria-label="more options">
+                  <span :class="{ rotate: props.open }" class="icon1">
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
                   </span>
                 </button>
                 <!-- <b-button type="is-white" class="is-pulled-right">
@@ -110,25 +96,24 @@
             </div>
           </div>
         </b-collapse>
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card">
+        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card column is-8-desktop column is-10-touch mx-auto">
           <template #trigger="props">
             <div
               role="button"
               class="
+                faq2
                 columns
-                is-variable is-mobile
-                mt-6
+                is-variable is-mobile is-vcentered 
               "
-              style="height:100px"
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10 has-text-justified margin-title mx-4 my-4">
+              <div class="column has-text-justified margin-title">
                 <p class="has-text-info">Quelle est la fiabilité des données trouvées sur ASI?</p>
               </div>
-              <div class="column is-2">
-                <button class="card-header-icon py-4" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+              <div class="column is-1">
+                <button class="card-header-icon" aria-label="more options">
+                  <span :class="{ rotate: props.open }" class="icon2">
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
                   </span>
                 </button>
                 <!-- <b-button type="is-white" class="is-pulled-right">
@@ -198,4 +183,20 @@ export default {
 <style scoped lang="scss">
 @import "../variables.scss";
 
+ @media (max-width: 600px){
+
+  .icon1{
+    position: absolute;
+    margin-right: 40px;
+  }
+
+  .icon2{
+    position: absolute;
+    margin-right: 40px;
+  }
+ }
+
+.rotate{
+  transform: rotate(90deg);
+}
 </style>

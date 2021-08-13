@@ -5,20 +5,23 @@
       <nav class="level">
         <div class="level-left">
           <div class="level-item">
-            <small class="level-item has-text-weight-bold has-text-black">
-              2020&copy; ASI powered by RINTIO
+            <small class="level-item has-text-black">
+              2020&copy; ASI powered by 
+              <span class="">
+                <a href="http://www.rintio.com/">RINTIO</a>
+              </span> 
             </small>
           </div>
         </div>
         <div class="level-right has-text-centered">
           <small class="has-level-item" style="color: var(--textLight)">
-            <g-link class="has-text-black has-text-weight-bold" to="/cgu/"
+            <g-link class="has-text-black" to="/cgu/"
               >CGU</g-link
             >
           </small>
           <small class="has-level-item" style="color: var(--textLight)">
             <g-link
-              class="has-text-black has-text-weight-bold"
+              class="has-text-black"
               to="/mentions-legales/"
               >Mentions légales</g-link
             >
