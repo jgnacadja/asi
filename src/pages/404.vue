@@ -21,8 +21,6 @@
   </Layout>
 </template>
 
-
-
 <script>
 export default {
   metaInfo: {
