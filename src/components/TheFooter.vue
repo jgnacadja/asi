@@ -6,23 +6,19 @@
         <div class="level-left">
           <div class="level-item">
             <small class="level-item has-text-black">
-              2020&copy; ASI powered by 
+              2020&copy; ASI powered by
               <span class="">
-                <a href="http://www.rintio.com/">RINTIO</a>
-              </span> 
+                <a href="http://www.rintio.com/">&nbsp;RINTIO</a>
+              </span>
             </small>
           </div>
         </div>
         <div class="level-right has-text-centered">
           <small class="has-level-item" style="color: var(--textLight)">
-            <g-link class="has-text-black" to="/cgu/"
-              >CGU</g-link
-            >
+            <g-link class="has-text-black" to="/cgu/">CGU</g-link>
           </small>
           <small class="has-level-item" style="color: var(--textLight)">
-            <g-link
-              class="has-text-black"
-              to="/mentions-legales/"
+            <g-link class="has-text-black" to="/mentions-legales/"
               >Mentions légales</g-link
             >
           </small>
@@ -40,7 +36,7 @@
   margin-right: 10px;
 }
 
-.hero-footer{
+.hero-footer {
   background: #f5f5f5;
 }
 
