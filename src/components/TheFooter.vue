@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-footer has-background-grey">
+  <div class="hero-footer">
     <div class="container pb-4">
       <br />
       <nav class="level">
@@ -37,9 +37,10 @@
   margin-right: 10px;
 }
 
-.has-background-primary{
-  opacity: 30%;
+.hero-footer{
+  background: #f5f5f5;
 }
+
 @media (min-width: 768px) {
   .has-level-item {
     align-items: center;

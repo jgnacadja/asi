@@ -48,22 +48,41 @@
       <div class="my-6">
         <p class="title is-2 has-text-weight-bold has-text-info pb-4 has-text-centered">FAQs</p>
 
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
+        <!-- <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?
+            </p>
+            <button class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+        </div> -->
+
+        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card">
           <template #trigger="props">
             <div
               role="button"
               class="
                 columns
                 is-variable is-mobile
-                has-background-white
+                
               "
+              style="height:100px"
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10 margin-title">
+              <div class="column is-10 margin-title mx-4 my-4">
                 <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
               </div>
               <div class="column is-2">
-                <b-button type="is-white" class="is-pulled-right">
+                <button class="card-header-icon py-4" aria-label="more options">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                <!-- <b-button type="is-white" class="is-pulled-right">
                   <figure class="image is-32x32">
                     <g-image
                       :class="{ rotate: props.open }"
@@ -72,14 +91,13 @@
                       height="20"
                     />
                   </figure>
-                </b-button>
+                </b-button> -->
               </div>
             </div>
           </template>
           <div
             class="
               panel-block
-              has-background-white
               columns
               is-multiline
               is-centered
@@ -92,23 +110,28 @@
             </div>
           </div>
         </b-collapse>
-        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false">
+        <b-collapse animation="slide" aria-id="contentIdForA11y3" :open="false" class="card">
           <template #trigger="props">
             <div
               role="button"
               class="
                 columns
                 is-variable is-mobile
-                has-background-white
                 mt-6
               "
+              style="height:100px"
               aria-controls="contentIdForA11y3"
             >
-              <div class="column is-10 has-text-justified margin-title">
+              <div class="column is-10 has-text-justified margin-title mx-4 my-4">
                 <p class="has-text-info">Quelle est la fiabilité des données trouvées sur ASI?</p>
               </div>
               <div class="column is-2">
-                <b-button type="is-white" class="is-pulled-right">
+                <button class="card-header-icon py-4" aria-label="more options">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                <!-- <b-button type="is-white" class="is-pulled-right">
                   <figure class="image is-32x32">
                     <g-image
                       :class="{ rotate: props.open }"
@@ -117,17 +140,15 @@
                       height="20"
                     />
                   </figure>
-                </b-button>
+                </b-button> -->
               </div>
             </div>
           </template>
           <div
             class="
               panel-block
-              has-background-white
               columns
               is-multiline
-              has-background-white
               is-centered
               has-text-justified
             "
@@ -173,3 +194,8 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+@import "../variables.scss";
+
+</style>

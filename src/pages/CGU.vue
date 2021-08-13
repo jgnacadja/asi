@@ -4,14 +4,10 @@
       <div class="container">
         <h1 class="title is-1">CGU</h1>
         <h3 class="has-text-weight-bold">
-          Dernière mise à jour le 30 juillet 2021
+          Mise à jour le 1er Janvier 2021
         </h3>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="block">
-          Nous avons mis à jour nos Conditions d'utilisation afin de clarifier
+        <br />
+        Nous avons mis à jour nos Conditions d'utilisation afin de clarifier
           nos droits et obligations en ce qui concerne les nouvelles
           caractéristiques et fonctionnalités de ASI. Cela inclut l'ajout de
           termes spécifiques à notre Engagement Suite et un Addendum sur
@@ -20,8 +16,11 @@
           tiers que vous choisissez d'intégrer à ASI. Les nouvelles Conditions
           de service sont entrées en vigueur le 18 juin 2021 et sont énumérées
           immédiatement ci-dessous.
-          <br />
-          <br />
+      </div>
+        <br />
+
+      <div class="container">
+        <div class="block">
           <p class="has-text-weight-bold has-text-black">
             VEUILLEZ NOTER QUE VOTRE UTILISATION ET VOTRE ACCÈS À NOTRE SERVICE
             (DÉFINI CI-DESSOUS) SONT SOUMIS AUX CONDITIONS SUIVANTES ; SI VOUS

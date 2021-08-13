@@ -4,7 +4,8 @@
       <div class="container">
         <h1 class="title is-1">Politique de confidentialité</h1>
         <h3 class="has-text-weight-bold">
-          Dernière mise à jour : 1er juillet 2021
+          Mise à jour : 1er Janvier 2021
+        </h3>
           <br />
           Cette politique de confidentialité décrit nos politiques et procédures
           sur la collecte, l'utilisation et la divulgation de vos informations
@@ -15,20 +16,14 @@
           site. En utilisant la plateforme, vous acceptez la collecte et
           l'utilisation des informations conformément à la présente politique de
           confidentialité.
-        </h3>
       </div>
-    </section>
-    <section class="section">
+      <br />
+    
       <div class="container">
         <div class="block">
-          <h4
-            class="
-              section-title
-              has-text-left has-text-weight-bold has-text-black
-            "
-          >
+          <h3 class="title is-3 has-text-weight-bold">
             Collecte et utilisation de vos données personnelles
-          </h4>
+          </h3>
           <br />
           <h6
             class="
