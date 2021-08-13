@@ -65,7 +65,7 @@
               <div class="column is-1 is-variable is-mobbile">
                 <button class="card-header-icon" aria-label="more options">
                   <span :class="{ rotate: props.open }" class="icon1">
-                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
                   </span>
                 </button>
                 <!-- <b-button type="is-white" class="is-pulled-right">
@@ -113,7 +113,7 @@
               <div class="column is-1">
                 <button class="card-header-icon" aria-label="more options">
                   <span :class="{ rotate: props.open }" class="icon2">
-                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
                   </span>
                 </button>
                 <!-- <b-button type="is-white" class="is-pulled-right">
@@ -197,6 +197,6 @@ export default {
  }
 
 .rotate{
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 </style>
