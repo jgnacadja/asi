@@ -7,15 +7,15 @@
       </div>
 
       <div class="columns my-6 mx-auto is-align-content-center has-text-centered">
-        <div class="column">
+        <div class="column ">
           <g-image 
             class="image is-96x96 mx-auto"
             src="~/assets/search.png"
             alt=""
           >
           </g-image>
-          <p class="title is-5 has-text-info mt-4">Entrez le nom de la startup </p>
-          <p class="subtitle is-6 mt-6">Renseigner dans la barre de recherche le nom 
+          <p class="title is-6 has-text-info mt-4 title1">Entrez le nom de la startup </p>
+          <p class=" ">Renseigner dans la barre de recherche le nom 
             de votre startup ou trouvez-en une après avoir sélectionné votre domaine d'activité. 
           </p>
         </div>
@@ -26,8 +26,8 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info mt-4">Accéder aux informations liées à la startup sélectionnée </p>
-          <p class="subtitle is-6 mt-5">Analysez les performances et l’influence de la startup 
+          <p class="title is-6 has-text-info mt-4 mb-2 title2">Accéder aux informations liées à la startup sélectionnée </p>
+          <p class="">Analysez les performances et l’influence de la startup 
             auprès de ses utilisteurs.
           </p>
         </div>
@@ -38,8 +38,8 @@
             class="image is-96x96 mx-auto"
           >
           </g-image>
-          <p class="title is-5 has-text-info mt-4">Evaluer la startup sélectionnéé</p>
-          <p class="subtitle is-6 mt-6">Donner votre avis sur la startup pour lui 
+          <p class="title is-6 has-text-info mt-4 title3">Evaluer la startup sélectionnéé</p>
+          <p class="">Donner votre avis sur la startup pour lui 
             permettre d'être plus en vue.
           </p>
         </div>
@@ -193,6 +193,39 @@ export default {
   .icon2{
     position: absolute;
     margin-right: 40px;
+  }
+ }
+
+  @media (min-width: 769px){
+
+  .title1{
+    margin-bottom: 43px;
+  }
+
+   .title3{
+    margin-bottom: 26px;
+  }
+ }
+
+ @media (min-width: 801px){
+
+  .title1{
+    margin-bottom: 26px;
+  }
+
+   .title3{
+    margin-bottom: 8px;
+  }
+ }
+
+ @media (min-width: 826px){
+
+  .title1{
+    margin-bottom: 25px;
+  }
+
+   .title3{
+    margin-bottom: 26px;
   }
  }
 

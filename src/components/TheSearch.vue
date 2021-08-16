@@ -16,8 +16,9 @@
             :disabled="!canRefine"
             @change="refine($event.currentTarget.value)"
           >
-            <option style="padding: 5px 0;" value="">Tous les domaines</option>
-            <option style="padding: 5px 0;"
+            <option style="padding: 5px 0" value="">Tous les domaines</option>
+            <option
+              style="padding: 5px 0"
               v-for="item in items"
               :key="item.value"
               :value="item.value"
