@@ -34,163 +34,192 @@
             is-10 is-8-desktop is-marginless is-paddingless is-fullwidth
           "
         >
-          <ais-autocomplete>
-            <div slot-scope="{ currentRefinement, indices, refine }">
-              <p class="control is-expanded mobile-input">
-                <input
-                  class="input rm-raduis-input"
-                  type="search"
-                  placeholder="Rechercher"
-                  :value="currentRefinement"
-                  @input="refine($event.currentTarget.value)"
-                  autocomplete="off"
-                />
-              </p>
-              <div v-if="currentRefinement" class="result">
-                <smooth-scrollbar class="box box-result">
-                  <div class="is-box">
-                    <div class="hits">
-                      <ul v-for="index in indices" :key="index.name">
-                        <li
-                          class="column"
-                          style="text-align: center !important"
-                          v-show="index.hits.length == 0"
-                        >
-                          <em>Aucun résultat...</em>
-                        </li>
-                        <li
-                          v-for="(hit, i) in index.hits.slice(0, 3)"
-                          :key="hit.objectID"
-                          class="custom-hr-top"
-                          v-bind:class="{
-                            'custom-hr':
-                              i !== index.hits.slice(0, 3).length - 1,
-                            'custom-hr-bottom':
-                              i === index.hits.slice(0, 3).length - 1,
-                          }"
-                        >
-                          <g-link :to="parseUri(hit.objectID)">
-                            <div
-                              class="
-                                columns
-                                post-item
-                                is-marginless is-paddingless is-mobile
-                                has-text-black
-                              "
-                            >
-                              <!-- <div class="column is-2 post-cover">
+          <ais-index
+            :indexName="ALGOLIA_INDEX_NAME"
+            indexId="instant_search_results"
+          >
+            <ais-autocomplete>
+              <div slot-scope="{ currentRefinement, indices, refine }">
+                <p class="control is-expanded mobile-input">
+                  <input
+                    class="input rm-raduis-input"
+                    type="search"
+                    placeholder="Rechercher"
+                    :value="currentRefinement"
+                    @input="refine($event.currentTarget.value)"
+                    autocomplete="off"
+                  />
+                </p>
+                <div v-if="currentRefinement" class="result">
+                  <smooth-scrollbar class="box box-result">
+                    <div class="is-box">
+                      <div class="hits">
+                        <ul v-for="index in indices" :key="index.name">
+                          <li
+                            class="column"
+                            style="text-align: center !important"
+                            v-show="index.hits.length == 0"
+                          >
+                            <em>Aucun résultat...</em>
+                          </li>
+                          <li
+                            v-for="(hit, i) in index.hits.slice(0, 3)"
+                            :key="hit.objectID"
+                            class="custom-hr-top"
+                            v-bind:class="{
+                              'custom-hr':
+                                i !== index.hits.slice(0, 3).length - 1,
+                              'custom-hr-bottom':
+                                i === index.hits.slice(0, 3).length - 1,
+                            }"
+                          >
+                            <g-link :to="parseUri(hit.objectID)">
+                              <div
+                                class="
+                                  columns
+                                  post-item
+                                  is-marginless is-paddingless is-mobile
+                                  has-text-black
+                                "
+                              >
+                                <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
                                 src="~/assets/fintech.png"
                                 fit="inside"
                               />
                             </div> -->
-                              <div
-                                class="
-                                  column
-                                  is-8-desktop is-7
-                                  has-text-left has-text-weight-bold
-                                "
-                              >
-                                {{ hit.name }}
-
-                                <br />
-                                <small
-                                  class="
-                                    post-author
-                                    has-text-primary
-                                    is-size-7-mobile
-                                    has-text-weight-light
-                                  "
-                                  v-if="hit.market !== 'Indefini'"
-                                >
-                                  {{ hit.market }}
-                                </small>
-                                <small
-                                  class="
-                                    post-location
-                                    is-size-7-mobile
-                                    has-text-weight-light
-                                  "
-                                >
-                                  <b-icon
-                                    pack="fa"
-                                    icon="map-marker"
-                                    size="is-small"
-                                  />
-                                  {{ hit.startup_country }}
-                                </small>
-                                <!-- <hr> -->
-                              </div>
-
-                              <div class="column is-2-desktop is-7">
                                 <div
                                   class="
-                                    has-text-weight-bold
-                                    post-vote
-                                    is-size-4-desktop
+                                    column
+                                    is-8-desktop is-7
+                                    has-text-left has-text-weight-bold
                                   "
                                 >
-                                  <span v-if="hit.stats">{{ hit.stats }}</span>
-                                  <span v-if="!hit.stats">0.0</span>
+                                  {{ hit.name }}
+
+                                  <br />
+                                  <small
+                                    class="
+                                      post-author
+                                      has-text-primary
+                                      is-size-7-mobile
+                                      has-text-weight-light
+                                    "
+                                    v-if="hit.market !== 'Indefini'"
+                                  >
+                                    {{ hit.market }}
+                                  </small>
+                                  <small
+                                    class="
+                                      post-location
+                                      is-size-7-mobile
+                                      has-text-weight-light
+                                    "
+                                  >
+                                    <b-icon
+                                      pack="fa"
+                                      icon="map-marker"
+                                      size="is-small"
+                                    />
+                                    {{ hit.startup_country }}
+                                  </small>
+                                  <!-- <hr> -->
                                 </div>
-                                <div class="has-text-centered is-hidden-mobile">
-                                  <i
-                                    v-bind:class="
-                                      hit.stats >= 1 ? 'fas' : 'far'
-                                    "
-                                    class="fa-star fa-sm has-text-warning ml-1"
-                                  ></i>
 
-                                  <i
-                                    v-bind:class="
-                                      hit.stats >= 1 ? 'fas' : 'far'
+                                <div class="column is-2-desktop is-7">
+                                  <div
+                                    class="
+                                      has-text-weight-bold
+                                      post-vote
+                                      is-size-4-desktop
                                     "
-                                    class="fa-star fa-sm has-text-warning ml-1"
-                                  ></i>
+                                  >
+                                    <span v-if="hit.stats">{{
+                                      hit.stats
+                                    }}</span>
+                                    <span v-if="!hit.stats">0.0</span>
+                                  </div>
+                                  <div
+                                    class="has-text-centered is-hidden-mobile"
+                                  >
+                                    <i
+                                      v-bind:class="
+                                        hit.stats >= 1 ? 'fas' : 'far'
+                                      "
+                                      class="
+                                        fa-star fa-sm
+                                        has-text-warning
+                                        ml-1
+                                      "
+                                    ></i>
 
-                                  <i
-                                    v-bind:class="
-                                      hit.stats >= 1 ? 'fas' : 'far'
-                                    "
-                                    class="fa-star fa-sm has-text-warning ml-1"
-                                  ></i>
+                                    <i
+                                      v-bind:class="
+                                        hit.stats >= 1 ? 'fas' : 'far'
+                                      "
+                                      class="
+                                        fa-star fa-sm
+                                        has-text-warning
+                                        ml-1
+                                      "
+                                    ></i>
 
-                                  <i
-                                    v-bind:class="
-                                      hit.stats >= 1 ? 'fas' : 'far'
-                                    "
-                                    class="fa-star fa-sm has-text-warning ml-1"
-                                  ></i>
+                                    <i
+                                      v-bind:class="
+                                        hit.stats >= 1 ? 'fas' : 'far'
+                                      "
+                                      class="
+                                        fa-star fa-sm
+                                        has-text-warning
+                                        ml-1
+                                      "
+                                    ></i>
 
-                                  <i
-                                    v-bind:class="
-                                      hit.stats >= 1 ? 'fas' : 'far'
+                                    <i
+                                      v-bind:class="
+                                        hit.stats >= 1 ? 'fas' : 'far'
+                                      "
+                                      class="
+                                        fa-star fa-sm
+                                        has-text-warning
+                                        ml-1
+                                      "
+                                    ></i>
+
+                                    <i
+                                      v-bind:class="
+                                        hit.stats >= 1 ? 'fas' : 'far'
+                                      "
+                                      class="
+                                        fa-star fa-sm
+                                        has-text-warning
+                                        ml-1
+                                      "
+                                    ></i>
+                                  </div>
+                                  <div
+                                    class="
+                                      post-location
+                                      is-size-7-mobile
+                                      has-text-weight-light
                                     "
-                                    class="fa-star fa-sm has-text-warning ml-1"
-                                  ></i>
-                                </div>
-                                <div
-                                  class="
-                                    post-location
-                                    is-size-7-mobile
-                                    has-text-weight-light
-                                  "
-                                >
-                                  0 votes
+                                  >
+                                    0 votes
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </g-link>
-                        </li>
-                        <hr />
-                      </ul>
+                            </g-link>
+                          </li>
+                          <hr />
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </smooth-scrollbar>
+                  </smooth-scrollbar>
+                </div>
               </div>
-            </div>
-          </ais-autocomplete>
+            </ais-autocomplete>
+          </ais-index>
         </div>
         <p
           class="
