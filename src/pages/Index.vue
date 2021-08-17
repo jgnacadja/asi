@@ -11,7 +11,7 @@
             La plateforme des potentialités d’Afrique
           </h2>
           <div class="box is-shadowless is-paddinless-mobile">
-            <div class="field is-grouped">
+            <div class="box field is-grouped">
               <TheSearch />
             </div>
           </div>
