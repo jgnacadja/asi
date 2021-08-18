@@ -31,7 +31,7 @@
         <div
           class="
             column
-            is-12 is-9-desktop is-marginless is-paddingless is-fullwidth
+            is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
           "
         >
           <ais-index
@@ -152,22 +152,22 @@
                           ></i>
 
                           <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                            v-bind:class="hit.stats >= 2 ? 'fas' : 'far'"
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
 
                           <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                            v-bind:class="hit.stats >= 3 ? 'fas' : 'far'"
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
 
                           <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                            v-bind:class="hit.stats >= 4 ? 'fas' : 'far'"
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
 
                           <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                            v-bind:class="hit.stats >= 5 ? 'fas' : 'far'"
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
                         </div>
@@ -218,10 +218,7 @@ export default {
     },
     print(query, indices) {
       this.current = query;
-
-/*       this.hits = indices.forEach(
-        (i) => ~i.hits.filter((j) => j.name.indexOf(query))
-      ); */
+      this.hits = indices;
 
       console.log(this.current);
       console.log("hits", this.hits);
@@ -363,3 +360,4 @@ p input::placeholder {
   font-style: italic;
 }
 </style>
+
