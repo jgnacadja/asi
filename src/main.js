@@ -11,6 +11,8 @@ import SmoothScrollbar from "vue-smooth-scrollbar";
 import InstantSearch from "vue-instantsearch";
 import Axios from "axios";
 
+const fontsCss = require('./assets/css/fonts.css')
+
 export default function(Vue, { router, head, isClient }) {
   // Add attributes to HTML tag
   head.htmlAttrs = { lang: "fr" };
@@ -21,18 +23,16 @@ export default function(Vue, { router, head, isClient }) {
     content: "width=device-width, initial-scale=1.0, shrink-to-fit=no",
   });
 
-  // Import Adobe Fonts
-  head.link.push({
-    rel: "stylesheet",
-    href: "https://use.typekit.net/bur4tax.css",
+  // Import Poppins
+  head.style.push({
+    type: "text/css",
+    cssText: fontsCss,
   });
+
   // Import Font Awesome
   head.link.push({
     rel: "stylesheet",
     href: "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
-  });
-  head.script.push({
-    src: "crisp.js",
   });
 
   // pixel twitter

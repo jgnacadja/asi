@@ -1,18 +1,25 @@
 <template>
   <Layout>
     <section class="section hero">
-      <div id="mainDiv" class="columns">
-        <div class="column center-over-1920">
-          <video class="video-banner hero" playsinline autoplay muted loop>
-            <source src="404/404_vf.webm" type="video/webm" />
-          </video>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="has-text-centered">
+              <h1>404 Non trouvé</h1>
+              <div>
+                Désolé, une erreur s'est produite, la page demandée n'a pas été
+                trouvée !
+              </div>
+              <div class="error-actions">
+                <g-link>Revenir à l'acceuil </g-link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </Layout>
 </template>
-
-
 
 <script>
 export default {

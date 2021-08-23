@@ -13,15 +13,15 @@ $white: hsl(0, 0%, 98%);
 
 $primary: $blue-studely;
 
-$light: hsl(0, 0%, 96%);
+$light: #fbfdff;
 $sucess: $green-studely;
-
+$info: #267ec3;
 // General colors
 $scheme-main: $light;
 
 // Typography
-$family-sans-serif: century-gothic, sans-serif;
-$family-secondary: jaf-domus, sans-serif;
+$family-sans-serif: poppins, sans-serif;
+$family-secondary: poppins, sans-serif;
 $body-family: $family-secondary;
 
 $variable-columns: false;
@@ -313,4 +313,7 @@ section.container {
 
 .is-highlight-carousel .carousel-indicator {
   bottom: -1.5em !important;
+}
+.icon-link {
+  display: none !important;
 }

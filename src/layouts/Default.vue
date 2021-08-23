@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout hero is-fullheight has-background-light">
     <TheMegamenu />
     <transition name="fade" appear>
       <main>

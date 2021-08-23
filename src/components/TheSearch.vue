@@ -1,178 +1,227 @@
 <template>
-  <b-field class="b-field">
-    <div class="container">
-      <ais-instant-search
-        :search-client="searchClient"
-        :index-name="ALGOLIA_INDEX_NAME"
-      >
-        <ais-autocomplete>
-          <div slot-scope="{ currentRefinement, indices, refine }">
-            <form id="searchform">
-              <input
-                id="search-field"
-                type="search"
-                class="input input-mobile is-hidden-desktop"
-                :value="currentRefinement"
-                placeholder="Rechercher"
-                @input="refine($event.currentTarget.value)"
-                autocomplete="off"
-              />
-              <input
-                id="search-field"
-                type="search"
-                class="input input-desktop is-hidden-mobile"
-                :class="state"
-                :style="styleObject"
-                :value="currentRefinement"
-                placeholder="Rechercher"
-                @input="refine($event.currentTarget.value)"
-                autocomplete="off"
-              />
-            </form>
-            <div
-              class="columns is-hidden-desktop smooth-scroll-area-m"
-              id="scroll-area"
-              v-if="currentRefinement"
+  <div class="container">
+    <ais-instant-search
+      :search-client="searchClient"
+      :index-name="ALGOLIA_INDEX_NAME"
+    >
+      <form class="columns is-mobile field is-grouped">
+        <ais-menu-select
+          class="is-hidden-mobile column is-3 is-marginless is-paddingless"
+          :attribute="attribute"
+          :limit="1000"
+        >
+          <select
+            class="select rm-raduis-select is-fullwidth"
+            slot-scope="{ items, canRefine, refine }"
+            :disabled="!canRefine"
+            @change="refine($event.currentTarget.value)"
+          >
+            <option style="padding: 5px 0" value="">Tous les domaines</option>
+            <option
+              style="padding: 5px 0"
+              v-for="item in items"
+              :key="item.value"
+              :value="item.value"
+              :selected="item.isRefined"
             >
-              <smooth-scrollbar>
-                <div class="hits">
-                  <ul v-for="index in indices" :key="index.label">
-                    <li
-                      class="column"
-                      style="text-align: center !important"
-                      v-show="index.hits.length == 0"
+              {{ item.label }}
+            </option>
+          </select>
+        </ais-menu-select>
+        <div
+          class="
+            column
+            is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
+          "
+        >
+          <ais-index
+            :indexName="ALGOLIA_INDEX_NAME"
+            indexId="instant_search_results"
+          >
+            <ais-autocomplete>
+              <div slot-scope="{ currentRefinement, indices, refine }">
+                <p class="control is-expanded mobile-input">
+                  <input
+                    class="input rm-raduis-input is-borderless"
+                    type="search"
+                    placeholder="Accéder à une startup"
+                    :value="currentRefinement"
+                    @input="refine($event.currentTarget.value)"
+                    autocomplete="off"
+                  />
+                </p>
+                {{ print(currentRefinement, indices) }}
+              </div>
+            </ais-autocomplete>
+          </ais-index>
+        </div>
+        <!-- <p
+          class="
+            control
+            column
+            is-1-desktop is-marginless is-paddingless is-fullwidth
+          "
+        >
+          <span class="button has-text-white rm-raduis-search is-fullwidth">
+            <b-icon pack="fas" icon="search" size="is-small" />
+          </span>
+        </p> -->
+      </form>
+      <div v-if="current" class="result">
+        <smooth-scrollbar class="box-result">
+          <div class="is-box">
+            <div class="hits">
+              <ul v-for="index in hits" :key="index.name">
+                <li
+                  class="column"
+                  style="text-align: center !important"
+                  v-show="index.hits.length == 0"
+                >
+                  <em>Aucun résultat...</em>
+                </li>
+                <li
+                  v-for="hit in index.hits.slice(0, 3)"
+                  :key="hit.objectID"
+                  class="custom-hr-top"
+                >
+                  <g-link :to="parseUri(hit.objectID)">
+                    <div
+                      class="
+                        columns
+                        post-item
+                        is-marginless is-paddingless is-mobile
+                        has-text-black
+                      "
                     >
-                      <em>Aucun résultat...</em>
-                    </li>
-                    <li>
-                      <ul>
-                        <li v-for="hit in index.hits" :key="hit.objectID">
-                          <div
-                            class="columns is-mobile post-item is-marginless is-paddingless"
-                          >
-                            <div class="column is-2 post-cover">
+                      <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
-                                :src="hit.coverImage"
+                                src="~/assets/fintech.png"
+                                fit="inside"
                               />
-                            </div>
-                            <div class="column is-10">
-                              <g-link :to="hit.path">{{ hit.title }}</g-link>
+                            </div> -->
+                      <div
+                        class="
+                          column
+                          is-8-desktop is-7
+                          has-text-left has-text-weight-bold
+                        "
+                      >
+                        {{ hit.name }}
 
-                              <br />
-                              <small class="post-author">{{
-                                hit.author
-                              }}</small>
-                              <small class="post-date">{{
-                                format_date(hit.date)
-                              }}</small>
-                              <!-- <hr> -->
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </smooth-scrollbar>
-            </div>
-            <div
-              class="columns is-hidden-mobile smooth-scroll-area-d"
-              id="scroll-area"
-              v-if="currentRefinement"
-            >
-              <smooth-scrollbar>
-                <div class="hits">
-                  <ul v-for="index in indices" :key="index.label">
-                    <li
-                      class="column"
-                      style="text-align: center !important"
-                      v-show="index.hits.length == 0"
-                    >
-                      <em>Aucun résultat...</em>
-                    </li>
-                    <li>
-                      <ul>
-                        <li v-for="hit in index.hits" :key="hit.objectID">
-                          <div
-                            class="columns post-item is-marginless is-paddingless"
-                          >
-                            <div class="column is-2 post-cover">
-                              <g-image
-                                class="post-coverImage"
-                                :src="hit.coverImage"
-                              />
-                            </div>
-                            <div class="column is-10">
-                              <g-link :to="hit.path">{{ hit.title }}</g-link>
+                        <br />
+                        <small
+                          class="
+                            post-author
+                            has-text-primary
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                          v-if="hit.market !== 'Indefini'"
+                        >
+                          {{ hit.market }}
+                        </small>
+                        <small
+                          class="
+                            post-location
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
+                          <b-icon pack="fa" icon="map-marker" size="is-small" />
+                          {{ hit.startup_country }}
+                        </small>
+                        <!-- <hr> -->
+                      </div>
 
-                              <br />
-                              <small class="post-author">{{
-                                hit.author
-                              }}</small>
-                              <small class="post-date">{{
-                                format_date(hit.date)
-                              }}</small>
-                              <!-- <hr> -->
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </smooth-scrollbar>
+                      <div class="column is-2-desktop is-7">
+                        <div
+                          class="
+                            has-text-weight-bold
+                            post-vote
+                            is-size-4-desktop
+                          "
+                        >
+                          <span v-if="hit.stats">{{ hit.stats }}</span>
+                          <span v-if="!hit.stats">0.0</span>
+                        </div>
+                        <div class="has-text-centered is-hidden-mobile">
+                          <i
+                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
+                            class="fa-star fa-sm has-text-warning ml-1"
+                          ></i>
+
+                          <i
+                            v-bind:class="hit.stats >= 2 ? 'fas' : 'far'"
+                            class="fa-star fa-sm has-text-warning ml-1"
+                          ></i>
+
+                          <i
+                            v-bind:class="hit.stats >= 3 ? 'fas' : 'far'"
+                            class="fa-star fa-sm has-text-warning ml-1"
+                          ></i>
+
+                          <i
+                            v-bind:class="hit.stats >= 4 ? 'fas' : 'far'"
+                            class="fa-star fa-sm has-text-warning ml-1"
+                          ></i>
+
+                          <i
+                            v-bind:class="hit.stats >= 5 ? 'fas' : 'far'"
+                            class="fa-star fa-sm has-text-warning ml-1"
+                          ></i>
+                        </div>
+                        <div
+                          class="
+                            post-location
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
+                          0 votes
+                        </div>
+                      </div>
+                    </div>
+                  </g-link>
+                </li>
+              </ul>
             </div>
           </div>
-        </ais-autocomplete>
-      </ais-instant-search>
-    </div>
-  </b-field>
+        </smooth-scrollbar>
+      </div>
+    </ais-instant-search>
+  </div>
 </template>
 
 <script>
 import algoliasearch from "algoliasearch/lite";
 
-import moment from "moment";
-
 export default {
-  props: {
-    state: {
-      type: String,
-      default() {
-        return "input-desktop-hidden";
-      },
-    },
-  },
+  component: {},
   data() {
     return {
-      ALGOLIA_INDEX_NAME: "prod_studelyapp",
+      baseUrl: "http://asi.dev.rintio.com/detail/",
+      ALGOLIA_INDEX_NAME: "asi",
       searchClient: algoliasearch(
-        "LN9TK4HMD4",
-        "226b34d5d32255c856515a040f9a0830"
+        "CGXKUPOJ8Y",
+        "14e786e8fe7d0f1093b0a70ba55550cc"
       ),
-      searchInputStyle: "2px solid #48c774",
+      attribute: "market",
+      current: "",
+      hits: [],
     };
   },
-  mounted() {
-    var url = location.href; // = location.href
-    var parts = url.split("/").slice(2);
-    if (parts[1] === "") {
-      this.searchInputStyle = "2px solid #185996";
-    }
-  },
-  computed: {
-    styleObject: function () {
-      return {
-        "--color-hover": this.searchInputStyle,
-      };
-    },
-  },
   methods: {
-    format_date(value) {
-      if (value) {
-        return moment(String(value)).format("DD MMMM YYYY");
-      }
+    parseUri(objectId) {
+      const parseId = escape(objectId);
+      return `${this.baseUrl}${parseId}`;
+    },
+    print(query, indices) {
+      this.current = query;
+      this.hits = indices;
+
+      console.log(this.current);
+      console.log("hits", this.hits);
     },
   },
 };
@@ -180,224 +229,135 @@ export default {
 
 <style scoped lang="scss">
 @import "../variables.scss";
-.field:not(:last-child) {
-  margin-bottom: 0rem !important;
+
+/* .post-item:hover{
+  background-color: rgba(28, 102, 172, 0.1);
+} */
+
+li {
+  list-style-type: none;
 }
 
-input.border-round {
-  border-radius: 1em !important;
+.result {
+  padding-top: 1rem;
+  border-top: 1px solid #dedede;
 }
 
-.input-mobile {
-  background-image: url("../../static/search-solid.svg");
-  background-repeat: no-repeat;
-  background-position: 95% center;
-  background-size: 15px;
+@media screen and (min-width: 1024px) {
+  .result {
+    margin-right: 1rem;
+  }
 }
 
-.input-mobile:focus {
-  //background-image: url('../../static/search-solid.svg');
-  background-repeat: no-repeat;
-  background-position: 110% center;
-  background-size: 15px;
-  //border: 2px solid #48c774;box-shadow: none;
+.select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  box-sizing: inherit;
+  margin: 0;
+  font-family: poppins, sans-serif;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  align-items: center;
+  border: 1px solid transparent;
+  box-shadow: none;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top;
+  border-color: transparent;
+  border-radius: 4px;
+  color: #363636;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  width: 12em;
+  outline: none;
+  text-rendering: auto !important;
+  height: 3.5em;
+  padding-right: 0px;
+  background: transparent;
+  -webkit-transition: 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: 0.5s;
 }
 
-.input-desktop {
-  background-image: url("../../static/search-solid.svg");
-  background-repeat: no-repeat;
-  background-position: 95% center;
-  background-size: 15px;
+.select:hover {
+  background: #f5f5f5;
 }
 
-.input-desktop:focus {
-  //background-image: url('../../static/search-solid.svg');
-  background-repeat: no-repeat;
-  background-position: 110% center;
-  background-size: 15px;
-  border: var(--color-hover);
+.select::after,
+.select::before {
+  color: red !important;
+  border-color: #485fc7 !important;
+}
+
+.rm-raduis-select {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.rm-raduis-input {
+  border-radius: 0px;
+}
+
+.is-borderless {
+  border: transparent;
   box-shadow: none;
 }
 
-.post-date {
-  position: absolute;
-  right: 2%;
-  padding-top: 1%;
+.rm-raduis-search {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  background: #ff9b26;
 }
 
-.post-item {
-  padding-top: 5%;
+.post-vote {
+  margin-top: -1rem;
 }
 
-/*.post-cover {
-  //position: absolute;
-  //margin-left: -15%;
-  //margin-top: 2%;
-}*/
-
-/*.post-coverImage {
-  width: 30px;
-}*/
-
-.smooth-scroll-area-d {
-  height: 300px;
-  color: black;
-  width: 500px;
-  position: absolute;
-  margin-top: 18%;
-  right: -10%;
-  //padding-left: 1%;
-  padding-right: 5%;
-  -webkit-tap-highlight-color: transparent;
-  text-align: left;
-  box-sizing: border-box;
-  background-color: #fff !important;
-  border-radius: 0.25rem !important;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-}
-
-.smooth-scroll-area-m {
-  height: 300px;
-  color: black;
-  width: 99%;
-  position: absolute;
-  margin-top: 1%;
-  left: 4%;
-  padding-left: 5%;
-  padding-right: 5%;
-  -webkit-tap-highlight-color: transparent;
-  text-align: left;
-  box-sizing: border-box;
-  background-color: #fff !important;
-  border-radius: 0.25rem !important;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  z-index: 1;
-}
-
-@media only screen and (max-width: 415px) {
-  .input {
-    background-image: url("../../static/search-solid.svg");
-    background-repeat: no-repeat;
-    background-position: 95% center;
-    background-size: 15px;
+@media (max-width: 768px) {
+  .post-vote {
+    margin-top: 0rem;
   }
 
-  .input:focus {
-    //background-image: url('../../static/search-solid.svg');
-    background-repeat: no-repeat;
-    background-position: 110% center;
-    background-size: 15px;
+  .custom-hr {
+    border-bottom: 1px solid #c4c4c4;
+    margin-bottom: 1rem;
+  }
+
+  .custom-hr-top {
+    margin-top: -1rem;
+  }
+
+  .custom-hr-bottom {
+    margin-bottom: -1.2rem;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .input {
-    background-image: url("../../static/search-solid.svg");
-    background-repeat: no-repeat;
-    background-position: 98% center;
-    background-size: 15px;
-  }
+.custom-hr {
+  border-bottom: 1px solid #c4c4c4;
+  margin-bottom: 1rem;
+}
 
-  .input:focus {
-    //background-image: url('../../static/search-solid.svg');
-    background-repeat: no-repeat;
-    background-position: 110% center;
-    background-size: 15px;
+.is-paddingless,
+.is-marginless {
+  padding: 0 !important;
+}
+
+.is-fullwidth {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mobile-input {
+    margin-left: 0.6rem;
   }
 }
 
-@media only screen and (max-width: 1023px) {
-  .input {
-    background-image: url("../../static/search-solid.svg");
-    background-repeat: no-repeat;
-    background-position: 98% center;
-    background-size: 15px;
-  }
-
-  .input:focus {
-    //background-image: url('../../static/search-solid.svg');
-    background-repeat: no-repeat;
-    background-position: 110% center;
-    background-size: 15px;
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  .b-field {
-    right: 12%;
-    position: absolute;
-  }
-}
-
-@media only screen and (min-width: 414px) and (max-width: 768px) {
-  .smooth-scroll-area-m {
-    height: 300px;
-    color: black;
-    width: 99%;
-    position: absolute;
-    margin-top: 1%;
-    left: 2%;
-    padding-left: 5%;
-    padding-right: 5%;
-    -webkit-tap-highlight-color: transparent;
-    text-align: left;
-    box-sizing: border-box;
-    background-color: #fff !important;
-    border-radius: 0.25rem !important;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1024px) {
-  #searchform {
-    width: 95%;
-  }
-}
-
-@media only screen and (min-width: 1085px) and (max-width: 1279px) {
-  .input-desktop-display {
-    transform: translateX(-40%) !important;
-  }
-}
-
-@media only screen and (min-width: 1084px) and (max-width: 1546px) {
-  .input-desktop-hidden {
-    transition: transform 0.5s ease;
-    transform: translateX(120%);
-    z-index: -1;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    opacity: 0;
-    -webkit-transition: all 0.5 ease-in-out;
-    -moz-transition: all 0.5 ease-in-out;
-    -ms-transition: all 0.5 ease-in-out;
-    -o-transition: all 0.5 ease-in-out;
-  }
-
-  .input-desktop-display {
-    display: block;
-    transition: transform 0.5s ease;
-    transform: translateX(-10%);
-    z-index: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-    opacity: 1;
-    -webkit-transition: all 0.5 ease-in;
-    -moz-transition: all 0.5 ease-in;
-    -ms-transition: all 0.5 ease-in;
-    -o-transition: all 0.5 ease-in;
-  }
-}
-
-@media only screen and (min-width: 1366px) and (max-width: 1366px) {
-  #searchform {
-    margin-left: 10%;
-  }
-}
-
-@media only screen and (min-width: 769px) and (max-width: 1096px) {
-  .input-desktop {
-    display: none;
-  }
+p input::placeholder {
+  font-style: italic;
 }
 </style>
+
