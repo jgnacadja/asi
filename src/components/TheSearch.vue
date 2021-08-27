@@ -103,8 +103,9 @@
                       <div
                         class="
                           column
-                          is-8-desktop is-7
+                          is-10-tablet is-8-mobile
                           has-text-left has-text-weight-bold
+                          is-size-7-mobile
                         "
                       >
                         {{ hit.name }}
@@ -134,18 +135,18 @@
                         <!-- <hr> -->
                       </div>
 
-                      <div class="column is-2-desktop is-7">
+                      <div class="column is-2-tablet is-4-mobile">
                         <div
                           class="
                             has-text-weight-bold
                             post-vote
-                            is-size-4-desktop
+                            is-size-4-desktop is-size-7-mobile
                           "
                         >
                           <span v-if="hit.stats">{{ hit.stats }}</span>
                           <span v-if="!hit.stats">0.0</span>
                         </div>
-                        <div class="has-text-centered is-hidden-mobile">
+                        <div class="has-text-centered custom-size-mobile">
                           <i
                             v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
                             class="fa-star fa-sm has-text-warning ml-1"
@@ -185,6 +186,11 @@
                   </g-link>
                 </li>
               </ul>
+              <g-image
+                class="custom-size is-pulled-right mr-4 pt-2 pt-4-desktop"
+                alt="algolia"
+                src="~/assets/algolia.svg"
+              />
             </div>
           </div>
         </smooth-scrollbar>
@@ -243,9 +249,23 @@ li {
   border-top: 1px solid #dedede;
 }
 
+.custom-size {
+  width: 12%;
+}
+
 @media screen and (min-width: 1024px) {
   .result {
     margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .custom-size-mobile {
+    font-size: 0.5rem;
+  }
+
+  .custom-size {
+    width: 25% !important;
   }
 }
 
