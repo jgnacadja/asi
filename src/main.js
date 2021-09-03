@@ -10,6 +10,7 @@ import InfiniteLoading from "vue-infinite-loading";
 import SmoothScrollbar from "vue-smooth-scrollbar";
 import InstantSearch from "vue-instantsearch";
 import Axios from "axios";
+import VueApexCharts from "vue-apexcharts";
 
 const fontsCss = require('./assets/css/fonts.css')
 
@@ -65,4 +66,8 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(SmoothScrollbar);
 
   Vue.use(InstantSearch);
+
+  Vue.use(VueApexCharts)
+  Vue.component('apexchart', VueApexCharts)
+
 }
