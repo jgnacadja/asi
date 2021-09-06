@@ -10,7 +10,6 @@ import InfiniteLoading from "vue-infinite-loading";
 import SmoothScrollbar from "vue-smooth-scrollbar";
 import InstantSearch from "vue-instantsearch";
 import Axios from "axios";
-import VueApexCharts from "vue-apexcharts";
 
 const fontsCss = require('./assets/css/fonts.css')
 
@@ -48,6 +47,10 @@ export default function(Vue, { router, head, isClient }) {
   head.script.push({
     src: "klaro.js",
   });
+  // Apexcharts donuts
+  head.script.push({
+    src: "https://cdn.jsdelivr.net/npm/apexcharts",
+  });
 
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout);
@@ -67,7 +70,5 @@ export default function(Vue, { router, head, isClient }) {
 
   Vue.use(InstantSearch);
 
-  Vue.use(VueApexCharts);
-  Vue.component('apexchart', VueApexCharts);
 
 }

@@ -149,7 +149,7 @@
                         </label>
                     </header>
                     <figure class="charts">
-                        <apexchart width="380" type="donut" :options="options" :series="series"></apexchart>
+                        <span id="chart"></span>
                     </figure>
                     <footer class="report_social_network mb-5 is-size-7">
                         <ul>
@@ -181,45 +181,62 @@
     </section>
   </Layout>
 </template>
-
 <script>
-
 export default {
-  data() {
-    return {
-        options: {
+    metaInfo: {
+        title: "Aperçu",
+        meta: [
+        {
+            name: "Aperçu",
+            content: "Aperçu de la Startup",
+        },
+        ],
+    },
+    mounted: function () {
+        var tableau = [8000,17000,37000,10000];
+        var sum = tableau.reduce((acc, cur) => acc + cur, 0);
+        function compute_label(value) {
+            var signe="";
+            var k=1000;
+            var m=1000000;
+            var g=1000000000;
+            if(value >= g){
+                value/=g;
+                signe="G";
+            }
+            else{
+                if(value > m){
+                    value/=m;
+                    signe="M"
+                }
+                else if(value > k){
+                    value/=k;
+                    signe="K";
+                }
+            }
+            return String(value)+signe;
+        }
+        var my_options = {
+            chart: {
+                type: 'donut'
+            },
+            legend: {
+                show: false,
+            },
             labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
             colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
-            value : "50%",
             dataLabels: {
-                enabled: false, //Remove label
+                enabled: true, //Remove label
+                formatter: function (val, opts) {
+                    var value=val*sum/100;
+                    return compute_label(value);
+                },
             },
             tooltip: {
                 enabled: true,
                 y: {
                     formatter: function(value) {
-                        var signe="";
-                        var k=1000;
-                        var m=1000000;
-                        var g=1000000000;
-                        if(value >= g){
-                            value/=g;
-                            signe="G";
-                        }
-                        else{
-                            if(value > m){
-                                value/=m;
-                                signe="M"
-                            }
-                            else if(value > k){
-                                value/=k;
-                                signe="K";
-                            }
-                        }
-                        return String(value)+signe;
-                    },
-                    title: {
-                        // formatter: (seriesName) => "seriesName",
+                        compute_label(value);
                     },
                 },
             },
@@ -235,25 +252,7 @@ export default {
                             value: {
                                 color: "#FF9B26",
                                 formatter: function(value) {
-                                    var signe="";
-                                    var k=1000;
-                                    var m=1000000;
-                                    var g=1000000000;
-                                    if(value >= g){
-                                        value/=g;
-                                        signe="G";
-                                    }
-                                    else{
-                                        if(value > m){
-                                            value/=m;
-                                            signe="M"
-                                        }
-                                        else if(value > k){
-                                            value/=k;
-                                            signe="K";
-                                        }
-                                    }
-                                    return String(value)+signe;
+                                    return compute_label(value);
                                 },
                             },
                             total:{
@@ -268,25 +267,13 @@ export default {
                     }
                 }
             },
-            legend: {
-                show: false,
-            }
-        },
-        series: [8000,17000,37000,10000],
-    }
-  },
-  metaInfo: {
-    title: "Aperçu",
-    meta: [
-      {
-        name: "Aperçu",
-        content: "Aperçu de la Startup",
-      },
-    ],
-  },
+            series: tableau,
+        }
+        var chart = new ApexCharts(document.querySelector("#chart"), my_options);
+        chart.render();
+    },
 };
 </script>
-
 <style scoped lang="scss">
     @import "../variables.scss"; 
     @import '~bulma/sass/utilities/initial-variables';
