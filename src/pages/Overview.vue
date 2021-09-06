@@ -184,7 +184,6 @@
 
 <script>
 
-
 export default {
   data() {
     return {
@@ -236,26 +235,26 @@ export default {
                             value: {
                                 color: "#FF9B26",
                                 formatter: function(value) {
-                        var signe="";
-                        var k=1000;
-                        var m=1000000;
-                        var g=1000000000;
-                        if(value >= g){
-                            value/=g;
-                            signe="G";
-                        }
-                        else{
-                            if(value > m){
-                                value/=m;
-                                signe="M"
-                            }
-                            else if(value > k){
-                                value/=k;
-                                signe="K";
-                            }
-                        }
-                        return String(value)+signe;
-                    },
+                                    var signe="";
+                                    var k=1000;
+                                    var m=1000000;
+                                    var g=1000000000;
+                                    if(value >= g){
+                                        value/=g;
+                                        signe="G";
+                                    }
+                                    else{
+                                        if(value > m){
+                                            value/=m;
+                                            signe="M"
+                                        }
+                                        else if(value > k){
+                                            value/=k;
+                                            signe="K";
+                                        }
+                                    }
+                                    return String(value)+signe;
+                                },
                             },
                             total:{
                                 show: true,

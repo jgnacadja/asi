@@ -67,7 +67,7 @@ export default function(Vue, { router, head, isClient }) {
 
   Vue.use(InstantSearch);
 
-  Vue.use(VueApexCharts)
-  Vue.component('apexchart', VueApexCharts)
+  Vue.use(VueApexCharts);
+  Vue.component('apexchart', VueApexCharts);
 
 }
