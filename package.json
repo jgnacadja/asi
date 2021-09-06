@@ -27,7 +27,6 @@
     "jquery": "^3.6.0",
     "klaro-gridsome": "^1.0.3",
     "urijs": "^1.19.7",
-    "vue-apexcharts": "^1.6.2",
     "vue-disqus": "^4.0.1",
     "vue-infinite-loading": "^2.4.5",
     "vue-instantsearch": "^4.0.0",

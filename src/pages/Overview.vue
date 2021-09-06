@@ -149,7 +149,7 @@
                         </label>
                     </header>
                     <figure class="charts">
-                        <apexchart width="380" type="donut" :options="options" :series="series"></apexchart>
+                        <span id="chart"></span>
                     </figure>
                     <footer class="report_social_network mb-5 is-size-7">
                         <ul>
@@ -183,35 +183,48 @@
 </template>
 <script>
 export default {
-    data() {
-    var tableau = [8000,17000,37000,10000];
-    var sum = tableau.reduce((acc, cur) => acc + cur, 0);
-    function compute_label(value) {
-        var signe="";
-        var k=1000;
-        var m=1000000;
-        var g=1000000000;
-        if(value >= g){
-            value/=g;
-            signe="G";
-        }
-        else{
-            if(value > m){
-                value/=m;
-                signe="M"
+    metaInfo: {
+        title: "Aperçu",
+        meta: [
+        {
+            name: "Aperçu",
+            content: "Aperçu de la Startup",
+        },
+        ],
+    },
+    mounted: function () {
+        var tableau = [8000,17000,37000,10000];
+        var sum = tableau.reduce((acc, cur) => acc + cur, 0);
+        function compute_label(value) {
+            var signe="";
+            var k=1000;
+            var m=1000000;
+            var g=1000000000;
+            if(value >= g){
+                value/=g;
+                signe="G";
             }
-            else if(value > k){
-                value/=k;
-                signe="K";
+            else{
+                if(value > m){
+                    value/=m;
+                    signe="M"
+                }
+                else if(value > k){
+                    value/=k;
+                    signe="K";
+                }
             }
+            return String(value)+signe;
         }
-        return String(value)+signe;
-    }
-    return {
-        options: {
+        var my_options = {
+            chart: {
+                type: 'donut'
+            },
+            legend: {
+                show: false,
+            },
             labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
             colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
-            value : "50%",
             dataLabels: {
                 enabled: true, //Remove label
                 formatter: function (val, opts) {
@@ -224,9 +237,6 @@ export default {
                 y: {
                     formatter: function(value) {
                         compute_label(value);
-                    },
-                    title: {
-                        // formatter: (seriesName) => "seriesName",
                     },
                 },
             },
@@ -242,25 +252,7 @@ export default {
                             value: {
                                 color: "#FF9B26",
                                 formatter: function(value) {
-                                    var signe="";
-                                    var k=1000;
-                                    var m=1000000;
-                                    var g=1000000000;
-                                    if(value >= g){
-                                        value/=g;
-                                        signe="G";
-                                    }
-                                    else{
-                                        if(value > m){
-                                            value/=m;
-                                            signe="M"
-                                        }
-                                        else if(value > k){
-                                            value/=k;
-                                            signe="K";
-                                        }
-                                    }
-                                    return String(value)+signe;
+                                    return compute_label(value);
                                 },
                             },
                             total:{
@@ -275,22 +267,11 @@ export default {
                     }
                 }
             },
-            legend: {
-                show: false,
-            }
-        },
-        series: tableau,
-    }
-  },
-  metaInfo: {
-    title: "Aperçu",
-    meta: [
-      {
-        name: "Aperçu",
-        content: "Aperçu de la Startup",
-      },
-    ],
-  },
+            series: tableau,
+        }
+        var chart = new ApexCharts(document.querySelector("#chart"), my_options);
+        chart.render();
+    },
 };
 </script>
 <style scoped lang="scss">
