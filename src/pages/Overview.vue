@@ -139,7 +139,7 @@
                     <header class="is-flex is-justify-content-space-between">
                         <figure class="is-flex is-align-items-center">
                             <span class="is-flex representation p-4 mr-3">
-                                <img src="../assets/\social_networks/awards.svg" title="" alt="" />
+                                <img src="../assets/social_networks/awards.svg" title="" alt="" />
                             </span>
                             <figcaption>E-reputation</figcaption>
                         </figure>
