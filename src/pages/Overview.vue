@@ -181,43 +181,49 @@
     </section>
   </Layout>
 </template>
-
 <script>
-
-
 export default {
-  data() {
+    data() {
+    var tableau = [8000,17000,37000,10000];
+    var sum = tableau.reduce((acc, cur) => acc + cur, 0);
+    function compute_label(value) {
+        var signe="";
+        var k=1000;
+        var m=1000000;
+        var g=1000000000;
+        if(value >= g){
+            value/=g;
+            signe="G";
+        }
+        else{
+            if(value > m){
+                value/=m;
+                signe="M"
+            }
+            else if(value > k){
+                value/=k;
+                signe="K";
+            }
+        }
+        return String(value)+signe;
+    }
     return {
         options: {
             labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
             colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
             value : "50%",
             dataLabels: {
-                enabled: false, //Remove label
+                enabled: true, //Remove label
+                formatter: function (val, opts) {
+                    var value=val*sum/100;
+                    return compute_label(value);
+                },
             },
             tooltip: {
                 enabled: true,
                 y: {
                     formatter: function(value) {
-                        var signe="";
-                        var k=1000;
-                        var m=1000000;
-                        var g=1000000000;
-                        if(value >= g){
-                            value/=g;
-                            signe="G";
-                        }
-                        else{
-                            if(value > m){
-                                value/=m;
-                                signe="M"
-                            }
-                            else if(value > k){
-                                value/=k;
-                                signe="K";
-                            }
-                        }
-                        return String(value)+signe;
+                        compute_label(value);
                     },
                     title: {
                         // formatter: (seriesName) => "seriesName",
@@ -236,26 +242,26 @@ export default {
                             value: {
                                 color: "#FF9B26",
                                 formatter: function(value) {
-                        var signe="";
-                        var k=1000;
-                        var m=1000000;
-                        var g=1000000000;
-                        if(value >= g){
-                            value/=g;
-                            signe="G";
-                        }
-                        else{
-                            if(value > m){
-                                value/=m;
-                                signe="M"
-                            }
-                            else if(value > k){
-                                value/=k;
-                                signe="K";
-                            }
-                        }
-                        return String(value)+signe;
-                    },
+                                    var signe="";
+                                    var k=1000;
+                                    var m=1000000;
+                                    var g=1000000000;
+                                    if(value >= g){
+                                        value/=g;
+                                        signe="G";
+                                    }
+                                    else{
+                                        if(value > m){
+                                            value/=m;
+                                            signe="M"
+                                        }
+                                        else if(value > k){
+                                            value/=k;
+                                            signe="K";
+                                        }
+                                    }
+                                    return String(value)+signe;
+                                },
                             },
                             total:{
                                 show: true,
@@ -273,7 +279,7 @@ export default {
                 show: false,
             }
         },
-        series: [8000,17000,37000,10000],
+        series: tableau,
     }
   },
   metaInfo: {
@@ -287,7 +293,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang="scss">
     @import "../variables.scss"; 
     @import '~bulma/sass/utilities/initial-variables';
