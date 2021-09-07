@@ -69,6 +69,4 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(SmoothScrollbar);
 
   Vue.use(InstantSearch);
-
-
 }

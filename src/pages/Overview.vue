@@ -1,20 +1,82 @@
 <template>
   <Layout>
     <section class="overview_page px-6">
-        <header class="is-flex is-align-items-center my-5 card about_us" >
+        <header class="is-flex is-align-items-center my-5 card about_us " >
             <figure class="ml-4 mr-2 p-0">
                <img src="../assets/logo_rintio.png" title="RINTIO" alt="Logo RINTIO" />
             </figure>
             <aside class="column is-three-quarters">
                 <h1 class="m-0 is-size-4">RINTIO</h1>
                 <h2 class="m-0 is-size-6 is-inline-block category py-2 px-4 pr-5">Technologies et services de l’information</h2>
-                <p class="is-size-6">
+                <p class="is-size-6 description">
                     Notre mission est d’accompagner nos clients et partenaires dans leur transformation 
                     opérationnelle et organisationnelle.
                 </p>
             </aside>
         </header>
         <section>
+            <vueper-slides>
+                <vueper-slide>
+                <template v-slot:content>
+                    <figure class="is-flex is-flex-direction-row-reverse is-justify-content-space-between">
+                        <span class="is-flex is-align-items-center representation">
+                            <img src="../assets/general_informations/calendar.svg" title="" alt="" />
+                        </span>
+                        <figcaption class="is-flex is-flex-direction-column mr-2">
+                            Date de création
+                            <strong>01-01-2018</strong>
+                        </figcaption>
+                    </figure>
+                </template>
+                </vueper-slide>
+                <vueper-slide>
+                    <template v-slot:content>
+                        <figure class="is-flex is-flex-direction-row-reverse is-justify-content-space-between">
+                            <span class="is-flex is-align-items-center representation">
+                                <img src="../assets/general_informations/locate.svg" title="" alt="" />
+                            </span>
+                            <figcaption class="is-flex is-flex-direction-column mr-2">
+                                Siège social
+                                <strong>Cotonou</strong>
+                            </figcaption>
+                        </figure>
+                    </template>
+                </vueper-slide>
+                <vueper-slide>
+                    <template v-slot:content>
+                        <figure class="is-flex is-flex-direction-row-reverse is-justify-content-space-between">
+                            <span class="is-flex is-align-items-center representation">
+                                <img src="../assets/general_informations/mail.svg" title="" alt="" />
+                            </span>
+                            <figcaption class="is-flex is-flex-direction-column mr-2">
+                                Email
+                                <strong>contact@rintio.com</strong>
+                            </figcaption>
+                        </figure>
+                    </template>
+                </vueper-slide>
+                <vueper-slide>
+                    <template v-slot:content>
+                        <figure class="is-flex is-flex-direction-row-reverse is-justify-content-space-between">
+                            <span class="is-flex is-align-items-center representation">
+                                <img src="../assets/general_informations/site_web.svg" title="" alt="" />
+                            </span>
+                            <figcaption class="is-flex is-flex-direction-column mr-2">
+                                Site web
+                                <strong>
+                                    <a href="www.rintio.com" title="Visiter le site" class="has-text-black">www.rintio.com</a>
+                                </strong>
+                            </figcaption>
+                        </figure>
+                    </template>
+                </vueper-slide>
+                <template #arrow-left>
+                    <i class="fas fa-arrow-left" />
+                </template>
+                <template #arrow-right>
+                    <i class="fas fa-arrow-right" />
+                </template>
+            </vueper-slides>
             <ul class="is-flex is-flex-wrap-wrap is-justify-content-space-between general_informations mt-5 is-size-7">
                 <li class="card pl-3 pr-5 pt-4 pb-3 ">
                     <figure class="is-flex is-flex-direction-row-reverse is-justify-content-space-between">
@@ -83,7 +145,7 @@
                                 <span>(+23%)</span> than last week
                             </figcaption>
                         </figure>
-                        <ul class="is-flex is-justify-content-space-between pt-6">
+                        <ul class="is-flex is-flex-wrap-wrap is-justify-content-space-between pt-6">
                             <li>
                                 <figure class="category is-flex is-size-7">
                                     <span class="is-flex mr-1">
@@ -181,98 +243,107 @@
     </section>
   </Layout>
 </template>
+
 <script>
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';    
 export default {
-    metaInfo: {
-        title: "Aperçu",
-        meta: [
-        {
-            name: "Aperçu",
-            content: "Aperçu de la Startup",
+        components: { VueperSlides, VueperSlide },
+        metaInfo: {
+            title: "Aperçu",
+            meta: [
+            {
+                name: "Aperçu",
+                content: "Aperçu de la Startup",
+            },
+            ],
         },
-        ],
-    },
-    mounted: function () {
-        var tableau = [8000,17000,37000,10000];
-        var sum = tableau.reduce((acc, cur) => acc + cur, 0);
-        function compute_label(value) {
-            var signe="";
-            var k=1000;
-            var m=1000000;
-            var g=1000000000;
-            if(value >= g){
-                value/=g;
-                signe="G";
-            }
-            else{
-                if(value > m){
-                    value/=m;
-                    signe="M"
+        mounted: function () {
+            var tableau = [8000,17000,37000,10000];
+            var sum = tableau.reduce((acc, cur) => acc + cur, 0);
+            function compute_label(value) {
+                var signe="";
+                var k=1000;
+                var m=1000000;
+                var g=1000000000;
+                if(value >= g){
+                    value/=g;
+                    signe="G";
                 }
-                else if(value > k){
-                    value/=k;
-                    signe="K";
+                else{
+                    if(value > m){
+                        value/=m;
+                        signe="M"
+                    }
+                    else if(value > k){
+                        value/=k;
+                        signe="K";
+                    }
                 }
+                return String(value)+signe;
             }
-            return String(value)+signe;
-        }
-        var my_options = {
-            chart: {
-                type: 'donut'
-            },
-            legend: {
-                show: false,
-            },
-            labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
-            colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
-            dataLabels: {
-                enabled: true, //Remove label
-                formatter: function (val, opts) {
-                    var value=val*sum/100;
-                    return compute_label(value);
+            var my_options = {
+                chart: {
+                    type: 'donut'
                 },
-            },
-            tooltip: {
-                enabled: true,
-                y: {
-                    formatter: function(value) {
-                        compute_label(value);
+                legend: {
+                    show: false,
+                },
+                labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
+                colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
+                dataLabels: {
+                    enabled: true, //Remove label
+                    formatter: function (val, opts) {
+                        var value=val*sum/100;
+                        return compute_label(value);
+                    },
+                    textAnchor: "end",
+                    style: {
+                        margin: 50
                     },
                 },
-            },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: "50%",
-                        labels: {
-                            show: true,
-                            name: {
-                                show:true,
-                            },
-                            value: {
-                                color: "#FF9B26",
-                                formatter: function(value) {
-                                    return compute_label(value);
-                                },
-                            },
-                            total:{
+                tooltip: {
+                    enabled: true,
+                    y: {
+                        formatter: function(value) {
+                            return compute_label(value);
+                        },
+                    },
+                },
+                plotOptions: {
+                    pie: {
+                        expandOnClick: false,
+                        donut: {
+                            size: "50%",
+                            labels: {
                                 show: true,
-                                label: 'Total',
-                                color:"black",
-                                formatter: function (w) {
-                                    return "+18.15%"
-                                } 
+                                name: {
+                                    show:true,
+                                },
+                                value: {
+                                    color: "#FF9B26",
+                                    formatter: function(value) {
+                                        return compute_label(value);
+                                    },
+                                },
+                                total:{
+                                    show: true,
+                                    label: 'Total',
+                                    color:"black",
+                                    formatter: function (w) {
+                                        return "+18.15%"
+                                    } 
+                                }
                             }
                         }
                     }
-                }
-            },
-            series: tableau,
-        }
-        var chart = new ApexCharts(document.querySelector("#chart"), my_options);
-        chart.render();
-    },
-};
+                },
+                series: tableau,
+            }
+            var chart = new ApexCharts(document.querySelector("#chart"), my_options);
+            chart.render();
+        },
+    };
 </script>
 <style scoped lang="scss">
     @import "../variables.scss"; 
@@ -280,19 +351,73 @@ export default {
     @import '~bulma/sass/utilities/derived-variables';
     @import '~bulma/sass/utilities/mixins';
     $color_primary:#267EC3;
+    .overview_page{
+        @media screen and (max-width: 402px){
+            padding: 0 1rem !important;
+        }
+    }
     .about_us,.general_informations li{
         box-shadow: 0px 0px 27px rgba(0, 0, 0, 0.05);
     }
+    .about_us,.general_informations li,.contents_group, .contents_group header, .contents_group article{
+        background: white;
+    }
     //About us
+    .about_us{
+        @include mobile(){
+            display: block;
+            padding-bottom: 50px;
+            position: relative;
+        }
+        @media screen and (max-width: 492px) {
+            padding-bottom: 70px;
+        }
+        @media screen and (max-width: 334px) {
+            padding-bottom: 90px;
+        }
+    }
+    .about_us aside{
+        @media screen and (max-width: 328px) {
+            padding-left: 0px!important;
+            padding-right: 5px!important;
+        }
+    }
     .about_us img{
         height: 115px;
         margin-bottom: -5px;
+        @include mobile(){
+            height: 50px;
+        }
+        @media screen and (max-width: 338px) {
+            height: 40px;
+        }
+        @media screen and (max-width: 314px) {
+            margin-right: 0px;
+        }
     }
     .about_us .category{
         color: #FF9B26;
         background: rgba(255, 155, 38, 0.15);
         border-radius: 7px;
         cursor: default;
+        @include mobile(){
+            font-size: 9px !important;
+            padding: 10px !important;
+            display: inline-block;
+        }
+        @media screen and (max-width: 328px) {
+            padding-left: 6px!important;
+            padding-right: 6px!important;
+        }
+    }
+    .about_us .description{
+        @include mobile(){
+            position: absolute;
+            left: 1rem;
+            margin-top:10px;
+            padding-right: 1rem;
+            font-size: 12px !important;
+        }
     }
     //Icone
     .representation{
@@ -301,6 +426,11 @@ export default {
         border-radius: 8px;
     }
     //General informations
+    .general_informations{
+        @include mobile(){
+            display: none !important;
+        }
+    }
     .general_informations li{
         @extend .card;
         width: calc(((100vw - (3rem * 2))/4) - (5px * 6)); 
@@ -312,12 +442,32 @@ export default {
     }
     .general_informations .representation img{
         width: 20px;
-    }
+    }    
     //about_startup
+    .about_startup{
+        @media screen and (max-width: 402px){
+            margin: 0 1rem !important;
+        }
+    }
     .about_startup .contents_group{
         width: calc(((100vw - (3rem * 2))/2) - 20px); //40px : space*4 (5px *4) sum of each space let
         @include touch(){
             width: calc(100vw - (3rem * 2));
+        }
+        @media screen and (max-width: 402px){
+            width: calc(100vw - (1rem * 2));
+        }
+    }
+    .social_capital figure {
+        @media screen and (max-width: 402px){
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center !important;
+        }
+    }
+    .social_capital .representation {
+        @media screen and (max-width: 384px){
+            margin-bottom: 20px;
         }
     }
     .social_capital .representation img {
@@ -331,6 +481,7 @@ export default {
     }
     .about_startup .percent{
         background: #ccc;
+        margin-bottom:20px;
     }
     .about_startup .percent,.about_startup .percent figcaption{
         border-radius: 10px;
@@ -338,6 +489,11 @@ export default {
     .about_startup .percent figcaption{
         background: gray;
         height: 7px;
+    }
+    .e_reputation header figure{
+        @media screen and (max-width: 366px){
+            flex-direction: column-reverse;
+        }
     }
     //toogle from w3school
     .switch {
@@ -390,7 +546,9 @@ export default {
         border-radius: 50%;
     }
     .charts{
-        margin-bottom: 100px;
+        @include desktop{
+            margin-bottom: 100px;
+        }
         display: flex;
         justify-content: center;
     }
