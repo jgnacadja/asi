@@ -1,5 +1,176 @@
 <template>
-  <div class="container">s</div>
+  <div class="container">
+    <form class="columns is-mobile field is-grouped">
+      <div class="is-hidden-mobile column is-3 is-marginless is-paddingless">
+        <select class="select rm-raduis-select is-fullwidth">
+          <option style="padding: 5px 0" value="">Tous les domaines</option>
+          <!--           <option
+            style="padding: 5px 0"
+            v-for="item in items"
+            :key="item.value"
+            :value="item.value"
+            :selected="item.isRefined"
+          >
+            {{ item.label }}
+          </option> -->
+        </select>
+      </div>
+      <div
+        class="
+          column
+          is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
+        "
+      >
+        <div>
+          <p class="control is-expanded mobile-input">
+            <input
+              class="input rm-raduis-input is-borderless"
+              type="search"
+              placeholder="Accéder à une startup"
+              :value="query"
+              autocomplete="off"
+            />
+          </p>
+        </div>
+      </div>
+      <!-- <p
+          class="
+            control
+            column
+            is-1-desktop is-marginless is-paddingless is-fullwidth
+          "
+        >
+          <span class="button has-text-white rm-raduis-search is-fullwidth">
+            <b-icon pack="fas" icon="search" size="is-small" />
+          </span>
+        </p> -->
+    </form>
+    <div v-if="query" class="result">
+      <smooth-scrollbar class="box-result">
+        <div class="is-box">
+          <div class="hits">
+            <ul>
+              <li
+                v-if="results.length == 0"
+                class="column"
+                style="text-align: center !important"
+              >
+                <em>Aucun résultat...</em>
+              </li>
+              <li v-else
+                v-for="hit in results"
+                :key="hit._source.objectID"
+                class="custom-hr-top"
+              >
+                <g-link :to="parseUri(hit._source.objectID)">
+                  <div
+                    commerceclass="
+                      columns
+                      post-item
+                      is-marginless is-paddingless is-mobile
+                      has-text-black
+                    "
+                  >
+                    <!-- <div class="column is-2 post-cover">
+                              <g-image
+                                class="post-coverImage"
+                                src="~/assets/fintech.png"
+                                fit="inside"
+                              />
+                            </div> -->
+                    <div
+                      class="
+                        column
+                        is-10-tablet is-8-mobile
+                        has-text-left has-text-weight-bold
+                        is-size-7-mobile
+                      "
+                    >
+                      {{ hit._source.name }}
+
+                      <br />
+                      <small
+                        class="
+                          post-author
+                          has-text-primary
+                          is-size-7-mobile
+                          has-text-weight-light
+                        "
+                        v-if="hit._source.market !== 'Indefini'"
+                      >
+                        {{ hit._source.market }}
+                      </small>
+                      <small
+                        class="
+                          post-location
+                          is-size-7-mobile
+                          has-text-weight-light
+                        "
+                      >
+                        <b-icon pack="fa" icon="map-marker" size="is-small" />
+                        {{ hit._source.startup_country }}
+                      </small>
+                      <!-- <hr> -->
+                    </div>
+
+                    <div class="column is-2-tablet is-4-mobile">
+                      <div
+                        class="
+                          has-text-weight-bold
+                          post-vote
+                          is-size-4-desktop is-size-7-mobile
+                        "
+                      >
+                        <span v-if="hit._source.stats">{{
+                          hit._source.stats
+                        }}</span>
+                        <span v-if="!hit._source.stats">0.0</span>
+                      </div>
+                      <div class="has-text-centered custom-size-mobile">
+                        <i
+                          v-bind:class="hit._source.stats >= 1 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+
+                        <i
+                          v-bind:class="hit._source.stats >= 2 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+
+                        <i
+                          v-bind:class="hit._source.stats >= 3 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+
+                        <i
+                          v-bind:class="hit._source.stats >= 4 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+
+                        <i
+                          v-bind:class="hit._source.stats >= 5 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+                      </div>
+                      <!-- <div
+                          class="
+                            post-location
+                            is-size-7-mobile
+                            has-text-weight-light
+                          "
+                        >
+                          0 votes
+                        </div> -->
+                    </div>
+                  </div>
+                </g-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </smooth-scrollbar>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,7 +179,7 @@ export default {
     return {
       baseUrl: "https://asi.dev.rintio.com/detail/",
       attribute: "market",
-      query: "commerce",
+      query: "",
       results: [],
     };
   },
@@ -24,17 +195,15 @@ export default {
     search: function () {
       var axios = require("axios");
 
-      console.log(`client search query = ${JSON.stringify(this.query)}`);
       axios
         .get(
-          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search&q=${this.query}`
+          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search?size=3&q=${this.query}`
         )
         .then((response) => {
-          console.log(`client search response = ${JSON.stringify(response)}`);
-          this.results = response.data;
+          this.results = response.data.hits.hits;
         })
         .catch((error) => {
-          console.log(`client search error = ${JSON.stringify(error)}`);
+          this.results = [];
         });
     },
   },
