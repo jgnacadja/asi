@@ -1,233 +1,47 @@
 <template>
-  <div class="container">
-    <ais-instant-search
-      :search-client="searchClient"
-      :index-name="ALGOLIA_INDEX_NAME"
-    >
-      <form class="columns is-mobile field is-grouped">
-        <ais-menu-select
-          class="is-hidden-mobile column is-3 is-marginless is-paddingless"
-          :attribute="attribute"
-          :limit="1000"
-        >
-          <select
-            class="select rm-raduis-select is-fullwidth"
-            slot-scope="{ items, canRefine, refine }"
-            :disabled="!canRefine"
-            @change="refine($event.currentTarget.value)"
-          >
-            <option style="padding: 5px 0" value="">Tous les domaines</option>
-            <option
-              style="padding: 5px 0"
-              v-for="item in items"
-              :key="item.value"
-              :value="item.value"
-              :selected="item.isRefined"
-            >
-              {{ item.label }}
-            </option>
-          </select>
-        </ais-menu-select>
-        <div
-          class="
-            column
-            is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
-          "
-        >
-          <ais-index
-            :indexName="ALGOLIA_INDEX_NAME"
-            indexId="instant_search_results"
-          >
-            <ais-autocomplete>
-              <div slot-scope="{ currentRefinement, indices, refine }">
-                <p class="control is-expanded mobile-input">
-                  <input
-                    class="input rm-raduis-input is-borderless"
-                    type="search"
-                    placeholder="Accéder à une startup"
-                    :value="currentRefinement"
-                    @input="refine($event.currentTarget.value)"
-                    autocomplete="off"
-                  />
-                </p>
-                {{ print(currentRefinement, indices) }}
-              </div>
-            </ais-autocomplete>
-          </ais-index>
-        </div>
-        <!-- <p
-          class="
-            control
-            column
-            is-1-desktop is-marginless is-paddingless is-fullwidth
-          "
-        >
-          <span class="button has-text-white rm-raduis-search is-fullwidth">
-            <b-icon pack="fas" icon="search" size="is-small" />
-          </span>
-        </p> -->
-      </form>
-      <div v-if="current" class="result">
-        <smooth-scrollbar class="box-result">
-          <div class="is-box">
-            <div class="hits">
-              <ul v-for="index in hits" :key="index.name">
-                <li
-                  class="column"
-                  style="text-align: center !important"
-                  v-show="index.hits.length == 0"
-                >
-                  <em>Aucun résultat...</em>
-                </li>
-                <li
-                  v-for="hit in index.hits.slice(0, 3)"
-                  :key="hit.objectID"
-                  class="custom-hr-top"
-                >
-                  <g-link :to="parseUri(hit.objectID)">
-                    <div
-                      class="
-                        columns
-                        post-item
-                        is-marginless is-paddingless is-mobile
-                        has-text-black
-                      "
-                    >
-                      <!-- <div class="column is-2 post-cover">
-                              <g-image
-                                class="post-coverImage"
-                                src="~/assets/fintech.png"
-                                fit="inside"
-                              />
-                            </div> -->
-                      <div
-                        class="
-                          column
-                          is-10-tablet is-8-mobile
-                          has-text-left has-text-weight-bold
-                          is-size-7-mobile
-                        "
-                      >
-                        {{ hit.name }}
-
-                        <br />
-                        <small
-                          class="
-                            post-author
-                            has-text-primary
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                          v-if="hit.market !== 'Indefini'"
-                        >
-                          {{ hit.market }}
-                        </small>
-                        <small
-                          class="
-                            post-location
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                        >
-                          <b-icon pack="fa" icon="map-marker" size="is-small" />
-                          {{ hit.startup_country }}
-                        </small>
-                        <!-- <hr> -->
-                      </div>
-
-                      <div class="column is-2-tablet is-4-mobile">
-                        <div
-                          class="
-                            has-text-weight-bold
-                            post-vote
-                            is-size-4-desktop is-size-7-mobile
-                          "
-                        >
-                          <span v-if="hit.stats">{{ hit.stats }}</span>
-                          <span v-if="!hit.stats">0.0</span>
-                        </div>
-                        <div class="has-text-centered custom-size-mobile">
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 2 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 3 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 4 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 5 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-                        </div>
-                        <!-- <div
-                          class="
-                            post-location
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                        >
-                          0 votes
-                        </div> -->
-                      </div>
-                    </div>
-                  </g-link>
-                </li>
-              </ul>
-              <g-image
-                class="custom-size is-pulled-right mr-4 pt-2 pt-4-desktop"
-                alt="algolia"
-                src="~/assets/algolia.svg"
-              />
-            </div>
-          </div>
-        </smooth-scrollbar>
-      </div>
-    </ais-instant-search>
-  </div>
+  <div class="container">s</div>
 </template>
 
 <script>
-import algoliasearch from "algoliasearch/lite";
-
 export default {
-  component: {},
   data() {
     return {
-      baseUrl: "http://asi.dev.rintio.com/detail/",
-      ALGOLIA_INDEX_NAME: "asi",
-      searchClient: algoliasearch(
-        "CGXKUPOJ8Y",
-        "14e786e8fe7d0f1093b0a70ba55550cc"
-      ),
+      baseUrl: "https://asi.dev.rintio.com/detail/",
       attribute: "market",
-      current: "",
-      hits: [],
+      query: "commerce",
+      results: [],
     };
+  },
+  mounted() {
+    this.search();
   },
   methods: {
     parseUri(objectId) {
       const parseId = escape(objectId);
       return `${this.baseUrl}${parseId}`;
     },
-    print(query, indices) {
-      this.current = query;
-      this.hits = indices;
+    // make an axios request to the server with the current search query
+    search: function () {
+      var axios = require("axios");
 
-      console.log(this.current);
-      console.log("hits", this.hits);
+      console.log(`client search query = ${JSON.stringify(this.query)}`);
+      axios
+        .get(
+          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search&q=${this.query}`
+        )
+        .then((response) => {
+          console.log(`client search response = ${JSON.stringify(response)}`);
+          this.results = response.data;
+        })
+        .catch((error) => {
+          console.log(`client search error = ${JSON.stringify(error)}`);
+        });
+    },
+  },
+  watch: {
+    // watch for change in the query string and recall the search method
+    query: function () {
+      this.search();
     },
   },
 };
