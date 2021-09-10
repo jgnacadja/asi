@@ -2,17 +2,15 @@
   <div class="container">
     <form class="columns is-mobile field is-grouped">
       <div class="is-hidden-mobile column is-3 is-marginless is-paddingless">
-        <select class="select rm-raduis-select is-fullwidth">
+        <select class="select rm-raduis-select is-fullwidth" v-model="category">
           <option style="padding: 5px 0" value="">Tous les domaines</option>
-          <!--           <option
+          <option
             style="padding: 5px 0"
-            v-for="item in items"
-            :key="item.value"
-            :value="item.value"
-            :selected="item.isRefined"
+            v-for="item in categories.slice(1)"
+            :key="item.key"
           >
-            {{ item.label }}
-          </option> -->
+            {{ item.key }}
+          </option>
         </select>
       </div>
       <div
@@ -183,8 +181,9 @@ export default {
         API: "https://elasticsearch.dev.rintio.com",
         INDEX: "asi",
       },
-      attribute: "market",
+      attribute: "market.keyword",
       query: "",
+      category: "",
       categories: [],
       results: [],
       loading: false,
@@ -204,17 +203,45 @@ export default {
 
       var axios = require("axios");
       this.loading = true;
-      axios
-        .get(
-          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`
-        )
-        .then((response) => {
-          this.loading = false;
-          this.results = response.data.hits.hits;
-        })
-        .catch((error) => {
-          this.loading = false;
-        });
+
+      if (this.category) {
+        var body = {
+          query: {
+            bool: {
+              must: {
+                match: {
+                  market: this.category,
+                },
+              },
+            },
+          },
+        };
+        axios
+          .post(
+            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`,
+            body,
+            {}
+          )
+          .then((response) => {
+            this.loading = false;
+            this.results = response.data.hits.hits;
+          })
+          .catch((error) => {
+            this.loading = false;
+          });
+      } else {
+        axios
+          .get(
+            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`
+          )
+          .then((response) => {
+            this.loading = false;
+            this.results = response.data.hits.hits;
+          })
+          .catch((error) => {
+            this.loading = false;
+          });
+      }
     },
     // make an axios request to the server to get all categories
     fetch() {
@@ -233,12 +260,11 @@ export default {
       axios
         .post(
           `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
-          {},
-          body
+          body,
+          {}
         )
         .then((response) => {
-          this.categories = response.data;
-          console.log(this.categories);
+          this.categories = response.data.aggregations.distinct_markets.buckets;
         })
         .catch((error) => {
           this.categories = [];
@@ -248,7 +274,11 @@ export default {
   watch: {
     // watch for change in the query string and recall the search method
     query: function () {
-      if (this.query.length > 3) this.search();
+      if (this.query.length > 2) this.search();
+    },
+    category: function () {
+      this.query = "";
+      this.results = [];
     },
   },
 };
