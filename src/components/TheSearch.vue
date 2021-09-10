@@ -172,7 +172,7 @@
                             class="fa-star fa-sm has-text-warning ml-1"
                           ></i>
                         </div>
-                        <div
+                        <!-- <div
                           class="
                             post-location
                             is-size-7-mobile
@@ -180,7 +180,7 @@
                           "
                         >
                           0 votes
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </g-link>
