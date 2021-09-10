@@ -8,10 +8,9 @@ import "~/main.scss";
 import VueDisqus from "vue-disqus";
 import InfiniteLoading from "vue-infinite-loading";
 import SmoothScrollbar from "vue-smooth-scrollbar";
-import InstantSearch from "vue-instantsearch";
 import Axios from "axios";
 
-const fontsCss = require('./assets/css/fonts.css')
+const fontsCss = require("./assets/css/fonts.css");
 
 export default function(Vue, { router, head, isClient }) {
   // Add attributes to HTML tag
@@ -63,6 +62,4 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(InfiniteLoading);
 
   Vue.use(SmoothScrollbar);
-
-  Vue.use(InstantSearch);
 }

@@ -24,10 +24,11 @@
         <div>
           <p class="control is-expanded mobile-input">
             <input
+              id="search"
               class="input rm-raduis-input is-borderless"
               type="search"
               placeholder="Accéder à une startup"
-              :value="query"
+              v-model="query"
               autocomplete="off"
             />
           </p>
@@ -57,14 +58,14 @@
               >
                 <em>Aucun résultat...</em>
               </li>
-              <li v-else
+              <li
                 v-for="hit in results"
                 :key="hit._source.objectID"
                 class="custom-hr-top"
               >
                 <g-link :to="parseUri(hit._source.objectID)">
                   <div
-                    commerceclass="
+                    class="
                       columns
                       post-item
                       is-marginless is-paddingless is-mobile
@@ -181,6 +182,7 @@ export default {
       attribute: "market",
       query: "",
       results: [],
+      loading: false,
     };
   },
   mounted() {
@@ -192,17 +194,37 @@ export default {
       return `${this.baseUrl}${parseId}`;
     },
     // make an axios request to the server with the current search query
-    search: function () {
-      var axios = require("axios");
+    search() {
+      this.results = [];
 
+      var axios = require("axios");
+      this.loading = true;
       axios
         .get(
           `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search?size=3&q=${this.query}`
         )
         .then((response) => {
+          this.loading = false;
           this.results = response.data.hits.hits;
         })
         .catch((error) => {
+          this.loading = false;
+        });
+    },
+    // make an axios request to the server to get all categories
+    fetch() {
+      var axios = require("axios");
+      this.loading = true;
+      axios
+        .get(
+          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search?size=3&q=${this.query}`
+        )
+        .then((response) => {
+          this.loading = false;
+          this.results = response.data.hits.hits;
+        })
+        .catch((error) => {
+          this.loading = false;
           this.results = [];
         });
     },
@@ -210,7 +232,7 @@ export default {
   watch: {
     // watch for change in the query string and recall the search method
     query: function () {
-      this.search();
+      if (this.query.length > 3) this.search();
     },
   },
 };
