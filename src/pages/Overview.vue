@@ -1,21 +1,21 @@
 <template>
   <Layout>
-    <section class="overview_page px-6">
-        <header class="toolbar p-5">
-            <h2 class="m-0 mb-3">Plus de Startup</h2>
-            <span class="is-size-7 has-text-weight-medium">Rechercher une Startup</span>
-            <form action="" class="is-flex is-flex-direction-column	my-3">
-                <span class="domain px-3 py-4 mb-3">
+    <section class="overview_page">
+        <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
+            <form action="" class="is-flex is-justify-content-center is-align-items-center m-6">
+                <span class="domain px-4 py-4">
                     <select class="is-size-7">
-                        <option>Sélectionner un domaine d'activité</option>
+                        <option>Fintech</option>
                         <option></option>
                     </select>   
                 </span>
-                <input placeholder="Nom de la startup" class="mb-3 px-3 py-4 is-size-7"/>
-                <input type="submit" value="Filtrer" class="py-4 has-text-white has-text-weight-bold"/>
+                <input placeholder="Rechercher" class="search_here px-3 py-4 is-size-7"/>
+                <span class="search_icon px-5 py-3">
+                    <img src="../assets/search.svg"  alt="Search" />
+                </span>
             </form>
         </header>
-        <section class="my-6">
+        <section class="my-6 px-6">
             <header class="is-flex is-align-items-center card about_us " >
                 <figure class="ml-4 mr-2 p-0">
                     <img src="../assets/logo_rintio.png" title="RINTIO" alt="Logo RINTIO" />
@@ -32,7 +32,7 @@
             <section>
                 <section class="is-flex is-flex-wrap-wrap is-justify-content-space-between about_startup mb-6">
                     <section class="contents_group mt-5">
-                        <article class="p-5 general_informations">
+                        <article class="card p-5 general_informations">
                             <h3 class="is-flex is-justify-content-space-between">
                                 <figure class="is-flex is-align-items-center">
                                     <span class="is-flex representation p-4 mr-3">
@@ -41,7 +41,7 @@
                                     <figcaption class="has-text-weight-normal">Informations générales</figcaption>
                                 </figure>
                             </h3>
-                            <ul class="pt-5">
+                            <ul class="pt-5 is-size-7">
                                 <li class="is-flex is-justify-content-space-between py-3">
                                     Date de création
                                     <strong>01-01-2018</strong>
@@ -60,7 +60,7 @@
                                 </li>
                             </ul>
                         </article>
-                        <article class="p-5 discussions">
+                        <article class="card mt-5 p-5 discussions">
                             <h3 class="is-flex is-justify-content-space-between">
                                 <figure class="is-flex is-align-items-center">
                                     <span class="is-flex representation p-4 mr-3">
@@ -70,7 +70,36 @@
                                 </figure>
                             </h3>
                             <section>
+                                <ul class="comments_history mt-5">
+                                    <li class="mb-5">
+                                        <article class="is-flex p-5">
+                                            <figure class="mr-3">
+                                                <img src="../assets/comments/author.svg"  alt="Search" />
+                                            </figure>
+                                            <p class="is-size-7 has-text-justified">
+                                                <strong>John Joe </strong> <br/>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Viverra ullamcorper sapien lectus non proin nisl sed in neque. 
+                                                Non posuere parturient cras nascetur tortor nisi, turpis in.
+                                            </p>
+                                        </article>
+                                    </li>
+                                    <li class="mb-5">
+                                        <article class="is-flex p-5">
+                                            <figure class="mr-3">
+                                                <img src="../assets/comments/author.svg"  alt="Search" />
+                                            </figure>
+                                            <p class="is-size-7 has-text-justified">
+                                                <strong>John Joe </strong> <br/>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Viverra ullamcorper sapien lectus non proin nisl sed in neque. 
+                                                Non posuere parturient cras nascetur tortor nisi, turpis in.
+                                            </p>
+                                        </article>
+                                    </li>
+                                </ul>
                                 <b-pagination
+                                    aria-previous-label="Previous page"
                                     :total="total"
                                     v-model="current"
                                     :range-before="rangeBefore"
@@ -83,7 +112,6 @@
                                     :icon-prev="prevIcon"
                                     :icon-next="nextIcon"
                                     aria-next-label="Next page"
-                                    aria-previous-label="Previous page"
                                     aria-page-label="Page"
                                     aria-current-label="Current page">
                                 </b-pagination>
@@ -146,6 +174,7 @@
                             Capital social <strong class="is-size-5 has-text-weight-bold">2.000.000 FCFA</strong>
                         </span>
                         <figure class="mt-5">
+                            <span class="legende is-size-7">Valeur</span>
                             <span id="chart_bar" class="mb-5"></span>
                             <figcaption class="is-flex is-justify-content-space-between is-align-items-center">
                                 <aside aria-label="Valeur actuelle">
@@ -163,84 +192,6 @@
             <footer class="see_more px-3 mt-6">
                 <h3 class="is-size-4 my-5">Voir plus</h3>
                 <ul class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3">
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="">
-                            <figure class="is-flex card p-3">
-                                <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                                <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                                    <h4> <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a></h4>
-                                    <span>
-                                        <span >Fintech</span> Accra, Ghana
-                                    </span>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
                     <li class="mb-2">
                         <a href="">
                             <figure class="is-flex card p-3">
@@ -461,7 +412,7 @@ export default {
                         }
                     },  
                     padding: {
-                        top: 0,
+                        top: 10,
                         right: 40,
                         bottom: 30,
                         left: 40
@@ -528,7 +479,7 @@ export default {
                     enabled: false 
                 },
                 legend: {
-                    show: true,
+                    show: false,
                     showForSingleSeries: true,
                     customLegendItems: ['Valeur'],
                     markers: {
@@ -562,21 +513,26 @@ export default {
         background: white;
     }
     //Toolbar
-    .toolbar .domain select, .toolbar .domain + input,.domain select:focus-visible, input[type="submit"]{
+    .toolbar form{
+        box-shadow: 3px 8px 18px #80808017;
+    }
+    .toolbar .domain select, .toolbar .domain + input,.domain select:focus-visible{
         border:none;
         outline: none;
     }
-    .toolbar .domain, .toolbar .domain + input, input[type="submit"]{
-        border: 1px solid #C7C7C7;
+    .toolbar .domain, .toolbar .domain select{
+        background: #E6E6E6;
     }
-    input[type="submit"]{
+    .toolbar .search_here{
+        width: 50vw;
+    }
+    .toolbar .search_icon{
         background: $color_orange;
+        height: 100%;
+        color: white;
     }
-    input[type="submit"]:hover{
-        opacity: 0.9;
-    }
-    .toolbar{
-        display: none;
+    .toolbar .search_icon img{
+        height: 25px;
     }
     //About us
     .about_us{
@@ -651,6 +607,18 @@ export default {
     .general_informations li:last-child{
         border:none;
     }    
+    //comments
+    .comments_history article{
+        background: #EFF8FF99;
+        border-radius: 10px;
+    }
+    .comments_history figure{
+        padding: 0 !important;
+        width: 20%;
+    }
+    .comments_history img{
+        width: 100%;
+    }
     //about_startup
     .about_startup{
         @media screen and (max-width: 402px){
@@ -686,7 +654,7 @@ export default {
         margin-bottom:20px;
     }
     .about_startup .percent,.about_startup .percent figcaption{
-        border-radius: 10px;
+        border-radius: 16px;
     }
     .about_startup .percent figcaption{
         background: gray;
@@ -747,10 +715,8 @@ export default {
     .slider.round:before {
         border-radius: 50%;
     }
-    .charts{
-        @include desktop{
-            margin-bottom: 100px;
-        }
+    .charts, .charts #chart_donut {
+       
     }  
     // Report social network
     .e_reputation,.report_social_network li{
@@ -789,12 +755,18 @@ export default {
         background: linear-gradient(#F9F871,$color_orange);
     }
     //financial_informations
+    .financial_informations .legende{
+        color: white;
+        display: block;
+        position: absolute;
+        margin: 25px 0 0 50px;
+    }
     .financial_informations #chart_bar{
         height: 200px;
         display: block;
         background: linear-gradient(#3A416F,#141727);
         border-radius: 12px;
-        padding: 20px 30px;
+        padding: 20px 30px 20px 75px;
     }
     .financial_informations .title{
         font-size: 15px;
