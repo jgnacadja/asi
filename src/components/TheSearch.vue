@@ -179,6 +179,10 @@ export default {
   data() {
     return {
       baseUrl: "https://asi.dev.rintio.com/detail/",
+      elasticsearch: {
+        API: "https://elasticsearch.dev.rintio.com",
+        INDEX: "asi",
+      },
       attribute: "market",
       query: "",
       categories: [],
@@ -202,7 +206,7 @@ export default {
       this.loading = true;
       axios
         .get(
-          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search?size=3&q=${this.query}`
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`
         )
         .then((response) => {
           this.loading = false;
@@ -228,7 +232,7 @@ export default {
       };
       axios
         .post(
-          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search`,
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
           {},
           body
         )
