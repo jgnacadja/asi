@@ -181,12 +181,13 @@ export default {
       baseUrl: "https://asi.dev.rintio.com/detail/",
       attribute: "market",
       query: "",
+      categories: [],
       results: [],
       loading: false,
     };
   },
   mounted() {
-    this.search();
+    this.fetch();
   },
   methods: {
     parseUri(objectId) {
@@ -214,18 +215,29 @@ export default {
     // make an axios request to the server to get all categories
     fetch() {
       var axios = require("axios");
-      this.loading = true;
+      var body = {
+        size: 0,
+        aggs: {
+          distinct_markets: {
+            terms: {
+              field: this.attribute,
+              size: 10000,
+            },
+          },
+        },
+      };
       axios
-        .get(
-          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search?size=3&q=${this.query}`
+        .post(
+          `${process.env.GRIDSOME_ELASTICSEARCH_API}/${process.env.GRIDSOME_ELASTICSEARCH_API_INDEX_NAME}/_search`,
+          {},
+          body
         )
         .then((response) => {
-          this.loading = false;
-          this.results = response.data.hits.hits;
+          this.categories = response.data;
+          console.log(this.categories);
         })
         .catch((error) => {
-          this.loading = false;
-          this.results = [];
+          this.categories = [];
         });
     },
   },
