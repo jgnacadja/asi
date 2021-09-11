@@ -44,13 +44,25 @@
           </span>
         </p> -->
     </form>
-    <div v-if="query" class="result">
+    <div v-if="query.length > 2" class="result">
       <smooth-scrollbar class="box-result">
         <div class="is-box">
-          <div class="hits">
-            <ul>
+          <div
+            class="hits"
+            v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''"
+          >
+            <div v-if="loading">
+              <b-loading :is-full-page="false" v-model="loading"></b-loading>
+            </div>
+
+            <ul v-else>
               <li
-                v-if="results.length == 0"
+                v-if="
+                  results.length === 0 &&
+                  query.length > 2 &&
+                  !loading &&
+                  !awaitingSearch
+                "
                 class="column"
                 style="text-align: center !important"
               >
@@ -60,6 +72,7 @@
                 v-for="hit in results"
                 :key="hit._source.objectID"
                 class="custom-hr-top"
+                v-else
               >
                 <g-link :to="parseUri(hit._source.objectID)">
                   <div
@@ -187,6 +200,7 @@ export default {
       categories: [],
       results: [],
       loading: false,
+      awaitingSearch: false,
     };
   },
   mounted() {
@@ -209,8 +223,8 @@ export default {
           query: {
             bool: {
               must: {
-                match: {
-                  market: this.category,
+                query_string: {
+                  query: `${this.query} AND market: ${this.category}`,
                 },
               },
             },
@@ -218,7 +232,7 @@ export default {
         };
         axios
           .post(
-            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`,
+            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
             body,
             {}
           )
@@ -274,7 +288,13 @@ export default {
   watch: {
     // watch for change in the query string and recall the search method
     query: function () {
-      if (this.query.length > 2) this.search();
+      if (!this.awaitingSearch) {
+        setTimeout(() => {
+          if (this.query.length > 2) this.search();
+          this.awaitingSearch = false;
+        }, 500); // 0.5 msec delay
+      }
+      this.awaitingSearch = true;
     },
     category: function () {
       this.query = "";
@@ -337,7 +357,6 @@ li {
   padding-left: calc(0.75em - 1px);
   padding-top: calc(0.5em - 1px);
   position: relative;
-  vertical-align: top;
   border-color: transparent;
   border-radius: 4px;
   color: #363636;
