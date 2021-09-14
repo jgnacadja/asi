@@ -1,9 +1,8 @@
 <template>
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
-    {{ data }}
 
-    <section class="overview_page">
+    <section v-if="loading" class="overview_page">
       <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
         <form
           action=""
@@ -74,7 +73,7 @@
                 <ul class="pt-5 is-size-7">
                   <li class="is-flex is-justify-content-space-between py-3">
                     Date de création
-                    <strong>01-01-2018</strong>
+                    <b-skeleton width="20%" :animated="animated"></b-skeleton>
                   </li>
                   <li class="is-flex is-justify-content-space-between py-3">
                     Siège social
@@ -373,13 +372,395 @@
         </footer>
       </section>
     </section>
+
+    <section v-else class="overview_page">
+      <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
+        <form
+          action=""
+          class="is-flex is-justify-content-center is-align-items-center m-6"
+        >
+          <span class="domain px-4 py-4">
+            <select class="is-size-7">
+              <option>Fintech</option>
+              <option></option>
+            </select>
+          </span>
+          <input
+            placeholder="Rechercher"
+            class="search_here px-3 py-4 is-size-7"
+          />
+          <span class="search_icon px-5 py-3">
+            <img src="../assets/search.svg" alt="Search" />
+          </span>
+        </form>
+      </header>
+      <section class="my-6 px-6 main_content">
+        <header class="is-flex is-align-items-center card about_us">
+          <figure class="ml-4 mr-2 p-0">
+            <img
+              src="../assets/logo_rintio.png"
+              title="RINTIO"
+              alt="Logo RINTIO"
+            />
+          </figure>
+          <aside
+            class="column is-three-quarters"
+            aria-label="Rintio en quelques mots"
+          >
+            <h1 class="m-0 is-size-4">{{ data._source.name }}</h1>
+            <h2 class="m-0 is-size-6 is-inline-block category py-2 px-4 pr-5">
+              {{ data._source.market }}
+            </h2>
+            <p class="is-size-6 description pb-2">
+              {{ data._source.goal }}
+            </p>
+          </aside>
+        </header>
+        <section>
+          <section
+            class="
+              is-flex is-flex-wrap-wrap is-justify-content-space-between
+              about_startup
+              mb-6
+            "
+          >
+            <section class="contents_group mt-5">
+              <article class="card p-5 general_informations">
+                <h3 class="is-flex is-justify-content-space-between">
+                  <figure class="is-flex is-align-items-center">
+                    <span class="is-flex representation p-4 mr-3">
+                      <img
+                        src="../assets/social_networks/awards.svg"
+                        title=""
+                        alt=""
+                      />
+                    </span>
+                    <figcaption class="has-text-weight-normal">
+                      Informations générales
+                    </figcaption>
+                  </figure>
+                </h3>
+                <ul class="pt-5 is-size-7">
+                  <li class="is-flex is-justify-content-space-between py-3">
+                    Date de création
+                    <strong>{{
+                      data._source.creation_date | formatDate
+                    }}</strong>
+                  </li>
+                  <li class="is-flex is-justify-content-space-between py-3">
+                    Siège social <strong>{{ data._source.address }}</strong>
+                  </li>
+                  <li class="is-flex is-justify-content-space-between py-3">
+                    Email
+                    <strong>
+                      <a
+                        href="mailto:contact@rintio.com"
+                        class="has-text-black"
+                        >{{ data._source.email }}</a
+                      >
+                    </strong>
+                  </li>
+                  <li class="is-flex is-justify-content-space-between py-3">
+                    Site web
+                    <strong>
+                      <a :href="data._source.web_site" class="has-text-black">
+                        {{ data._source.web_site }}</a
+                      >
+                    </strong>
+                  </li>
+                </ul>
+              </article>
+              <article class="card mt-5 p-5 discussions">
+                <h3 class="is-flex is-justify-content-space-between">
+                  <figure class="is-flex is-align-items-center">
+                    <span class="is-flex representation p-4 mr-3">
+                      <img
+                        src="../assets/comments/comments.svg"
+                        title=""
+                        alt=""
+                      />
+                    </span>
+                    <figcaption class="has-text-weight-normal">
+                      Commentaires
+                    </figcaption>
+                  </figure>
+                </h3>
+                <section>
+                  <ul class="comments_history mt-5">
+                    <li class="mb-5">
+                      <article class="is-flex p-5">
+                        <figure class="mr-3">
+                          <img
+                            src="../assets/comments/author.svg"
+                            alt="Search"
+                          />
+                        </figure>
+                        <p class="is-size-7 has-text-justified">
+                          <strong>John Joe </strong> <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Viverra ullamcorper sapien lectus non proin nisl
+                          sed in neque. Non posuere parturient cras nascetur
+                          tortor nisi, turpis in.
+                        </p>
+                      </article>
+                    </li>
+                    <li class="mb-5">
+                      <article class="is-flex p-5">
+                        <figure class="mr-3">
+                          <img
+                            src="../assets/comments/author.svg"
+                            alt="Search"
+                          />
+                        </figure>
+                        <p class="is-size-7 has-text-justified">
+                          <strong>John Joe </strong> <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Viverra ullamcorper sapien lectus non proin nisl
+                          sed in neque. Non posuere parturient cras nascetur
+                          tortor nisi, turpis in.
+                        </p>
+                      </article>
+                    </li>
+                  </ul>
+                  <b-pagination
+                    aria-previous-label="Previous page"
+                    :total="total"
+                    v-model="current"
+                    :range-before="rangeBefore"
+                    :range-after="rangeAfter"
+                    :order="order"
+                    :size="size"
+                    :simple="isSimple"
+                    :rounded="isRounded"
+                    :per-page="perPage"
+                    :icon-prev="prevIcon"
+                    :icon-next="nextIcon"
+                    aria-next-label="Next page"
+                    aria-page-label="Page"
+                    aria-current-label="Current page"
+                  >
+                  </b-pagination>
+                </section>
+              </article>
+            </section>
+            <section class="card contents_group e_reputation mt-5 p-5">
+              <header class="is-flex is-justify-content-space-between">
+                <figure class="is-flex is-align-items-center">
+                  <span class="is-flex representation p-4 mr-3">
+                    <img
+                      src="../assets/social_networks/awards.svg"
+                      title=""
+                      alt=""
+                    />
+                  </span>
+                  <figcaption>E-reputation</figcaption>
+                </figure>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
+                </label>
+              </header>
+              <figure
+                class="
+                  charts
+                  is-flex is-justify-content-center is-align-items-center
+                "
+              >
+                <span id="chart_donut"></span>
+              </figure>
+              <footer class="report_social_network mb-5 is-size-7">
+                <ul>
+                  <li class="is-flex is-align-items-center linkedin mt-2">
+                    <figure>
+                      <figcaption>
+                        LINKEDIN<span class="rate mr-5 pr-5">{{
+                          data._source.linkedin_data
+                        }}</span>
+                      </figcaption>
+                    </figure>
+                  </li>
+                  <li class="is-flex is-align-items-center facebook mt-2">
+                    <figure>
+                      <figcaption>
+                        FACEBOOK<span class="rate mr-5 pr-5">{{
+                          data._source.facebook_data
+                        }}</span>
+                      </figcaption>
+                    </figure>
+                  </li>
+                  <li class="is-flex is-align-items-center twitter mt-2">
+                    <figure>
+                      <figcaption>
+                        TWITTER
+                        <span class="rate mr-5 pr-5">{{
+                          data._source.twitter_data
+                        }}</span>
+                      </figcaption>
+                    </figure>
+                  </li>
+                  <li class="is-flex is-align-items-center instagram mt-2">
+                    <figure>
+                      <figcaption>
+                        INSTAGRAM<span class="rate mr-5 pr-5">{{
+                          data._source.instagram_data
+                        }}</span>
+                      </figcaption>
+                    </figure>
+                  </li>
+                </ul>
+              </footer>
+            </section>
+          </section>
+          <section class="mt-5">
+            <article class="p-5 financial_informations">
+              <h3 class="is-flex is-justify-content-space-between mb-5">
+                <figure class="is-flex is-align-items-center">
+                  <span class="is-flex representation p-4 mr-3">
+                    <img
+                      src="../assets/social_capital/finance.svg"
+                      title=""
+                      alt=""
+                    />
+                  </span>
+                  <figcaption class="has-text-weight-normal">
+                    Performance financière
+                  </figcaption>
+                </figure>
+              </h3>
+              <span class="is-flex is-justify-content-space-between">
+                Capital social
+                <strong class="is-size-5 has-text-weight-bold">{{
+                  data._source.share_capital
+                }}</strong>
+              </span>
+              <figure class="mt-5">
+                <span class="legende is-size-7">Valeur</span>
+                <span id="chart_bar" class="mb-5"></span>
+                <figcaption
+                  class="
+                    is-flex
+                    is-justify-content-space-between
+                    is-align-items-center
+                  "
+                >
+                  <aside aria-label="Valeur actuelle">
+                    <span class="title has-text-weight-bold"
+                      >Valeur actuelle</span
+                    >
+                    <p class="value mt-1">
+                      <span class="percent mr-5">(+23%)</span>Bilan annuel
+                    </p>
+                  </aside>
+                  <span class="is-size-5 amount has-text-weight-semibold"
+                    >56.000.000 FCFA</span
+                  >
+                </figcaption>
+              </figure>
+            </article>
+          </section>
+        </section>
+        <footer class="see_more px-3 mt-6">
+          <h3 class="is-size-4 my-5">Voir plus</h3>
+          <ul
+            class="
+              is-flex is-justify-content-space-between is-flex-wrap-wrap
+              px-3
+            "
+          >
+            <li class="mb-2">
+              <a href="">
+                <figure class="is-flex card p-3">
+                  <img
+                    src="../assets/startup/startup.svg"
+                    title="Fintech"
+                    alt="Logo Fintech"
+                  />
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      is-flex
+                      is-flex-direction-column
+                      is-justify-content-space-around
+                    "
+                  >
+                    <h4>
+                      <a href="skypemail.com" class="has-text-black is-size-5"
+                        >SkyeMall.com</a
+                      >
+                    </h4>
+                    <span> <span>Fintech</span> Accra, Ghana </span>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="">
+                <figure class="is-flex card p-3">
+                  <img
+                    src="../assets/startup/startup.svg"
+                    title="Fintech"
+                    alt="Logo Fintech"
+                  />
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      is-flex
+                      is-flex-direction-column
+                      is-justify-content-space-around
+                    "
+                  >
+                    <h4>
+                      <a href="skypemail.com" class="has-text-black is-size-5"
+                        >SkyeMall.com</a
+                      >
+                    </h4>
+                    <span> <span>Fintech</span> Accra, Ghana </span>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="">
+                <figure class="is-flex card p-3">
+                  <img
+                    src="../assets/startup/startup.svg"
+                    title="Fintech"
+                    alt="Logo Fintech"
+                  />
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      is-flex
+                      is-flex-direction-column
+                      is-justify-content-space-around
+                    "
+                  >
+                    <h4>
+                      <a href="skypemail.com" class="has-text-black is-size-5"
+                        >SkyeMall.com</a
+                      >
+                    </h4>
+                    <span> <span>Fintech</span> Accra, Ghana </span>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </footer>
+      </section>
+    </section>
   </Layout>
 </template>
 
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-import ApexCharts from 'apexcharts';
+import ApexCharts from "apexcharts";
+import moment from "moment";
+import "moment/locale/fr";
 
 export default {
   metaInfo: {
@@ -413,6 +794,7 @@ export default {
       loading: false,
       awaitingSearch: false,
       error: false,
+      animated: true,
     };
   },
   mounted() {
@@ -671,6 +1053,14 @@ export default {
           this.loading = false;
           this.error = true;
         });
+    },
+  },
+  filters: {
+    // Filter definitions
+    formatDate(value) {
+      if (value) {
+        return moment(String(value)).format("MM/DD/YYYY");
+      }
     },
   },
 };
