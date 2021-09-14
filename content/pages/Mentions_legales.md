@@ -1,5 +1,5 @@
 ---
-title: Politique de confidentialité
+title: Mentions légales
 published: true
 date: 2021-01-01
 ---

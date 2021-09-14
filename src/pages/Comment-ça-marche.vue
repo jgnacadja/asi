@@ -60,7 +60,7 @@
               aria-controls="contentIdForA11y3"
             >
               <div class="column margin-title">
-                <p class="has-text-info">Les startups retrouvées sur ASI interviennent-elles dans des domaines spécifiques?</p>
+                <p class="has-text-info">Quelles sont les startups retrouvées sur ASI ?</p>
               </div>
               <div class="column is-1 is-variable is-mobbile">
                 <button class="card-header-icon" aria-label="more options">

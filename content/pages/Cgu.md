@@ -1,5 +1,5 @@
 ---
-title: CGU
+title: Conditions Générales d'Utilisation
 published: true
 date: 2021-01-01
 ---

@@ -1,61 +1,38 @@
 <template>
   <div class="container">
-    <ais-instant-search
-      :search-client="searchClient"
-      :index-name="ALGOLIA_INDEX_NAME"
-    >
-      <form class="columns is-mobile field is-grouped">
-        <ais-menu-select
-          class="is-hidden-mobile column is-3 is-marginless is-paddingless"
-          :attribute="attribute"
-          :limit="1000"
-        >
-          <select
-            class="select rm-raduis-select is-fullwidth"
-            slot-scope="{ items, canRefine, refine }"
-            :disabled="!canRefine"
-            @change="refine($event.currentTarget.value)"
+    <form class="columns is-mobile field is-grouped">
+      <div class="is-hidden-mobile column is-3 is-marginless is-paddingless">
+        <select class="select rm-raduis-select is-fullwidth" v-model="category">
+          <option style="padding: 5px 0" value="">Tous les domaines</option>
+          <option
+            style="padding: 5px 0"
+            v-for="item in categories.slice(1)"
+            :key="item.key"
           >
-            <option style="padding: 5px 0" value="">Tous les domaines</option>
-            <option
-              style="padding: 5px 0"
-              v-for="item in items"
-              :key="item.value"
-              :value="item.value"
-              :selected="item.isRefined"
-            >
-              {{ item.label }}
-            </option>
-          </select>
-        </ais-menu-select>
-        <div
-          class="
-            column
-            is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
-          "
-        >
-          <ais-index
-            :indexName="ALGOLIA_INDEX_NAME"
-            indexId="instant_search_results"
-          >
-            <ais-autocomplete>
-              <div slot-scope="{ currentRefinement, indices, refine }">
-                <p class="control is-expanded mobile-input">
-                  <input
-                    class="input rm-raduis-input is-borderless"
-                    type="search"
-                    placeholder="Accéder à une startup"
-                    :value="currentRefinement"
-                    @input="refine($event.currentTarget.value)"
-                    autocomplete="off"
-                  />
-                </p>
-                {{ print(currentRefinement, indices) }}
-              </div>
-            </ais-autocomplete>
-          </ais-index>
+            {{ item.key }}
+          </option>
+        </select>
+      </div>
+      <div
+        class="
+          column
+          is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
+        "
+      >
+        <div>
+          <p class="control is-expanded mobile-input">
+            <input
+              id="search"
+              class="input rm-raduis-input is-borderless"
+              type="search"
+              placeholder="Accéder à une startup"
+              v-model="query"
+              autocomplete="off"
+            />
+          </p>
         </div>
-        <!-- <p
+      </div>
+      <!-- <p
           class="
             control
             column
@@ -66,112 +43,128 @@
             <b-icon pack="fas" icon="search" size="is-small" />
           </span>
         </p> -->
-      </form>
-      <div v-if="current" class="result">
-        <smooth-scrollbar class="box-result">
-          <div class="is-box">
-            <div class="hits">
-              <ul v-for="index in hits" :key="index.name">
-                <li
-                  class="column"
-                  style="text-align: center !important"
-                  v-show="index.hits.length == 0"
-                >
-                  <em>Aucun résultat...</em>
-                </li>
-                <li
-                  v-for="hit in index.hits.slice(0, 3)"
-                  :key="hit.objectID"
-                  class="custom-hr-top"
-                >
-                  <g-link :to="parseUri(hit.objectID)">
-                    <div
-                      class="
-                        columns
-                        post-item
-                        is-marginless is-paddingless is-mobile
-                        has-text-black
-                      "
-                    >
-                      <!-- <div class="column is-2 post-cover">
+    </form>
+    <div v-if="query.length > 2" class="result">
+      <smooth-scrollbar class="box-result">
+        <div class="is-box">
+          <div
+            class="hits"
+            v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''"
+          >
+            <div v-if="loading">
+              <b-loading :is-full-page="false" v-model="loading"></b-loading>
+            </div>
+
+            <ul v-else>
+              <li
+                v-if="
+                  results.length === 0 &&
+                  query.length > 2 &&
+                  !loading &&
+                  !awaitingSearch
+                "
+                class="column"
+                style="text-align: center !important"
+              >
+                <em>Aucun résultat...</em>
+              </li>
+              <li
+                v-for="hit in results"
+                :key="hit._source.objectID"
+                class="custom-hr-top"
+                v-else
+              >
+                <g-link :to="parseUri(hit._source.objectID)">
+                  <div
+                    class="
+                      columns
+                      post-item
+                      is-marginless is-paddingless is-mobile
+                      has-text-black
+                    "
+                  >
+                    <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
                                 src="~/assets/fintech.png"
                                 fit="inside"
                               />
                             </div> -->
-                      <div
+                    <div
+                      class="
+                        column
+                        is-10-tablet is-12-mobile
+                        has-text-left has-text-weight-bold
+                        is-size-7-mobile
+                      "
+                    >
+                      {{ hit._source.name }}
+
+                      <br />
+                      <small
                         class="
-                          column
-                          is-8-desktop is-7
-                          has-text-left has-text-weight-bold
+                          post-author
+                          has-text-primary
+                          is-size-7-mobile
+                          has-text-weight-light
+                        "
+                        v-if="hit._source.market !== 'Indefini'"
+                      >
+                        {{ hit._source.market }}
+                      </small>
+                      <small
+                        class="
+                          post-location
+                          is-size-7-mobile
+                          has-text-weight-light
                         "
                       >
-                        {{ hit.name }}
+                        <b-icon pack="fa" icon="map-marker" size="is-small" />
+                        {{ hit._source.startup_country }}
+                      </small>
+                      <!-- <hr> -->
+                    </div>
 
-                        <br />
-                        <small
-                          class="
-                            post-author
-                            has-text-primary
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                          v-if="hit.market !== 'Indefini'"
-                        >
-                          {{ hit.market }}
-                        </small>
-                        <small
-                          class="
-                            post-location
-                            is-size-7-mobile
-                            has-text-weight-light
-                          "
-                        >
-                          <b-icon pack="fa" icon="map-marker" size="is-small" />
-                          {{ hit.startup_country }}
-                        </small>
-                        <!-- <hr> -->
+                    <!-- <div class="column is-2-tablet is-4-mobile">
+                      <div
+                        class="
+                          has-text-weight-bold
+                          post-vote
+                          is-size-4-desktop is-size-7-mobile
+                        "
+                      >
+                        <span v-if="hit._source.stats">{{
+                          hit._source.stats
+                        }}</span>
+                        <span v-if="!hit._source.stats">0.0</span>
                       </div>
+                      <div class="has-text-centered custom-size-mobile">
+                        <i
+                          v-bind:class="hit._source.stats >= 1 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
 
-                      <div class="column is-2-desktop is-7">
-                        <div
-                          class="
-                            has-text-weight-bold
-                            post-vote
-                            is-size-4-desktop
-                          "
-                        >
-                          <span v-if="hit.stats">{{ hit.stats }}</span>
-                          <span v-if="!hit.stats">0.0</span>
-                        </div>
-                        <div class="has-text-centered is-hidden-mobile">
-                          <i
-                            v-bind:class="hit.stats >= 1 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
+                        <i
+                          v-bind:class="hit._source.stats >= 2 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
 
-                          <i
-                            v-bind:class="hit.stats >= 2 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
+                        <i
+                          v-bind:class="hit._source.stats >= 3 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
 
-                          <i
-                            v-bind:class="hit.stats >= 3 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
+                        <i
+                          v-bind:class="hit._source.stats >= 4 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
 
-                          <i
-                            v-bind:class="hit.stats >= 4 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-
-                          <i
-                            v-bind:class="hit.stats >= 5 ? 'fas' : 'far'"
-                            class="fa-star fa-sm has-text-warning ml-1"
-                          ></i>
-                        </div>
-                        <div
+                        <i
+                          v-bind:class="hit._source.stats >= 5 ? 'fas' : 'far'"
+                          class="fa-star fa-sm has-text-warning ml-1"
+                        ></i>
+                      </div>
+                      <div
                           class="
                             post-location
                             is-size-7-mobile
@@ -180,48 +173,135 @@
                         >
                           0 votes
                         </div>
-                      </div>
-                    </div>
-                  </g-link>
-                </li>
-              </ul>
-            </div>
+                    </div> -->
+                  </div>
+                </g-link>
+              </li>
+            </ul>
           </div>
-        </smooth-scrollbar>
-      </div>
-    </ais-instant-search>
+        </div>
+      </smooth-scrollbar>
+    </div>
   </div>
 </template>
 
 <script>
-import algoliasearch from "algoliasearch/lite";
-
 export default {
-  component: {},
   data() {
     return {
-      baseUrl: "http://asi.dev.rintio.com/detail/",
-      ALGOLIA_INDEX_NAME: "asi",
-      searchClient: algoliasearch(
-        "CGXKUPOJ8Y",
-        "14e786e8fe7d0f1093b0a70ba55550cc"
-      ),
-      attribute: "market",
-      current: "",
-      hits: [],
+      baseUrl: "https://asi.dev.rintio.com/detail/",
+      elasticsearch: {
+        API: "https://elasticsearch.dev.rintio.com",
+        INDEX: "asi",
+      },
+      attribute: "market.keyword",
+      query: "",
+      category: "",
+      categories: [],
+      results: [],
+      loading: false,
+      awaitingSearch: false,
     };
+  },
+  mounted() {
+    this.fetch();
   },
   methods: {
     parseUri(objectId) {
       const parseId = escape(objectId);
       return `${this.baseUrl}${parseId}`;
     },
-    print(query, indices) {
-      this.current = query;
-      this.hits = indices;
+    // make an axios request to the server with the current search query
+    search() {
+      var axios = require("axios");
+      // add * to each word of search query // required by elasticsearch
+      var query = this.query
+        .split(" ")
+        .map((s) => s + "*")
+        .join(" ");
+      this.results = [];
+      this.loading = true;
+      let body;
+      if (this.category) {
+        body = {
+          query: {
+            query_string: {
+              type: "best_fields",
+              fields: ["name", "startup_country", "market"],
+              query: `${query} AND market: ${this.category}`,
+            },
+          },
+          size: 3,
+        };
+      } else {
+        body = {
+          query: {
+            query_string: {
+              type: "best_fields",
+              fields: ["name", "startup_country", "market"],
+              query: `${query}`,
+            },
+          },
+          size: 3,
+        };
+      }
 
-      console.log(this.current);
-      console.log("hits", this.hits);
+      axios
+        .post(
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
+          body,
+          {}
+        )
+        .then((response) => {
+          this.loading = false;
+          this.results = response.data.hits.hits;
+        })
+        .catch((error) => {
+          this.loading = false;
+        });
+    },
+    // make an axios request to the server to get all categories
+    fetch() {
+      var axios = require("axios");
+      var body = {
+        size: 0,
+        aggs: {
+          distinct_markets: {
+            terms: {
+              field: this.attribute,
+              size: 10000,
+            },
+          },
+        },
+      };
+      axios
+        .post(
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
+          body,
+          {}
+        )
+        .then((response) => {
+          this.categories = response.data.aggregations.distinct_markets.buckets;
+        })
+        .catch((error) => {
+          this.categories = [];
+        });
+    },
+  },
+  watch: {
+    // watch for change in the query string and recall the search method
+    query: function () {
+      if (!this.awaitingSearch) {
+        setTimeout(() => {
+          if (this.query.length > 2) this.search();
+          this.awaitingSearch = false;
+        }, 500); // 0.5 msec delay
+      }
+      this.awaitingSearch = true;
+    },
+    category: function () {
+      this.query = "";
+      this.results = [];
     },
   },
 };
@@ -243,9 +323,23 @@ li {
   border-top: 1px solid #dedede;
 }
 
+.custom-size {
+  width: 12%;
+}
+
 @media screen and (min-width: 1024px) {
   .result {
     margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .custom-size-mobile {
+    font-size: 0.5rem;
+  }
+
+  .custom-size {
+    width: 25% !important;
   }
 }
 
@@ -266,7 +360,6 @@ li {
   padding-left: calc(0.75em - 1px);
   padding-top: calc(0.5em - 1px);
   position: relative;
-  vertical-align: top;
   border-color: transparent;
   border-radius: 4px;
   color: #363636;

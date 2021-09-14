@@ -21,7 +21,6 @@
     "datejs": "^1.0.0-rc3",
     "emailjs-com": "^3.2.0",
     "gridsome": "^0.7.23",
-    "gridsome-plugin-algolia": "^2.1.4",
     "gridsome-plugin-bundle-analyzer": "^1.0.0",
     "gridsome-plugin-robots-txt": "^1.0.2",
     "jquery": "^3.6.0",
@@ -29,7 +28,6 @@
     "urijs": "^1.19.7",
     "vue-disqus": "^4.0.1",
     "vue-infinite-loading": "^2.4.5",
-    "vue-instantsearch": "^4.0.0",
     "vue-markdown": "^2.2.4",
     "vue-smooth-scrollbar": "^0.1.2",
     "vueperslides": "^2.15.2"
