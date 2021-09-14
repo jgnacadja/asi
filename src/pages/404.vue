@@ -11,7 +11,7 @@
                 trouvée !
               </div>
               <div class="error-actions">
-                <g-link>Revenir à l'acceuil </g-link>
+                <g-link to="/">Revenir à l'acceuil </g-link>
               </div>
             </div>
           </div>

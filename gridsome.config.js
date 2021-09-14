@@ -1,6 +1,5 @@
 // This is where project configuration and plugin options are located.
 // Learn more: https://gridsome.org/docs/config
-const algolia = require("./plugin.algolia");
 const googleAnalytics = require("./plugins/plugin.googleAnalytics");
 const klaro = require("./plugins/plugin.klaro");
 const siteMap = require("./plugins/plugin.sitemap");
@@ -17,7 +16,6 @@ module.exports = {
   siteDescription: "La plateforme des potentialités d’Afrique",
 
   plugins: [
-    algolia,
     googleAnalytics,
     klaro,
     siteMap,
