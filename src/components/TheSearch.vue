@@ -93,7 +93,7 @@
                     <div
                       class="
                         column
-                        is-10-tablet is-8-mobile
+                        is-10-tablet is-12-mobile
                         has-text-left has-text-weight-bold
                         is-size-7-mobile
                       "
@@ -125,7 +125,7 @@
                       <!-- <hr> -->
                     </div>
 
-                    <div class="column is-2-tablet is-4-mobile">
+                    <!-- <div class="column is-2-tablet is-4-mobile">
                       <div
                         class="
                           has-text-weight-bold
@@ -164,7 +164,7 @@
                           class="fa-star fa-sm has-text-warning ml-1"
                         ></i>
                       </div>
-                      <!-- <div
+                      <div
                           class="
                             post-location
                             is-size-7-mobile
@@ -172,8 +172,8 @@
                           "
                         >
                           0 votes
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                   </div>
                 </g-link>
               </li>
@@ -213,49 +213,52 @@ export default {
     },
     // make an axios request to the server with the current search query
     search() {
-      this.results = [];
-
       var axios = require("axios");
+      // add * to each word of search query // required by elasticsearch
+      var query = this.query
+        .split(" ")
+        .map((s) => s + "*")
+        .join(" ");
+      this.results = [];
       this.loading = true;
-
+      let body;
       if (this.category) {
-        var body = {
+        body = {
           query: {
-            bool: {
-              must: {
-                query_string: {
-                  query: `${this.query} AND market: ${this.category}`,
-                },
-              },
+            query_string: {
+              type: "best_fields",
+              fields: ["name", "startup_country", "market"],
+              query: `${query} AND market: ${this.category}`,
             },
           },
+          size: 3,
         };
-        axios
-          .post(
-            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
-            body,
-            {}
-          )
-          .then((response) => {
-            this.loading = false;
-            this.results = response.data.hits.hits;
-          })
-          .catch((error) => {
-            this.loading = false;
-          });
       } else {
-        axios
-          .get(
-            `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search?size=3&q=${this.query}`
-          )
-          .then((response) => {
-            this.loading = false;
-            this.results = response.data.hits.hits;
-          })
-          .catch((error) => {
-            this.loading = false;
-          });
+        body = {
+          query: {
+            query_string: {
+              type: "best_fields",
+              fields: ["name", "startup_country", "market"],
+              query: `${query}`,
+            },
+          },
+          size: 3,
+        };
       }
+
+      axios
+        .post(
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
+          body,
+          {}
+        )
+        .then((response) => {
+          this.loading = false;
+          this.results = response.data.hits.hits;
+        })
+        .catch((error) => {
+          this.loading = false;
+        });
     },
     // make an axios request to the server to get all categories
     fetch() {
