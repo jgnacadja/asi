@@ -653,7 +653,7 @@ export default {
 
       axios
         .get(
-          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_doc/GHANA%23GREEN_VILLAGE_PLAN_DEVELOPMENT`
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_doc/${this.$route.params.id}`
         )
         .then((response) => {
           this.loading = false;
