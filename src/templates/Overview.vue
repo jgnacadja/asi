@@ -209,43 +209,32 @@
                   <span class="slider round"></span>
                 </label>
               </header>
-              <figure
-                class="
-                  charts
-                  is-flex is-justify-content-center is-align-items-center
-                "
-              >
-                <span id="chart_donut"></span>
+              <figure class="charts mt-4">
+                <p>
+                  <b-skeleton :animated="animated" height="80px"></b-skeleton>
+                </p>
               </figure>
               <footer class="report_social_network mb-5 is-size-7">
                 <ul>
-                  <li class="is-flex is-align-items-center linkedin mt-2">
-                    <figure>
-                      <figcaption>
-                        LINKEDIN<span class="rate mr-5 pr-5">+ 27,13%</span>
-                      </figcaption>
-                    </figure>
+                  <li class="columns is-align-items-center linkedin ml-2">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center facebook mt-2">
-                    <figure>
-                      <figcaption>
-                        FACEBOOK<span class="rate mr-5 pr-5">+ 33,22%</span>
-                      </figcaption>
-                    </figure>
+                  <li class="columns is-align-items-center facebook ml-2">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center twitter mt-2">
-                    <figure>
-                      <figcaption>
-                        TWITTER <span class="rate mr-5 pr-5">+ 17,13%</span>
-                      </figcaption>
-                    </figure>
+                  <li class="columns is-align-items-center twitter ml-2">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center instagram mt-2">
-                    <figure>
-                      <figcaption>
-                        INSTAGRAM<span class="rate mr-5 pr-5">+ 25,13%</span>
-                      </figcaption>
-                    </figure>
+                  <li class="columns is-align-items-center instagram ml-2">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
                 </ul>
               </footer>
@@ -267,33 +256,49 @@
                   </figcaption>
                 </figure>
               </h3>
-              <span class="is-flex is-justify-content-space-between">
-                Capital social
-                <strong class="is-size-5 has-text-weight-bold"
-                  >2.000.000 FCFA</strong
-                >
-              </span>
+              <div class="columns is-justify-content-space-between">
+                <div class="column is-1">
+                  <b-skeleton :animated="animated"></b-skeleton>
+                </div>
+                <div class="column is-2">
+                  <b-skeleton :animated="animated"></b-skeleton>
+                </div>
+              </div>
               <figure class="mt-5">
-                <span class="legende is-size-7">Valeur</span>
-                <span id="chart_bar" class="mb-5"></span>
+                <figure class="charts mt-4 mb-5">
+                  <p>
+                    <b-skeleton :animated="animated" height="80px"></b-skeleton>
+                  </p>
+                </figure>
                 <figcaption
                   class="
-                    is-flex
-                    is-justify-content-space-between
-                    is-align-items-center
+                    columns
+                    is-justify-content-space-between is-align-items-center
                   "
                 >
-                  <aside aria-label="Valeur actuelle">
+                  <aside class="column" aria-label="Valeur actuelle">
                     <span class="title has-text-weight-bold"
                       >Valeur actuelle</span
                     >
-                    <p class="value mt-1">
-                      <span class="percent mr-5">(+23%)</span>Bilan annuel
-                    </p>
+                    <div class="columns mt-1">
+                      <div class="column is-1">
+                        <b-skeleton :animated="animated"></b-skeleton>
+                      </div>
+                      <div class="column is-2">
+                        <b-skeleton :animated="animated"></b-skeleton>
+                      </div>
+                    </div>
                   </aside>
-                  <span class="is-size-5 amount has-text-weight-semibold"
-                    >56.000.000 FCFA</span
+                  <div
+                    class="
+                      column
+                      is-1 is-size-5
+                      amount
+                      has-text-weight-semibold
+                    "
                   >
+                    <b-skeleton :animated="animated"></b-skeleton>
+                  </div>
                 </figcaption>
               </figure>
             </article>
@@ -831,244 +836,28 @@ export default {
       awaitingSearch: false,
       error: false,
       animated: false,
+      dotnutChartOptions: {
+        chart: {
+          type: "line",
+        },
+        series: [
+          {
+            name: "sales",
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+          },
+        ],
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+        },
+      },
     };
   },
   mounted() {
     this.fetch();
-
-    //donut
-    var tableau = [8000, 17000, 37000, 10000];
-    var sum = tableau.reduce((acc, cur) => acc + cur, 0);
-    function compute_label(value) {
-      var signe = "";
-      var k = 1000;
-      var m = 1000000;
-      var g = 1000000000;
-      if (value >= g) {
-        value /= g;
-        signe = "G";
-      } else {
-        if (value > m) {
-          value /= m;
-          signe = "M";
-        } else if (value > k) {
-          value /= k;
-          signe = "K";
-        }
-      }
-      return String(value) + signe;
-    }
-    var options_donut = {
-      chart: {
-        type: "donut",
-        height: "400px",
-      },
-      legend: {
-        show: false,
-      },
-      labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
-      colors: ["#F9F871", "#76FAC7", "#FF00E5", "#267EC3"],
-      dataLabels: {
-        enabled: true, //Remove label
-        formatter: function (val, opts) {
-          var value = (val * sum) / 100;
-          return compute_label(value);
-        },
-        textAnchor: "end",
-        style: {
-          margin: 50,
-        },
-      },
-      tooltip: {
-        enabled: true,
-        y: {
-          formatter: function (value) {
-            return compute_label(value);
-          },
-        },
-      },
-      plotOptions: {
-        pie: {
-          expandOnClick: false,
-          donut: {
-            size: "50%",
-            labels: {
-              show: true,
-              name: {
-                show: true,
-              },
-              value: {
-                color: "#FF9B26",
-                formatter: function (value) {
-                  return compute_label(value);
-                },
-              },
-              total: {
-                show: true,
-                label: "Total",
-                color: "black",
-                formatter: function (w) {
-                  return "+18.15%";
-                },
-              },
-            },
-          },
-        },
-      },
-      series: tableau,
-    };
-    var chart_donut = new ApexCharts(
-      document.querySelector("#chart_donut"),
-      options_donut
-    );
-    chart_donut.render();
-    //BAR
-    var options_bar = {
-      series: [
-        {
-          name: "Valeur",
-          data: [
-            {
-              x: "01",
-              y: 800,
-            },
-            {
-              x: "02",
-              y: 600,
-            },
-            {
-              x: "03",
-              y: 400,
-            },
-            {
-              x: "04",
-              y: 975,
-            },
-            {
-              x: "05",
-              y: 775,
-            },
-            {
-              x: "06",
-              y: 850,
-            },
-            {
-              x: "07",
-              y: 510,
-            },
-            {
-              x: "08",
-              y: 400,
-            },
-            {
-              x: "09",
-              y: 625,
-            },
-          ],
-        },
-      ],
-      grid: {
-        show: true,
-        borderColor: "#90A4AE",
-        strokeDashArray: 4,
-        xaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        yaxis: {
-          lines: {
-            show: true,
-          },
-        },
-        padding: {
-          top: 10,
-          right: 40,
-          bottom: 30,
-          left: 40,
-        },
-      },
-      yaxis: {
-        show: true,
-        min: 0,
-        max: 1000,
-      },
-      xaxis: {
-        position: "bottom",
-        axisBorder: {
-          show: false,
-        },
-        axisTicks: {
-          show: false,
-        },
-        crosshairs: {
-          show: true,
-          width: 1,
-          position: "back",
-          opacity: 0.9,
-          stroke: {
-            color: "#b6b6b6",
-            width: 0,
-            dashArray: 0,
-          },
-          fill: {
-            type: "solid",
-            color: "#B1B9C4",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5,
-            },
-          },
-          dropShadow: {
-            enabled: false,
-            top: 0,
-            left: 0,
-            blur: 1,
-            opacity: 0.4,
-          },
-        },
-      },
-      chart: {
-        height: 350,
-        type: "bar",
-        foreColor: "#fff",
-        toolbar: {
-          show: false, // remove download option
-        },
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: "10%",
-        },
-      },
-      colors: ["#FFFFFF"],
-      dataLabels: {
-        enabled: false,
-      },
-      legend: {
-        show: false,
-        showForSingleSeries: true,
-        customLegendItems: ["Valeur"],
-        markers: {
-          fillColors: ["000"],
-        },
-        position: "top",
-        horizontalAlign: "left",
-      },
-    };
-    var chart_bar = new ApexCharts(
-      document.querySelector("#chart_bar"),
-      options_bar
-    );
-    chart_bar.render();
   },
   methods: {
     parseUri(objectId) {
-      const parseId = escape(objectId);
-      return parseId;
+      return escape(objectId);
     },
     // make an axios request to the server to get startup data
     fetch() {
