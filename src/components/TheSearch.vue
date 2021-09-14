@@ -74,7 +74,7 @@
                 class="custom-hr-top"
                 v-else
               >
-                <g-link :to="parseUri(hit._source.objectID)">
+                <g-link :to="`/overview/${hit._source.objectID}`">
                   <div
                     class="
                       columns
@@ -189,7 +189,6 @@
 export default {
   data() {
     return {
-      baseUrl: "https://asi.dev.rintio.com/detail/",
       elasticsearch: {
         API: "https://elasticsearch.dev.rintio.com",
         INDEX: "asi",
@@ -207,10 +206,6 @@ export default {
     this.fetch();
   },
   methods: {
-    parseUri(objectId) {
-      const parseId = escape(objectId);
-      return `${this.baseUrl}${parseId}`;
-    },
     // make an axios request to the server with the current search query
     search() {
       var axios = require("axios");
