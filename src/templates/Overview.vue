@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
+    {{ data }}
 
     <section class="overview_page">
       <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
@@ -413,7 +414,7 @@ export default {
       error: false,
     };
   },
-  mounted: function () {
+  mounted() {
     this.fetch();
 
     //donut
@@ -646,6 +647,10 @@ export default {
     chart_bar.render();
   },
   methods: {
+    parseUri(objectId) {
+      const parseId = escape(objectId);
+      return parseId;
+    },
     // make an axios request to the server to get startup data
     fetch() {
       this.loading = true;
@@ -653,7 +658,9 @@ export default {
 
       axios
         .get(
-          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_doc/${this.$route.params.id}`
+          `${this.elasticsearch.API}/${
+            this.elasticsearch.INDEX
+          }/_doc/${this.parseUri(this.$route.params.id)}`
         )
         .then((response) => {
           this.loading = false;

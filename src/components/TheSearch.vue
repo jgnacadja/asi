@@ -74,7 +74,7 @@
                 class="custom-hr-top"
                 v-else
               >
-                <g-link :to="`/overview/${hit._source.objectID}`">
+                <g-link :to="`/overview/${parseUri(hit._source.objectID)}`">
                   <div
                     class="
                       columns
@@ -206,6 +206,10 @@ export default {
     this.fetch();
   },
   methods: {
+    parseUri(objectId) {
+      const parseId = escape(objectId);
+      return parseId;
+    },
     // make an axios request to the server with the current search query
     search() {
       var axios = require("axios");
