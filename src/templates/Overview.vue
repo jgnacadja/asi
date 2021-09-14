@@ -26,23 +26,27 @@
       <section class="my-6 px-6 main_content">
         <header class="is-flex is-align-items-center card about_us">
           <figure class="ml-4 mr-2 p-0">
-            <img
-              src="../assets/logo_rintio.png"
-              title="RINTIO"
-              alt="Logo RINTIO"
-            />
+            <p class="image is-64x64">
+              <b-skeleton
+                :animated="animated"
+                circle
+                width="64px"
+                height="64px"
+              ></b-skeleton>
+            </p>
           </figure>
           <aside
             class="column is-three-quarters"
             aria-label="Rintio en quelques mots"
           >
-            <h1 class="m-0 is-size-4">RINTIO</h1>
-            <h2 class="m-0 is-size-6 is-inline-block category py-2 px-4 pr-5">
-              Technologies et services de l’information
+            <h1 class="column is-1 m-0 is-size-4 rm-padding">
+              <b-skeleton :animated="animated"></b-skeleton>
+            </h1>
+            <h2 class="column is-2 m-0 is-size-6 rm-padding">
+              <b-skeleton :animated="animated"></b-skeleton>
             </h2>
-            <p class="is-size-6 description pb-2">
-              Notre mission est d’accompagner nos clients et partenaires dans
-              leur transformation opérationnelle et organisationnelle.
+            <p class="column is-5 mt-1 is-size-6 description rm-padding">
+              <b-skeleton :animated="animated"></b-skeleton>
             </p>
           </aside>
         </header>
@@ -71,31 +75,47 @@
                   </figure>
                 </h3>
                 <ul class="pt-5 is-size-7">
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Date de création
-                    <b-skeleton width="20%" :animated="animated"></b-skeleton>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column is-3">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+
+                    <div class="column is-3">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Siège social
-                    <strong>Cotonou</strong>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Email
-                    <strong
-                      ><a
-                        href="mailto:contact@rintio.com"
-                        class="has-text-black"
-                        >contact@rintio.com</a
-                      ></strong
-                    >
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column is-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+
+                    <div class="column is-5">
+                      <b-skeleton
+                        class="align-items-right"
+                        :animated="animated"
+                      ></b-skeleton>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Site web
-                    <strong
-                      ><a href="www.rintio.com" class="has-text-black">
-                        www.rintio.com</a
-                      ></strong
-                    >
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column is-1">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+
+                    <div class="column is-3">
+                      <b-skeleton
+                        class="align-items-right"
+                        :animated="animated"
+                      ></b-skeleton>
+                    </div>
                   </li>
                 </ul>
               </article>
@@ -290,26 +310,28 @@
             <li class="mb-2">
               <a href="">
                 <figure class="is-flex card p-3">
-                  <img
-                    src="../assets/startup/startup.svg"
-                    title="Fintech"
-                    alt="Logo Fintech"
-                  />
+                  <p class="image is-64x64">
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
+                  </p>
                   <figcaption
                     class="
                       ml-3
                       is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
+                      column
+                      is-flex-direction-column is-justify-content-space-around
                     "
                   >
-                    <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5"
-                        >SkyeMall.com</a
-                      >
-                    </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
+                    <div class="column is-6 rm-padding">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+                    <div class="column is-6 rm-padding mt-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </figcaption>
                 </figure>
               </a>
@@ -317,26 +339,28 @@
             <li class="mb-2">
               <a href="">
                 <figure class="is-flex card p-3">
-                  <img
-                    src="../assets/startup/startup.svg"
-                    title="Fintech"
-                    alt="Logo Fintech"
-                  />
+                  <p class="image is-64x64">
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
+                  </p>
                   <figcaption
                     class="
                       ml-3
                       is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
+                      column
+                      is-flex-direction-column is-justify-content-space-around
                     "
                   >
-                    <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5"
-                        >SkyeMall.com</a
-                      >
-                    </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
+                    <div class="column is-6 rm-padding">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+                    <div class="column is-6 rm-padding mt-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </figcaption>
                 </figure>
               </a>
@@ -344,26 +368,28 @@
             <li class="mb-2">
               <a href="">
                 <figure class="is-flex card p-3">
-                  <img
-                    src="../assets/startup/startup.svg"
-                    title="Fintech"
-                    alt="Logo Fintech"
-                  />
+                  <p class="image is-64x64">
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
+                  </p>
                   <figcaption
                     class="
                       ml-3
                       is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
+                      column
+                      is-flex-direction-column is-justify-content-space-around
                     "
                   >
-                    <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5"
-                        >SkyeMall.com</a
-                      >
-                    </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
+                    <div class="column is-6 rm-padding">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
+                    <div class="column is-6 rm-padding mt-2">
+                      <b-skeleton :animated="animated"></b-skeleton>
+                    </div>
                   </figcaption>
                 </figure>
               </a>
@@ -408,7 +434,9 @@
             aria-label="Rintio en quelques mots"
           >
             <h1 class="m-0 is-size-4">{{ data._source.name }}</h1>
-            <h2 class="m-0 is-size-6 is-inline-block category py-2 px-4 pr-5">
+            <h2
+              class="m-0 is-size-6 is-inline-block category py-2 my-2 px-4 pr-5"
+            >
               {{ data._source.market }}
             </h2>
             <p class="is-size-6 description pb-2">
@@ -441,32 +469,41 @@
                   </figure>
                 </h3>
                 <ul class="pt-5 is-size-7">
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Date de création
-                    <strong>{{
-                      data._source.creation_date | formatDate
-                    }}</strong>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column">Date de création</div>
+                    <div class="column has-text-right">
+                      <strong>{{
+                        data._source.creation_date | formatDate
+                      }}</strong>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Siège social <strong>{{ data._source.address }}</strong>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column">Siège social</div>
+                    <div class="column has-text-right">
+                      <strong>{{ data._source.address }}</strong>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Email
-                    <strong>
-                      <a
-                        href="mailto:contact@rintio.com"
-                        class="has-text-black"
-                        >{{ data._source.email }}</a
-                      >
-                    </strong>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column">Email</div>
+                    <div class="column has-text-right">
+                      <strong>
+                        <a
+                          href="mailto:contact@rintio.com"
+                          class="has-text-black"
+                          >{{ data._source.email }}</a
+                        >
+                      </strong>
+                    </div>
                   </li>
-                  <li class="is-flex is-justify-content-space-between py-3">
-                    Site web
-                    <strong>
-                      <a :href="data._source.web_site" class="has-text-black">
-                        {{ data._source.web_site }}</a
-                      >
-                    </strong>
+                  <li class="columns is-justify-content-space-between">
+                    <div class="column">Site web</div>
+                    <div class="column has-text-right">
+                      <strong>
+                        <a :href="data._source.web_site" class="has-text-black">
+                          {{ data._source.web_site }}</a
+                        >
+                      </strong>
+                    </div>
                   </li>
                 </ul>
               </article>
@@ -758,7 +795,6 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-import ApexCharts from "apexcharts";
 import moment from "moment";
 import "moment/locale/fr";
 
@@ -794,7 +830,7 @@ export default {
       loading: false,
       awaitingSearch: false,
       error: false,
-      animated: true,
+      animated: false,
     };
   },
   mounted() {
@@ -1072,6 +1108,9 @@ export default {
 @import "~bulma/sass/utilities/mixins";
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
+.rm-padding {
+  padding: 0 !important;
+}
 .overview_page {
   // @media screen and (max-width: 402px){
   //     padding: 0 1rem !important;

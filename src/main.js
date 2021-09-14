@@ -46,6 +46,10 @@ export default function(Vue, { router, head, isClient }) {
   head.script.push({
     src: "klaro.js",
   });
+  // Apexcharts donuts
+  head.script.push({
+    src: "https://cdn.jsdelivr.net/npm/apexcharts",
+  });
 
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout);
