@@ -15,15 +15,15 @@
                 </span>
             </form>
         </header>
-        <section class="my-6 px-6">
-            <header class="is-flex is-align-items-center card about_us " >
+        <section class="my-6 px-6 main_content">
+            <header class="is-flex is-align-items-center card about_us" >
                 <figure class="ml-4 mr-2 p-0">
                     <img src="../assets/logo_rintio.png" title="RINTIO" alt="Logo RINTIO" />
                 </figure>
                 <aside class="column is-three-quarters" aria-label="Rintio en quelques mots">
                     <h1 class="m-0 is-size-4">RINTIO</h1>
                     <h2 class="m-0 is-size-6 is-inline-block category py-2 px-4 pr-5">Technologies et services de l’information</h2>
-                    <p class="is-size-6 description">
+                    <p class="is-size-6 description pb-2">
                         Notre mission est d’accompagner nos clients et partenaires dans leur transformation 
                         opérationnelle et organisationnelle.
                     </p>
@@ -131,7 +131,7 @@
                                 <span class="slider round"></span>
                             </label>
                         </header>
-                        <figure class="charts is-flex is-justify-content-center">
+                        <figure class="charts is-flex is-justify-content-center is-align-items-center">
                             <span id="chart_donut"></span>
                         </figure>
                         <footer class="report_social_network mb-5 is-size-7">
@@ -242,257 +242,258 @@
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';    
 export default {
-        data() {
-            return {
-                total: 200,
-                current: 10,
-                perPage: 10,
-                rangeBefore: 3,
-                rangeAfter: 1,
-                order: '',
-                size: '',
-                isSimple: false,
-                isRounded: false,
-                prevIcon: 'chevron-left',
-                nextIcon: 'chevron-right'
-            }
+    data() {
+        return {
+            total: 200,
+            current: 10,
+            perPage: 10,
+            rangeBefore: 3,
+            rangeAfter: 1,
+            order: '',
+            size: '',
+            isSimple: false,
+            isRounded: false,
+            prevIcon: 'chevron-left',
+            nextIcon: 'chevron-right'
+        }
+    },
+    components: { VueperSlides, VueperSlide },
+    metaInfo: {
+        title: "Aperçu",
+        meta: [
+        {
+            name: "Aperçu",
+            content: "Aperçu de la Startup",
         },
-        components: { VueperSlides, VueperSlide },
-        metaInfo: {
-            title: "Aperçu",
-            meta: [
-            {
-                name: "Aperçu",
-                content: "Aperçu de la Startup",
+        ],
+    },
+    mounted: function () {
+        //donut
+        var tableau = [8000,17000,37000,10000];
+        var sum = tableau.reduce((acc, cur) => acc + cur, 0);
+        function compute_label(value) {
+            var signe="";
+            var k=1000;
+            var m=1000000;
+            var g=1000000000;
+            if(value >= g){
+                value/=g;
+                signe="G";
+            }
+            else{
+                if(value > m){
+                    value/=m;
+                    signe="M"
+                }
+                else if(value > k){
+                    value/=k;
+                    signe="K";
+                }
+            }
+            return String(value)+signe;
+        }
+        var options_donut = {
+            chart: {
+                type: 'donut',
+                height: '400px',
             },
-            ],
-        },
-        mounted: function () {
-            //donut
-            var tableau = [8000,17000,37000,10000];
-            var sum = tableau.reduce((acc, cur) => acc + cur, 0);
-            function compute_label(value) {
-                var signe="";
-                var k=1000;
-                var m=1000000;
-                var g=1000000000;
-                if(value >= g){
-                    value/=g;
-                    signe="G";
-                }
-                else{
-                    if(value > m){
-                        value/=m;
-                        signe="M"
-                    }
-                    else if(value > k){
-                        value/=k;
-                        signe="K";
-                    }
-                }
-                return String(value)+signe;
-            }
-            var options_donut = {
-                chart: {
-                    type: 'donut'
+            legend: {
+                show: false,
+            },
+            labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
+            colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
+            dataLabels: {
+                enabled: true, //Remove label
+                formatter: function (val, opts) {
+                    var value=val*sum/100;
+                    return compute_label(value);
                 },
-                legend: {
-                    show: false,
+                textAnchor: "end",
+                style: {
+                    margin: 50
                 },
-                labels: ["INSTAGRAM", "LINKEDIN", "FACEBOOK", "TWITTER"],
-                colors: ['#F9F871', '#76FAC7', '#FF00E5', '#267EC3'],
-                dataLabels: {
-                    enabled: true, //Remove label
-                    formatter: function (val, opts) {
-                        var value=val*sum/100;
+            },
+            tooltip: {
+                enabled: true,
+                y: {
+                    formatter: function(value) {
                         return compute_label(value);
                     },
-                    textAnchor: "end",
-                    style: {
-                        margin: 50
-                    },
                 },
-                tooltip: {
-                    enabled: true,
-                    y: {
-                        formatter: function(value) {
-                            return compute_label(value);
-                        },
-                    },
-                },
-                plotOptions: {
-                    pie: {
-                        expandOnClick: false,
-                        donut: {
-                            size: "50%",
-                            labels: {
+            },
+            plotOptions: {
+                pie: {
+                    expandOnClick: false,
+                    donut: {
+                        size: "50%",
+                        labels: {
+                            show: true,
+                            name: {
+                                show:true,
+                            },
+                            value: {
+                                color: "#FF9B26",
+                                formatter: function(value) {
+                                    return compute_label(value);
+                                },
+                            },
+                            total:{
                                 show: true,
-                                name: {
-                                    show:true,
-                                },
-                                value: {
-                                    color: "#FF9B26",
-                                    formatter: function(value) {
-                                        return compute_label(value);
-                                    },
-                                },
-                                total:{
-                                    show: true,
-                                    label: 'Total',
-                                    color:"black",
-                                    formatter: function (w) {
-                                        return "+18.15%"
-                                    } 
-                                }
+                                label: 'Total',
+                                color:"black",
+                                formatter: function (w) {
+                                    return "+18.15%"
+                                } 
                             }
                         }
                     }
-                },
-                series: tableau,
-            }
-            var chart_donut = new ApexCharts(document.querySelector("#chart_donut"), options_donut);
-            chart_donut.render();
-            //BAR
-            var options_bar = {
-                series: [
-                    {
-                        name: 'Valeur',
-                        data: [
-                            {
-                                x: '01',
-                                y: 800,
-                            },
-                            {
-                                x: '02',
-                                y: 600,
-                            },
-                            {
-                                x: '03',
-                                y: 400,
-                            },
-                            {
-                                x: '04',
-                                y: 975,
-                            },
-                            {
-                                x: '05',
-                                y: 775,
-                            },
-                            {
-                                x: '06',
-                                y: 850,
-                            },
-                            {
-                                x: '07',
-                                y: 510,
-                            },
-                            {
-                                x: '08',
-                                y: 400,
-                            },
-                            {
-                                x: '09',
-                                y: 625,
-                            },
-                        ]
-                    }
-                ],
-                grid: {
-                    show: true,
-                    borderColor: '#90A4AE',
-                    strokeDashArray: 4,
-                    xaxis: {
-                        lines: {
-                            show: false
-                        }
-                    },   
-                    yaxis: {
-                        lines: {
-                            show: true
-                        }
-                    },  
-                    padding: {
-                        top: 10,
-                        right: 40,
-                        bottom: 30,
-                        left: 40
-                    },  
-                },
-                yaxis: {
-                    show: true,
-                    min: 0,
-                    max: 1000,
-                },
-                xaxis: {
-                    position: 'bottom',
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                    crosshairs: {
-                        show: true,
-                        width: 1,
-                        position: 'back',
-                        opacity: 0.9,        
-                        stroke: {
-                            color: '#b6b6b6',
-                            width: 0,
-                            dashArray: 0,
-                        },
-                        fill: {
-                            type: 'solid',
-                            color: '#B1B9C4',
-                            gradient: {
-                                colorFrom: '#D8E3F0',
-                                colorTo: '#BED1E6',
-                                stops: [0, 100],
-                                opacityFrom: 0.4,
-                                opacityTo: 0.5,
-                            },
-                        },
-                        dropShadow: {
-                            enabled: false,
-                            top: 0,
-                            left: 0,
-                            blur: 1,
-                            opacity: 0.4,
-                        },
-                    },
-                },
-                chart: {
-                    height: 350,
-                    type: 'bar',
-                    foreColor: '#fff',
-                    toolbar: { 
-                        show: false // remove download option
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        columnWidth: '10%',
-                    }
-                },
-                colors: ['#FFFFFF'],
-                dataLabels: {
-                    enabled: false 
-                },
-                legend: {
-                    show: false,
-                    showForSingleSeries: true,
-                    customLegendItems: ['Valeur'],
-                    markers: {
-                        fillColors: ['000']
-                    },
-                    position: 'top',
-                    horizontalAlign : 'left',
                 }
-            };
-            var chart_bar = new ApexCharts(document.querySelector("#chart_bar"), options_bar);
-            chart_bar.render();
-        },
-    };
+            },
+            series: tableau,
+        }
+        var chart_donut = new ApexCharts(document.querySelector("#chart_donut"), options_donut);
+        chart_donut.render();
+        //BAR
+        var options_bar = {
+            series: [
+                {
+                    name: 'Valeur',
+                    data: [
+                        {
+                            x: '01',
+                            y: 800,
+                        },
+                        {
+                            x: '02',
+                            y: 600,
+                        },
+                        {
+                            x: '03',
+                            y: 400,
+                        },
+                        {
+                            x: '04',
+                            y: 975,
+                        },
+                        {
+                            x: '05',
+                            y: 775,
+                        },
+                        {
+                            x: '06',
+                            y: 850,
+                        },
+                        {
+                            x: '07',
+                            y: 510,
+                        },
+                        {
+                            x: '08',
+                            y: 400,
+                        },
+                        {
+                            x: '09',
+                            y: 625,
+                        },
+                    ]
+                }
+            ],
+            grid: {
+                show: true,
+                borderColor: '#90A4AE',
+                strokeDashArray: 4,
+                xaxis: {
+                    lines: {
+                        show: false
+                    }
+                },   
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },  
+                padding: {
+                    top: 10,
+                    right: 40,
+                    bottom: 30,
+                    left: 40
+                },  
+            },
+            yaxis: {
+                show: true,
+                min: 0,
+                max: 1000,
+            },
+            xaxis: {
+                position: 'bottom',
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                crosshairs: {
+                    show: true,
+                    width: 1,
+                    position: 'back',
+                    opacity: 0.9,        
+                    stroke: {
+                        color: '#b6b6b6',
+                        width: 0,
+                        dashArray: 0,
+                    },
+                    fill: {
+                        type: 'solid',
+                        color: '#B1B9C4',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        },
+                    },
+                    dropShadow: {
+                        enabled: false,
+                        top: 0,
+                        left: 0,
+                        blur: 1,
+                        opacity: 0.4,
+                    },
+                },
+            },
+            chart: {
+                height: 350,
+                type: 'bar',
+                foreColor: '#fff',
+                toolbar: { 
+                    show: false // remove download option
+                }
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '10%',
+                }
+            },
+            colors: ['#FFFFFF'],
+            dataLabels: {
+                enabled: false 
+            },
+            legend: {
+                show: false,
+                showForSingleSeries: true,
+                customLegendItems: ['Valeur'],
+                markers: {
+                    fillColors: ['000']
+                },
+                position: 'top',
+                horizontalAlign : 'left',
+            }
+        };
+        var chart_bar = new ApexCharts(document.querySelector("#chart_bar"), options_bar);
+        chart_bar.render();
+    },
+};
 </script>
 <style scoped lang="scss">
     @import "../variables.scss"; 
@@ -502,9 +503,9 @@ export default {
     $color_primary:#267EC3;
     $color_orange:#FF9B26;
     .overview_page{
-        @media screen and (max-width: 402px){
-            padding: 0 1rem !important;
-        }
+        // @media screen and (max-width: 402px){
+        //     padding: 0 1rem !important;
+        // }
     }
     .about_us,.general_informations,.financial_informations{
         box-shadow: 0px 0px 27px rgba(0, 0, 0, 0.05);
@@ -530,9 +531,19 @@ export default {
         background: $color_orange;
         height: 100%;
         color: white;
+        @media screen and (max-width: 400px) {
+            display: none;
+        }
     }
     .toolbar .search_icon img{
         height: 25px;
+    }
+    //main content 
+    .main_content{
+        @media screen and (max-width: 413px) {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
     }
     //About us
     .about_us{
@@ -611,22 +622,38 @@ export default {
     .comments_history article{
         background: #EFF8FF99;
         border-radius: 10px;
+        @include touch{
+            align-items: flex-start;
+        }
     }
     .comments_history figure{
         padding: 0 !important;
-        width: 20%;
+        @include desktop-only{
+            width: 20%;
+        }
     }
     .comments_history img{
-        width: 100%;
+        @include touch{
+            height: 80%;
+        }
+        @include desktop-only{
+            width: 100%;
+        }
     }
     //about_startup
     .about_startup{
-        @media screen and (max-width: 402px){
-            margin: 0 1rem !important;
+        // @media screen and (max-width: 402px){
+        //     margin: 0 1rem !important;
+        // }
+        @include touch{
+            display: block !important;
         }
     }
     .about_startup .contents_group{
         width: calc(50% - 10px); 
+        @include touch{
+            width: 100%;
+        }
     }
     .social_capital figure {
         @media screen and (max-width: 402px){
@@ -715,8 +742,14 @@ export default {
     .slider.round:before {
         border-radius: 50%;
     }
-    .charts, .charts #chart_donut {
-       
+    .charts {
+       height: 80%;
+       @include touch{
+            height: 400px;
+        }
+    }  
+    .charts #chart_donut {
+        width: 100%;
     }  
     // Report social network
     .e_reputation,.report_social_network li{
@@ -782,7 +815,9 @@ export default {
     }
     //See more startup
     .see_more li{
-        width: 30%;
+        @include tablet{
+            width: 30%;
+        }
     }
     .see_more ul li figure{
         box-shadow: none;

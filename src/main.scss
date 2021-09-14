@@ -67,3 +67,12 @@ button.vueperslides__arrow {
     background: white !important;
     padding: 10px;
 } 
+a.pagination-link.pagination-previous {
+    order: 1;
+}
+.pagination {
+    @media screen and (max-width: 768px){
+        flex-wrap: nowrap;
+    }
+    /* flex-wrap: wrap; */
+}
