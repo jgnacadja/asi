@@ -9,6 +9,8 @@ import VueDisqus from "vue-disqus";
 import InfiniteLoading from "vue-infinite-loading";
 import SmoothScrollbar from "vue-smooth-scrollbar";
 import Axios from "axios";
+import Donut from 'vue-css-donut-chart';
+import 'vue-css-donut-chart/dist/vcdonut.css';
 
 const fontsCss = require("./assets/css/fonts.css");
 
@@ -62,4 +64,7 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(InfiniteLoading);
 
   Vue.use(SmoothScrollbar);
+  //GRAPHIC
+  Vue.use(Donut);
+
 }
