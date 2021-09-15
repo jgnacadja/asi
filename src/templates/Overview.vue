@@ -2,7 +2,7 @@
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
 
-    <section v-if="loading" class="overview_page">
+    <section v-if="loading && !data._id || !loading && !data._id" class="overview_page">
       <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
         <form
           action=""
@@ -52,11 +52,7 @@
         </header>
         <section>
           <section
-            class="
-              is-flex is-flex-wrap-wrap is-justify-content-space-between
-              about_startup
-              mb-6
-            "
+            class="is-flex is-flex-wrap-wrap is-justify-content-space-between about_startup mb-6"
           >
             <section class="contents_group mt-5">
               <article class="card p-5 general_informations">
@@ -271,10 +267,7 @@
                   </p>
                 </figure>
                 <figcaption
-                  class="
-                    columns
-                    is-justify-content-space-between is-align-items-center
-                  "
+                  class="columns is-justify-content-space-between is-align-items-center"
                 >
                   <aside class="column" aria-label="Valeur actuelle">
                     <span class="title has-text-weight-bold"
@@ -290,12 +283,7 @@
                     </div>
                   </aside>
                   <div
-                    class="
-                      column
-                      is-1 is-size-5
-                      amount
-                      has-text-weight-semibold
-                    "
+                    class="column is-1 is-size-5 amount has-text-weight-semibold"
                   >
                     <b-skeleton :animated="animated"></b-skeleton>
                   </div>
@@ -307,10 +295,7 @@
         <footer class="see_more px-3 mt-6">
           <h3 class="is-size-4 my-5">Voir plus</h3>
           <ul
-            class="
-              is-flex is-justify-content-space-between is-flex-wrap-wrap
-              px-3
-            "
+            class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3"
           >
             <li class="mb-2">
               <a href="">
@@ -324,12 +309,7 @@
                     ></b-skeleton>
                   </p>
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      column
-                      is-flex-direction-column is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around"
                   >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
@@ -353,12 +333,7 @@
                     ></b-skeleton>
                   </p>
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      column
-                      is-flex-direction-column is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around"
                   >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
@@ -382,12 +357,7 @@
                     ></b-skeleton>
                   </p>
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      column
-                      is-flex-direction-column is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around"
                   >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
@@ -451,11 +421,7 @@
         </header>
         <section>
           <section
-            class="
-              is-flex is-flex-wrap-wrap is-justify-content-space-between
-              about_startup
-              mb-6
-            "
+            class="is-flex is-flex-wrap-wrap is-justify-content-space-between about_startup mb-6"
           >
             <section class="contents_group mt-5">
               <article class="card p-5 general_informations">
@@ -603,10 +569,7 @@
                 </label>
               </header>
               <figure
-                class="
-                  charts
-                  is-flex is-justify-content-center is-align-items-center
-                "
+                class="charts is-flex is-justify-content-center is-align-items-center"
               >
                 <span id="chart_donut"></span>
               </figure>
@@ -679,11 +642,7 @@
                 <span class="legende is-size-7">Valeur</span>
                 <span id="chart_bar" class="mb-5"></span>
                 <figcaption
-                  class="
-                    is-flex
-                    is-justify-content-space-between
-                    is-align-items-center
-                  "
+                  class="is-flex is-justify-content-space-between is-align-items-center"
                 >
                   <aside aria-label="Valeur actuelle">
                     <span class="title has-text-weight-bold"
@@ -704,10 +663,7 @@
         <footer class="see_more px-3 mt-6">
           <h3 class="is-size-4 my-5">Voir plus</h3>
           <ul
-            class="
-              is-flex is-justify-content-space-between is-flex-wrap-wrap
-              px-3
-            "
+            class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3"
           >
             <li class="mb-2">
               <a href="">
@@ -718,13 +674,7 @@
                     alt="Logo Fintech"
                   />
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around"
                   >
                     <h4>
                       <a href="skypemail.com" class="has-text-black is-size-5"
@@ -745,13 +695,7 @@
                     alt="Logo Fintech"
                   />
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around"
                   >
                     <h4>
                       <a href="skypemail.com" class="has-text-black is-size-5"
@@ -772,13 +716,7 @@
                     alt="Logo Fintech"
                   />
                   <figcaption
-                    class="
-                      ml-3
-                      is-size-7
-                      is-flex
-                      is-flex-direction-column
-                      is-justify-content-space-around
-                    "
+                    class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around"
                   >
                     <h4>
                       <a href="skypemail.com" class="has-text-black is-size-5"
@@ -831,23 +769,52 @@ export default {
         API: "https://elasticsearch.dev.rintio.com",
         INDEX: "asi",
       },
-      data: {},
       loading: false,
       awaitingSearch: false,
       error: false,
       animated: false,
-      dotnutChartOptions: {
-        chart: {
-          type: "line",
-        },
-        series: [
-          {
-            name: "sales",
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+      data: {
+        _index: "",
+        _type: "",
+        _id: "",
+        _version: 0,
+        _seq_no: 0,
+        _primary_term: 0,
+        found: true,
+        _source: {
+          last_modification_date: null,
+          scrapping_url: "",
+          creation_date: null,
+          identifiant: "",
+          name: "",
+          startup_country: "",
+          goal: "",
+          address: "",
+          email: null,
+          market: "",
+          sectors: [],
+          web_site: "",
+          share_capital: null,
+          trends: null,
+          employees_size: 1,
+          contacts: [],
+          all_locations: null,
+          location: null,
+          list_team: [],
+          list_investissor: [],
+          publications: [],
+          videos: [],
+          turnover: [],
+          fundings: {
+            total: null,
+            details: null,
           },
-        ],
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+          facebook_data: null,
+          twitter_data: null,
+          instagram_data: null,
+          linkedin_data: null,
+          stats: null,
+          objectID: "",
         },
       },
     };

@@ -17,7 +17,6 @@
     "babel-runtime": "^6.26.0",
     "buefy": "^0.9.10",
     "caniuse-lite": "^1.0.30001252",
-    "chart.js": "^3.5.1",
     "datejs": "^1.0.0-rc3",
     "emailjs-com": "^3.2.0",
     "gridsome": "^0.7.23",
