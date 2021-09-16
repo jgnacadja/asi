@@ -30,7 +30,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: "Africa Startups Insights",
+      title: "Africa Startup Insight",
     };
   },
   props: {

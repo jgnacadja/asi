@@ -1,31 +1,34 @@
 <template>
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
-    <section v-if="loading && !data._id || !loading && !data._id" class="overview_page">
+    <section
+      v-if="(loading && !data._id) || (!loading && !data._id)"
+      class="overview_page"
+    >
       <!-- Search bar -->
-      <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
-        <form action="" class="is-flex is-justify-content-center is-align-items-center m-6" >
-          <span class="domain px-4 py-4">
-            <select class="is-size-7">
-              <option>Fintech</option>
-              <option></option>
-            </select>
-          </span>
-          <input placeholder="Rechercher" class="search_here px-3 py-4 is-size-7"/>
-          <span class="search_icon px-5 py-3">
-            <img src="../assets/search.svg" alt="Search" />
-          </span>
-        </form>
-      </header>
+      <div class="container has-text-centered mx-auto">
+        <div class="column is-column is-8-desktop is-offset-2-desktop">
+          <div class="box is-shadowless is-paddinless-mobile">
+            <div class="box field is-grouped">
+              <TheSearch />
+            </div>
+          </div>
+        </div>
+      </div>
       <section class="my-6 px-6 main_content">
         <!-- Summary startup-->
         <header class="is-flex is-align-items-center card about_us">
           <figure class="ml-4 mr-2 p-0">
             <p class="image is-64x64">
-              <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+              <b-skeleton
+                :animated="animated"
+                circle
+                width="64px"
+                height="64px"
+              ></b-skeleton>
             </p>
           </figure>
-          <aside class="column is-three-quarters" aria-label="Rintio en quelques mots">
+          <aside class="column is-three-quarters">
             <h1 class="column is-1 m-0 is-size-4 rm-padding">
               <b-skeleton :animated="animated"></b-skeleton>
             </h1>
@@ -40,14 +43,24 @@
         <!-- Startup Informations-->
         <section>
           <!-- Startup general Informations-->
-          <section class="is-flex is-flex-wrap-wrap is-justify-content-space-between about_startup mb-6">
+          <section
+            class="
+              is-flex is-flex-wrap-wrap is-justify-content-space-between
+              about_startup
+              mb-6
+            "
+          >
             <!-- Startup environment-->
             <section class="contents_group mt-5">
               <article class="card p-5 general_informations">
                 <h3 class="is-flex is-justify-content-space-between">
                   <figure class="is-flex is-align-items-center">
                     <span class="is-flex representation p-4 mr-3">
-                      <img src="../assets/social_networks/awards.svg" title="Informations générales"  alt=""/>
+                      <img
+                        src="../assets/social_networks/awards.svg"
+                        title="Informations générales"
+                        alt=""
+                      />
                     </span>
                     <figcaption class="has-text-weight-normal">
                       Informations générales
@@ -76,7 +89,10 @@
                       <b-skeleton :animated="animated"></b-skeleton>
                     </div>
                     <div class="column is-5">
-                      <b-skeleton class="align-items-right" :animated="animated"></b-skeleton>
+                      <b-skeleton
+                        class="align-items-right"
+                        :animated="animated"
+                      ></b-skeleton>
                     </div>
                   </li>
                   <li class="columns is-justify-content-space-between">
@@ -84,7 +100,10 @@
                       <b-skeleton :animated="animated"></b-skeleton>
                     </div>
                     <div class="column is-3">
-                      <b-skeleton class="align-items-right" :animated="animated"></b-skeleton>
+                      <b-skeleton
+                        class="align-items-right"
+                        :animated="animated"
+                      ></b-skeleton>
                     </div>
                   </li>
                 </ul>
@@ -93,9 +112,15 @@
                 <h3 class="is-flex is-justify-content-space-between">
                   <figure class="is-flex is-align-items-center">
                     <span class="is-flex representation p-4 mr-3">
-                      <img src="../assets/comments/comments.svg" title="Commentaires" alt=""/>
+                      <img
+                        src="../assets/comments/comments.svg"
+                        title="Commentaires"
+                        alt=""
+                      />
                     </span>
-                    <figcaption class="has-text-weight-normal">Commentaires</figcaption>
+                    <figcaption class="has-text-weight-normal">
+                      Commentaires
+                    </figcaption>
                   </figure>
                 </h3>
                 <section>
@@ -103,7 +128,10 @@
                     <li class="mb-5">
                       <article class="is-flex p-5">
                         <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
+                          <img
+                            src="../assets/comments/author.svg"
+                            alt="Search"
+                          />
                         </figure>
                         <p class="is-size-7 has-text-justified">
                           <strong>John Joe </strong> <br />
@@ -117,7 +145,10 @@
                     <li class="mb-5">
                       <article class="is-flex p-5">
                         <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
+                          <img
+                            src="../assets/comments/author.svg"
+                            alt="Search"
+                          />
                         </figure>
                         <p class="is-size-7 has-text-justified">
                           <strong>John Joe </strong> <br />
@@ -155,7 +186,11 @@
               <header class="is-flex is-justify-content-space-between">
                 <figure class="is-flex is-align-items-center">
                   <span class="is-flex representation p-4 mr-3">
-                    <img src="../assets/social_networks/awards.svg" title="E-reputation"  alt=""/>
+                    <img
+                      src="../assets/social_networks/awards.svg"
+                      title="E-reputation"
+                      alt=""
+                    />
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
@@ -201,9 +236,15 @@
               <h3 class="is-flex is-justify-content-space-between mb-5">
                 <figure class="is-flex is-align-items-center">
                   <span class="is-flex representation p-4 mr-3">
-                    <img src="../assets/social_capital/finance.svg" title="Performance financière" alt=""/>
+                    <img
+                      src="../assets/social_capital/finance.svg"
+                      title="Performance financière"
+                      alt=""
+                    />
                   </span>
-                  <figcaption class="has-text-weight-normal">Performance financière</figcaption>
+                  <figcaption class="has-text-weight-normal">
+                    Performance financière
+                  </figcaption>
                 </figure>
               </h3>
               <div class="columns is-justify-content-space-between">
@@ -220,9 +261,16 @@
                     <b-skeleton :animated="animated" height="80px"></b-skeleton>
                   </p>
                 </figure>
-                <figcaption class="columns is-justify-content-space-between is-align-items-center">
+                <figcaption
+                  class="
+                    columns
+                    is-justify-content-space-between is-align-items-center
+                  "
+                >
                   <aside class="column" aria-label="Valeur actuelle">
-                    <span class="title has-text-weight-bold">Valeur actuelle</span>
+                    <span class="title has-text-weight-bold"
+                      >Valeur actuelle</span
+                    >
                     <div class="columns mt-1">
                       <div class="column is-1">
                         <b-skeleton :animated="animated"></b-skeleton>
@@ -232,7 +280,14 @@
                       </div>
                     </div>
                   </aside>
-                  <div class="column is-1 is-size-5 amount has-text-weight-semibold">
+                  <div
+                    class="
+                      column
+                      is-1 is-size-5
+                      amount
+                      has-text-weight-semibold
+                    "
+                  >
                     <b-skeleton :animated="animated"></b-skeleton>
                   </div>
                 </figcaption>
@@ -243,14 +298,31 @@
         <!-- More startup-->
         <footer class="see_more px-3 mt-6">
           <h3 class="is-size-4 my-5">Voir plus</h3>
-          <ul class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3" >
+          <ul
+            class="
+              is-flex is-justify-content-space-between is-flex-wrap-wrap
+              px-3
+            "
+          >
             <li class="mb-2">
               <a href="">
                 <figure class="is-flex card p-3">
                   <p class="image is-64x64">
-                    <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
                   </p>
-                  <figcaption class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around">
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      column
+                      is-flex-direction-column is-justify-content-space-around
+                    "
+                  >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
                     </div>
@@ -265,9 +337,21 @@
               <a href="">
                 <figure class="is-flex card p-3">
                   <p class="image is-64x64">
-                    <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
                   </p>
-                  <figcaption class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around">
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      column
+                      is-flex-direction-column is-justify-content-space-around
+                    "
+                  >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
                     </div>
@@ -282,9 +366,21 @@
               <a href="">
                 <figure class="is-flex card p-3">
                   <p class="image is-64x64">
-                    <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                    <b-skeleton
+                      :animated="animated"
+                      circle
+                      width="64px"
+                      height="64px"
+                    ></b-skeleton>
                   </p>
-                  <figcaption class="ml-3 is-size-7 column is-flex-direction-column is-justify-content-space-around">
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      column
+                      is-flex-direction-column is-justify-content-space-around
+                    "
+                  >
                     <div class="column is-6 rm-padding">
                       <b-skeleton :animated="animated"></b-skeleton>
                     </div>
@@ -301,63 +397,104 @@
     </section>
     <section v-else class="overview_page">
       <!-- Search bar -->
-      <header class="toolbar is-flex is-justify-content-center mb-6 py-5">
-        <form action="" class="is-flex is-justify-content-center is-align-items-center m-6">
-          <span class="domain px-4 py-4">
-            <select class="is-size-7">
-              <option>Fintech</option>
-              <option></option>
-            </select>
-          </span>
-          <input placeholder="Rechercher" class="search_here px-3 py-4 is-size-7"/>
-          <span class="search_icon px-5 py-3">
-            <img src="../assets/search.svg" alt="Search" />
-          </span>
-        </form>
+      <header class="container has-text-centered mx-auto">
+        <div class="column is-column is-8-desktop is-offset-2-desktop">
+          <div class="box is-shadowless is-paddinless-mobile">
+            <div class="box field is-grouped">
+              <TheSearch :query="data._source.name" :direct="false" />
+            </div>
+          </div>
+        </div>
       </header>
       <section class="my-6 px-6 main_content">
         <!-- Summary startup-->
         <header class="is-flex is-align-items-center card about_us">
           <figure class="ml-4 mr-2 p-0">
-            <img src="../assets/logo_rintio.png" :title="data._source.name" alt="Logo" />
+            <img
+              v-if="data._source.logo"
+              :src="data._source.logo"
+              :title="data._source.name"
+              alt="Logo"
+            />
           </figure>
-          <aside class="column is-three-quarters" aria-label="Rintio en quelques mots">
-            <h1 class="m-0 is-size-4">{{ data._source.name }}</h1>
-            <h2 class="m-0 is-size-6 is-inline-block category py-2 my-2 px-4 pr-5"> {{ data._source.market }} </h2>
-            <p class="is-size-6 description pb-2">{{ data._source.goal }} </p>
+          <aside class="column is-three-quarters">
+            <h1 class="m-0 is-size-4">
+              <span v-if="data._source.name">{{ data._source.name }}</span>
+              <span v-else>{{ notAvailable }}</span>
+            </h1>
+            <h2
+              class="m-0 is-size-6 is-inline-block category py-2 my-2 px-4 pr-5"
+            >
+              <span
+                v-if="data._source.market && data._source.market !== 'Indefini'"
+                >{{ data._source.market }}</span
+              >
+              <span v-else>{{ notAvailable }}</span>
+            </h2>
+            <p class="is-size-6 description pb-2">
+              <span v-if="data._source.goal">{{ data._source.goal }}</span>
+              <span v-else>Aucune description disponible</span>
+            </p>
           </aside>
         </header>
         <!-- Startup Informations-->
         <section>
-          <section class="is-flex is-flex-wrap-wrap is-justify-content-space-between about_startup mb-6">
+          <section
+            class="
+              is-flex is-flex-wrap-wrap is-justify-content-space-between
+              about_startup
+              mb-6
+            "
+          >
             <section class="contents_group mt-5">
               <article class="card p-5 general_informations">
                 <h3 class="is-flex is-justify-content-space-between">
                   <figure class="is-flex is-align-items-center">
                     <span class="is-flex representation p-4 mr-3">
-                      <img src="../assets/social_networks/awards.svg" title="Informations générales" alt=""/>
+                      <img
+                        src="../assets/social_networks/awards.svg"
+                        title="Informations générales"
+                        alt=""
+                      />
                     </span>
-                    <figcaption class="has-text-weight-normal">Informations générales</figcaption>
+                    <figcaption class="has-text-weight-normal">
+                      Informations générales
+                    </figcaption>
                   </figure>
                 </h3>
                 <ul class="pt-5 is-size-7">
                   <li class="columns is-justify-content-space-between">
                     <div class="column">Date de création</div>
                     <div class="column has-text-right">
-                      <strong>{{data._source.creation_date | formatDate}}</strong>
+                      <strong>
+                        <span v-if="data._source.creation_date">{{
+                          data._source.creation_date | formatDate
+                        }}</span>
+                        <span v-else>{{ notAvailable }}</span>
+                      </strong>
                     </div>
                   </li>
                   <li class="columns is-justify-content-space-between">
                     <div class="column">Siège social</div>
                     <div class="column has-text-right">
-                      <strong>{{ data._source.address }}</strong>
+                      <span v-if="data._source.address">{{
+                        data._source.address
+                      }}</span>
+                      <span v-else>{{ notAvailable }}</span>
                     </div>
                   </li>
                   <li class="columns is-justify-content-space-between">
                     <div class="column">Email</div>
                     <div class="column has-text-right">
                       <strong>
-                        <a :href="'mailto:'+ data._source.email" class="has-text-black">{{ data._source.email }}</a>
+                        <span v-if="data._source.email"
+                          ><a
+                            :href="'mailto:' + data._source.email"
+                            class="has-text-black"
+                            >{{ data._source.email }}</a
+                          ></span
+                        >
+                        <span v-else>{{ notAvailable }}</span>
                       </strong>
                     </div>
                   </li>
@@ -365,7 +502,14 @@
                     <div class="column">Site web</div>
                     <div class="column has-text-right">
                       <strong>
-                        <a :href="data._source.web_site" class="has-text-black">{{ data._source.web_site }}</a>
+                        <span v-if="data._source.web_site"
+                          ><a
+                            :href="'mailto:' + data._source.web_site"
+                            class="has-text-black"
+                            >{{ data._source.web_site }}</a
+                          ></span
+                        >
+                        <span v-else>{{ notAvailable }}</span>
                       </strong>
                     </div>
                   </li>
@@ -375,45 +519,42 @@
                 <h3 class="is-flex is-justify-content-space-between">
                   <figure class="is-flex is-align-items-center">
                     <span class="is-flex representation p-4 mr-3">
-                      <img src="../assets/comments/comments.svg" title="Commentaires" alt=""/>
+                      <img
+                        src="../assets/comments/comments.svg"
+                        title="Commentaires"
+                        alt=""
+                      />
                     </span>
-                    <figcaption class="has-text-weight-normal">Commentaires</figcaption>
+                    <figcaption class="has-text-weight-normal">
+                      Commentaires
+                    </figcaption>
                   </figure>
                 </h3>
-                <section>
+                <section
+                  v-if="
+                    data._source.comments && data._source.comments.length !== 0
+                  "
+                >
                   <ul class="comments_history mt-5">
-                    <li class="mb-5">
+                    <li
+                      v-for="comment in data._source.comments"
+                      :key="comment"
+                      class="mb-5"
+                    >
                       <article class="is-flex p-5">
                         <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search" />
+                          <img :src="comment.author" :alt="comment.name" />
                         </figure>
                         <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
-                      </article>
-                    </li>
-                    <li class="mb-5">
-                      <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
-                        </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
+                          <strong>{{ comment.name }} </strong> <br />
+                          {{ comment.comment }}
                         </p>
                       </article>
                     </li>
                   </ul>
                   <b-pagination
                     aria-previous-label="Previous page"
-                    :total="total"
+                    :total="data._source.comments.length"
                     v-model="current"
                     :range-before="rangeBefore"
                     :range-after="rangeAfter"
@@ -430,13 +571,18 @@
                   >
                   </b-pagination>
                 </section>
+                <section v-else class="mt-5 mb-6">Aucun commentaire</section>
               </article>
             </section>
             <section class="card contents_group e_reputation mt-5 p-5">
               <header class="is-flex is-justify-content-space-between">
                 <figure class="is-flex is-align-items-center">
                   <span class="is-flex representation p-4 mr-3">
-                    <img src="../assets/social_networks/awards.svg" title="E-reputation" alt="" />
+                    <img
+                      src="../assets/social_networks/awards.svg"
+                      title="E-reputation"
+                      alt=""
+                    />
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
@@ -445,53 +591,87 @@
                   <span class="slider round"></span>
                 </label>
               </header>
-              <figure class="charts is-flex is-justify-content-center is-align-items-center">
-                <vc-donut 
-                  background="white" 
+              <figure
+                class="
+                  charts
+                  is-flex is-justify-content-center is-align-items-center
+                "
+              >
+                <vc-donut
+                  background="white"
                   foreground="white"
-                  :size="400" unit="px" :thickness="40"
-                  :sections="sections" :total="100"
-                  :start-angle="45" 
+                  :size="400"
+                  unit="px"
+                  :thickness="40"
+                  :sections="sections"
+                  :total="100"
+                  :start-angle="45"
                   :auto-adjust-text-size="true"
                   section.value="true"
-                  has-legend legend-placement="bottom"
+                  has-legend
+                  legend-placement="bottom"
                   @section-click="handleSectionClick"
-                  @section-mouseover="handleSectionMouseOver">
+                  @section-mouseover="handleSectionMouseOver"
+                >
                   <figcaption class="is-size-4">
-                    Total <br/>
-                    <span class="rate_percent">+18,15%</span>
+                    Total <br />
+                    <span class="rate_percent">+0%</span>
                   </figcaption>
                 </vc-donut>
               </figure>
               <footer class="report_social_network mb-5 is-size-7">
                 <ul>
-                  <li class="is-flex is-align-items-center linkedin mt-2">
-                    <figure>
-                      <figcaption>
-                        LINKEDIN<span class="rate mr-5 pr-5">{{data._source.linkedin_data }}</span>
-                      </figcaption>
-                    </figure>
+                  <li class="is-flex is-align-items-center linkedin mt-2 mx-6">
+                    <div class="column">
+                      <span class="linkedin"></span> LINKEDIN
+                    </div>
+                    <div class="column has-text-centered">
+                      <span
+                        v-if="data._source.linkedin_data"
+                        class="rate mr-5 pr-5 has-text-right"
+                        >{{ data._source.linkedin_data }}</span
+                      >
+                      <span v-else>{{ notAvailable }}</span>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center facebook mt-2">
-                    <figure>
-                      <figcaption>
-                        FACEBOOK<span class="rate mr-5 pr-5">{{ data._source.facebook_data}}</span>
-                      </figcaption>
-                    </figure>
+                  <li class="is-flex is-align-items-center facebook mt-2 mx-6">
+                    <div class="column">
+                      <span class="facebook"></span> FACEBOOK
+                    </div>
+                    <div class="column has-text-centered">
+                      <span
+                        v-if="data._source.facebook_data"
+                        class="rate mr-5 pr-5 has-text-right"
+                        >{{ data._source.facebook_data }}</span
+                      >
+                      <span v-else>{{ notAvailable }}</span>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center twitter mt-2">
-                    <figure>
-                      <figcaption>
-                        TWITTER<span class="rate mr-5 pr-5">{{ data._source.twitter_data}}</span>
-                      </figcaption>
-                    </figure>
+                  <li class="is-flex is-align-items-center twitter mt-2 mx-6">
+                    <div class="column">
+                      <span class="twitter"></span> TWITTER
+                    </div>
+                    <div class="column has-text-centered">
+                      <span
+                        v-if="data._source.twitter_data"
+                        class="rate mr-5 pr-5 has-text-right"
+                        >{{ data._source.twitter_data }}</span
+                      >
+                      <span v-else>{{ notAvailable }}</span>
+                    </div>
                   </li>
-                  <li class="is-flex is-align-items-center instagram mt-2">
-                    <figure>
-                      <figcaption>
-                        INSTAGRAM<span class="rate mr-5 pr-5">{{data._source.instagram_data }}</span>
-                      </figcaption>
-                    </figure>
+                  <li class="columns is-align-items-center mt-2 mx-6">
+                    <div class="column">
+                      <span class="instagram"></span> INSTAGRAM
+                    </div>
+                    <div class="column has-text-centered">
+                      <span
+                        v-if="data._source.instagram_data"
+                        class="rate mr-5 pr-5 has-text-right"
+                        >{{ data._source.instagram_data }}</span
+                      >
+                      <span v-else>{{ notAvailable }}</span>
+                    </div>
                   </li>
                 </ul>
               </footer>
@@ -502,23 +682,58 @@
               <h3 class="is-flex is-justify-content-space-between mb-5">
                 <figure class="is-flex is-align-items-center">
                   <span class="is-flex representation p-4 mr-3">
-                    <img src="../assets/social_capital/finance.svg" title="Performance financière" alt=""/>
+                    <img
+                      src="../assets/social_capital/finance.svg"
+                      title="Performance financière"
+                      alt=""
+                    />
                   </span>
-                  <figcaption class="has-text-weight-normal"> Performance financière</figcaption>
+                  <figcaption class="has-text-weight-normal">
+                    Performance financière
+                  </figcaption>
                 </figure>
               </h3>
               <span class="is-flex is-justify-content-space-between">
-                Capital social<strong class="is-size-5 has-text-weight-bold">{{data._source.share_capital}}</strong>
+                Capital social<strong class="is-size-5 has-text-weight-bold">
+                  <span v-if="data._source.share_capital">{{
+                    data._source.share_capital
+                  }}</span>
+                  <span v-else> 0 </span>
+                </strong>
               </span>
               <BarCharts />
-              <figcaption class="pt-3 has-background-white is-flex is-justify-content-space-between is-align-items-center">
+              <figcaption
+                class="
+                  p-4
+                  has-background-white
+                  is-flex is-justify-content-space-between is-align-items-center
+                "
+              >
                 <aside aria-label="Valeur actuelle">
-                  <span class="title has-text-weight-bold">Valeur actuelle</span>
+                  <span class="title has-text-weight-bold"
+                    >Valeur actuelle</span
+                  >
                   <p class="value mt-1">
-                    <span class="percent mr-5">(+23%)</span>Bilan annuel
+                    <span class="percent mr-5"
+                      >(<span
+                        v-if="
+                          data._source.net_value && data._source.net_value.grow
+                        "
+                        >{{ data._source.net_value.grow }}%</span
+                      >
+                      <span v-else> - </span>)</span
+                    >Bilan annuel
                   </p>
                 </aside>
-                <span class="is-size-5 amount has-text-weight-semibold">56.000.000 FCFA</span>
+                <span class="is-size-5 amount has-text-weight-semibold"
+                  ><span
+                    v-if="
+                      data._source.net_result && data._source.net_result.total
+                    "
+                    >{{ data._source.net_result.total }}</span
+                  >
+                  <span v-else> 0 </span></span
+                >
               </figcaption>
             </article>
           </section>
@@ -526,42 +741,51 @@
         <!-- More startup-->
         <footer class="see_more px-3 mt-6">
           <h3 class="is-size-4 my-5">Voir plus</h3>
-          <ul class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3">
-            <li class="mb-2">
+          <ul
+            class="
+              is-flex is-justify-content-space-between is-flex-wrap-wrap
+              px-3
+            "
+          >
+            <li v-for="hit in this.results" :key="hit" class="mb-2">
               <a href="">
                 <figure class="is-flex card p-3">
-                  <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech"/>
-                  <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
+                  <img
+                    src="../assets/startup/startup.svg"
+                    title="Fintech"
+                    alt="Logo Fintech"
+                  />
+                  <figcaption
+                    class="
+                      ml-3
+                      is-size-7
+                      is-flex
+                      is-flex-direction-column
+                      is-justify-content-space-around
+                    "
+                  >
                     <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a>
+                      <span v-if="hit._source.email"
+                        ><a
+                          :href="'mailto:' + hit._source.email"
+                          class="has-text-black is-size-5"
+                          >{{ hit._source.email }}</a
+                        ></span
+                      >
+                      <span v-else>{{ notAvailable }}</span>
                     </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
-                  </figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="">
-                <figure class="is-flex card p-3">
-                  <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech"/>
-                  <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                    <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a>
-                    </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
-                  </figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="">
-                <figure class="is-flex card p-3">
-                  <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech" />
-                  <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
-                    <h4>
-                      <a href="skypemail.com" class="has-text-black is-size-5">SkyeMall.com</a>
-                    </h4>
-                    <span> <span>Fintech</span> Accra, Ghana </span>
+                    <span>
+                      <span>
+                        <span v-if="hit._source.market"
+                          >{{ hit._source.market }}
+                        </span>
+                        <span v-else>{{ notAvailable }} </span>
+                      </span>
+                      <span v-if="hit._source.startup_country">{{
+                        hit._source.startup_country
+                      }}</span>
+                      <span v-else>{{ notAvailable }}</span>
+                    </span>
                   </figcaption>
                 </figure>
               </a>
@@ -579,6 +803,7 @@ import BarCharts from "~/components/BarCharts.vue";
 import "vueperslides/dist/vueperslides.css";
 import moment from "moment";
 import "moment/locale/fr";
+import TheSearch from "~/components/TheSearch.vue";
 
 export default {
   metaInfo: {
@@ -590,39 +815,37 @@ export default {
       },
     ],
   },
-  components: { VueperSlides, VueperSlide, BarCharts },
+  components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
     function compute_label(value) {
-        var signe="";
-        var k=1000;
-        var m=1000000;
-        var g=1000000000;
-        if(value >= g){
-            value/=g;
-            signe="G";
+      var signe = "";
+      var k = 1000;
+      var m = 1000000;
+      var g = 1000000000;
+      if (value >= g) {
+        value /= g;
+        signe = "G";
+      } else {
+        if (value > m) {
+          value /= m;
+          signe = "M";
+        } else if (value > k) {
+          value /= k;
+          signe = "K";
         }
-        else{
-            if(value > m){
-                value/=m;
-                signe="M"
-            }
-            else if(value > k){
-                value/=k;
-                signe="K";
-            }
-        }
-        return String(value)+signe;
+      }
+      return String(value) + signe;
     }
     var linkedin = 17000;
     var facebook = 37000;
     var twitter = 10000;
     var instagram = 8000;
-    var stats = [linkedin,facebook,twitter,instagram];
+    var stats = [linkedin, facebook, twitter, instagram];
     var total = stats.reduce((acc, cur) => acc + cur, 0);
-    var linkedin_percent = linkedin*100/total;
-    var facebook_percent = facebook*100/total;
-    var twitter_percent = twitter*100/total;
-    var instagram_percent = instagram*100/total;
+    var linkedin_percent = (linkedin * 100) / total;
+    var facebook_percent = (facebook * 100) / total;
+    var twitter_percent = (twitter * 100) / total;
+    var instagram_percent = (instagram * 100) / total;
     return {
       total: 200,
       current: 10,
@@ -661,6 +884,7 @@ export default {
           goal: "",
           address: "",
           email: null,
+          logo: "",
           market: "",
           sectors: [],
           web_site: "",
@@ -679,21 +903,56 @@ export default {
             total: null,
             details: null,
           },
+          net_result: {
+            total: null,
+            details: [],
+          },
+          net_value: {
+            value: null,
+            grow: null,
+          },
           facebook_data: null,
           twitter_data: null,
           instagram_data: null,
           linkedin_data: null,
           stats: null,
           objectID: "",
+          comments: [],
         },
       },
-      //DONUT 
+      results: [],
+      notAvailable: "Non disponible",
+      //DONUT
       sections: [
-          { label: 'LINKEDIN',title: 'LINKEDIN', value: linkedin_percent, color: '#76FAC7', stats : compute_label(linkedin) },
-          { label: 'FACEBOOK',title: 'FACEBOOK', value: facebook_percent, color: '#FF00E5', stats :  compute_label(facebook)},
-          { label: 'TWITTER',title: 'TWITTER', value: twitter_percent, color: '#267EC3', stats :  compute_label(twitter)},
-          { label: 'INSTAGRAM',title: 'INSTAGRAM', value: instagram_percent, color: '#F9F871', stats : compute_label(instagram) },
-        ]
+        {
+          label: "LINKEDIN",
+          title: "LINKEDIN",
+          value: linkedin_percent,
+          color: "#76FAC7",
+          stats: compute_label(linkedin),
+        },
+        {
+          label: "FACEBOOK",
+          title: "FACEBOOK",
+          value: facebook_percent,
+          color: "#FF00E5",
+          stats: compute_label(facebook),
+        },
+        {
+          label: "TWITTER",
+          title: "TWITTER",
+          value: twitter_percent,
+          color: "#267EC3",
+          stats: compute_label(twitter),
+        },
+        {
+          label: "INSTAGRAM",
+          title: "INSTAGRAM",
+          value: instagram_percent,
+          color: "#F9F871",
+          stats: compute_label(instagram),
+        },
+      ],
     };
   },
   mounted() {
@@ -716,19 +975,48 @@ export default {
         .then((response) => {
           this.loading = false;
           this.data = response.data;
+          this.fetchAlternatives();
         })
         .catch((error) => {
           this.loading = false;
           this.error = true;
         });
     },
+    fetchAlternatives() {
+      var axios = require("axios");
+
+      let body;
+      if (this.data._source.market) {
+        body = {
+          query: {
+            query_string: {
+              type: "best_fields",
+              fields: ["name", "startup_country", "market"],
+              query: `market: ${this.data._source.market}`,
+            },
+          },
+          size: 3,
+        };
+      }
+
+      axios
+        .post(
+          `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
+          body,
+          {}
+        )
+        .then((response) => {
+          this.results = response.data.hits.hits;
+        })
+        .catch((error) => {});
+    },
     //Donut
     handleSectionClick(section, event) {
       console.log(`${section.label} clicked.`);
     },
     handleSectionMouseOver(section, event) {
-      section.label= section.title+ " ("+section.stats+")"
-    }
+      section.label = section.title + " (" + section.stats + ")";
+    },
   },
   filters: {
     // Filter definitions
@@ -736,6 +1024,11 @@ export default {
       if (value) {
         return moment(String(value)).format("MM/DD/YYYY");
       }
+    },
+  },
+  watch: {
+    $route(to, from) {
+      this.fetch();
     },
   },
 };
@@ -747,24 +1040,130 @@ export default {
 @import "~bulma/sass/utilities/mixins";
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
+
+.is-fullwidth {
+  width: 100%;
+}
+
+.rm-raduis-select {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.rm-raduis-input {
+  border-radius: 0px;
+}
+
+.rm-raduis-search {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  background: #ff9b26;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.125;
+}
+
+.subtitle {
+  font-size: 24px;
+  line-height: 1.125;
+}
+
+.caption {
+  font-size: 14px;
+  color: #b7b7b7;
+}
+
+@media (max-width: 768px) {
+  .is-column {
+    padding: 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.125;
+  }
+
+  .subtitle {
+    font-size: 36px;
+    line-height: 1.125;
+  }
+
+  .caption {
+    font-size: 18px;
+    color: #b7b7b7;
+  }
+}
+
+.field.is-grouped .select select {
+  background: #f5f5f5;
+}
+
+.button,
+.input,
+.textarea,
+.taginput .taginput-container.is-focusable,
+.select select,
+.file-cta,
+.file-name,
+.pagination-previous,
+.pagination-next,
+.pagination-link,
+.pagination-ellipsis {
+  height: 3.5em;
+}
+
+.select:not(.is-multiple) {
+  height: 3.5em;
+}
+
+.field.is-grouped > .control:not(:last-child) {
+  margin-right: 0;
+}
+
+.field.is-grouped .button {
+  width: 4rem;
+}
+
+@media (max-width: 768px) {
+  .is-paddinless-mobile {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
 .rm-padding {
   padding: 0 !important;
 }
-.about_us,.general_informations,.financial_informations {
+.about_us,
+.general_informations,
+.financial_informations {
   box-shadow: 0px 0px 27px rgba(0, 0, 0, 0.05);
 }
-.toolbar,.about_us,.e_reputation,.contents_group article,.financial_informations {
+.toolbar,
+.about_us,
+.e_reputation,
+.contents_group article,
+.financial_informations {
   background: white;
 }
 //Toolbar
 .toolbar form {
   box-shadow: 3px 8px 18px #80808017;
 }
-.toolbar .domain select,.toolbar .domain + input,.domain select:focus-visible {
+.toolbar .domain select,
+.toolbar .domain + input,
+.domain select:focus-visible {
   border: none;
   outline: none;
 }
-.toolbar .domain,.toolbar .domain select {
+.toolbar .domain,
+.toolbar .domain select {
   background: #e6e6e6;
 }
 .toolbar .search_here {
@@ -852,7 +1251,9 @@ $color_orange: #ff9b26;
   border-radius: 8px;
 }
 //General informations
-.general_informations,.discussions,.financial_informations {
+.general_informations,
+.discussions,
+.financial_informations {
   border-radius: 16px;
 }
 .general_informations li {
@@ -920,7 +1321,8 @@ $color_orange: #ff9b26;
   background: #ccc;
   margin-bottom: 20px;
 }
-.about_startup .percent,.about_startup .percent figcaption {
+.about_startup .percent,
+.about_startup .percent figcaption {
   border-radius: 16px;
 }
 .about_startup .percent figcaption {
@@ -989,10 +1391,11 @@ input:checked + .slider:before {
   }
 }
 .charts .rate_percent {
-  color:$color_orange;
+  color: $color_orange;
 }
 // Report social network
-.e_reputation,.report_social_network li {
+.e_reputation,
+.report_social_network li {
   position: relative;
 }
 @include desktop {
@@ -1008,27 +1411,37 @@ input:checked + .slider:before {
   position: absolute;
   color: $color_orange;
 }
-.report_social_network li::before {
-  content: "";
+
+.report_social_network li .linkedin {
+  background: linear-gradient(#76fac7, #00d5d9);
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  margin-right: 5px;
+  display: inline-block;
 }
-.report_social_network li.linkedin::before {
-  background: linear-gradient(#76fac7, #00d5d9);
-}
-.report_social_network li.facebook::before {
+.report_social_network li .facebook {
   background: linear-gradient(#ff00e5, #7a00d9);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
-.report_social_network li.twitter::before {
+.report_social_network li .twitter {
   background: linear-gradient($color_primary, #040405);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
-.report_social_network li.instagram::before {
+.report_social_network li .instagram {
   background: linear-gradient(#f9f871, $color_orange);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
 //financial_informations
-.financial_informations .capital_social{
+.financial_informations .capital_social {
   color: white;
   background: linear-gradient(#3a416f, #141727);
 }

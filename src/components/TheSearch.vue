@@ -19,8 +19,8 @@
           is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
         "
       >
-        <div>
-          <p class="control is-expanded mobile-input">
+        <div style="height: 100%">
+          <p class="control is-expanded mobile-input" style="height: 100%">
             <input
               id="search"
               class="input rm-raduis-input is-borderless"
@@ -28,6 +28,7 @@
               placeholder="Accéder à une startup"
               v-model="query"
               autocomplete="off"
+              style="height: 100%"
             />
           </p>
         </div>
@@ -44,7 +45,7 @@
           </span>
         </p> -->
     </form>
-    <div v-if="query.length > 2" class="result">
+    <div v-if="query.length > 2 && direct !== false" class="result">
       <smooth-scrollbar class="box-result">
         <div class="is-box">
           <div
@@ -187,6 +188,16 @@
 
 <script>
 export default {
+  props: {
+    query: {
+      type: String,
+      default: "",
+    },
+    direct: {
+      type: String,
+      default: true,
+    },
+  },
   data() {
     return {
       elasticsearch: {
@@ -194,7 +205,6 @@ export default {
         INDEX: "asi",
       },
       attribute: "market.keyword",
-      query: "",
       category: "",
       categories: [],
       results: [],
@@ -291,6 +301,7 @@ export default {
     // watch for change in the query string and recall the search method
     query: function () {
       if (!this.awaitingSearch) {
+        this.direct = true;
         setTimeout(() => {
           if (this.query.length > 2) this.search();
           this.awaitingSearch = false;
