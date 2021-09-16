@@ -510,19 +510,16 @@
               <span class="is-flex is-justify-content-space-between">
                 Capital social<strong class="is-size-5 has-text-weight-bold">{{data._source.share_capital}}</strong>
               </span>
-              <figure class="mt-5">
-                <span class="legende is-size-7">Valeur</span>
-                <span id="chart_bar" class="mb-5"></span>
-                <figcaption class="is-flex is-justify-content-space-between is-align-items-center">
-                  <aside aria-label="Valeur actuelle">
-                    <span class="title has-text-weight-bold">Valeur actuelle</span>
-                    <p class="value mt-1">
-                      <span class="percent mr-5">(+23%)</span>Bilan annuel
-                    </p>
-                  </aside>
-                  <span class="is-size-5 amount has-text-weight-semibold">56.000.000 FCFA</span>
-                </figcaption>
-              </figure>
+              <BarCharts />
+              <figcaption class="pt-3 has-background-white is-flex is-justify-content-space-between is-align-items-center">
+                <aside aria-label="Valeur actuelle">
+                  <span class="title has-text-weight-bold">Valeur actuelle</span>
+                  <p class="value mt-1">
+                    <span class="percent mr-5">(+23%)</span>Bilan annuel
+                  </p>
+                </aside>
+                <span class="is-size-5 amount has-text-weight-semibold">56.000.000 FCFA</span>
+              </figcaption>
             </article>
           </section>
         </section>
@@ -578,6 +575,7 @@
 
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
+import BarCharts from "~/components/BarCharts.vue";
 import "vueperslides/dist/vueperslides.css";
 import moment from "moment";
 import "moment/locale/fr";
@@ -592,7 +590,7 @@ export default {
       },
     ],
   },
-  components: { VueperSlides, VueperSlide },
+  components: { VueperSlides, VueperSlide, BarCharts },
   data() {
     function compute_label(value) {
         var signe="";
@@ -1030,18 +1028,15 @@ input:checked + .slider:before {
   background: linear-gradient(#f9f871, $color_orange);
 }
 //financial_informations
-.financial_informations .legende {
+.financial_informations .capital_social{
   color: white;
-  display: block;
-  position: absolute;
-  margin: 25px 0 0 50px;
-}
-.financial_informations #chart_bar {
-  height: 200px;
-  display: block;
   background: linear-gradient(#3a416f, #141727);
-  border-radius: 12px;
-  padding: 20px 30px 20px 75px;
+}
+.financial_informations .legende {
+  width: 100%;
+}
+.financial_informations .legende::after {
+  width: calc(90% - 1.5rem);
 }
 .financial_informations .title {
   font-size: 15px;
