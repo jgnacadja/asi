@@ -1,6 +1,8 @@
 <template>
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
+    <ve-line :data="chartData"></ve-line>
+
     <section
       v-if="(loading && !data._id) || (!loading && !data._id)"
       class="overview_page"
@@ -748,7 +750,7 @@
             "
           >
             <li v-for="hit in this.results" :key="hit" class="mb-2">
-              <a href="">
+              <g-link :to="`/overview/${parseUri(hit._source.objectID)}`">
                 <figure class="is-flex card p-3">
                   <img
                     src="../assets/startup/startup.svg"
@@ -765,13 +767,7 @@
                     "
                   >
                     <h4>
-                      <span v-if="hit._source.email"
-                        ><a
-                          :href="'mailto:' + hit._source.email"
-                          class="has-text-black is-size-5"
-                          >{{ hit._source.email }}</a
-                        ></span
-                      >
+                      <span v-if="hit._source.name"></span>
                       <span v-else>{{ notAvailable }}</span>
                     </h4>
                     <span>
@@ -788,7 +784,7 @@
                     </span>
                   </figcaption>
                 </figure>
-              </a>
+              </g-link>
             </li>
           </ul>
         </footer>
@@ -804,6 +800,7 @@ import "vueperslides/dist/vueperslides.css";
 import moment from "moment";
 import "moment/locale/fr";
 import TheSearch from "~/components/TheSearch.vue";
+import VeLine from "v-charts-h/lib/line.common";
 
 export default {
   metaInfo: {
@@ -815,7 +812,7 @@ export default {
       },
     ],
   },
-  components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
+  components: { VueperSlides, VueperSlide, BarCharts, TheSearch, VeLine },
   data() {
     function compute_label(value) {
       var signe = "";
@@ -847,6 +844,17 @@ export default {
     var twitter_percent = (twitter * 100) / total;
     var instagram_percent = (instagram * 100) / total;
     return {
+      chartData: {
+        columns: ["date", "PV"],
+        rows: [
+          { date: "01-01", PV: 1231 },
+          { date: "01-02", PV: 1223 },
+          { date: "01-03", PV: 2123 },
+          { date: "01-04", PV: 4123 },
+          { date: "01-05", PV: 3123 },
+          { date: "01-06", PV: 7123 },
+        ],
+      },
       total: 200,
       current: 10,
       perPage: 10,
