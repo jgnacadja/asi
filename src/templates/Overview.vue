@@ -462,6 +462,8 @@
                     <span class="rate_percent">+0%</span>
                   </figcaption>
                 </vc-donut>
+                x:{{x_facebook}}
+                y:{{y_facebook}}
                 <figcaption class="statistic_donut has-text-white has-text-weight-bold	">
                   <ul>
                     <li class="linkedin_caption" :style="'top : '+y_linkedin+';left: '+x_linkedin">
@@ -469,6 +471,7 @@
                         <figcaption>{{stats_linkedin}}</figcaption>
                       </figure>
                     </li>
+                    <!-- <li class="facebook_caption"> -->
                     <li class="facebook_caption" :style="'top : '+y_facebook+';left: '+x_facebook">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
                         <figcaption>{{stats_facebook}}</figcaption>
@@ -616,7 +619,6 @@
       </section>
     </section>
   </Layout>
-
 </template>
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
@@ -659,7 +661,13 @@ export default {
       return String(value) + signe;
     }
     function convert_deg_rad(value) {
-      return 1.57 - (1.8* value * 2*3.14) / 360;
+      var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
+      var x = 160*Math.cos(deg_rad);
+      var y = 160 - 160*Math.sin(deg_rad);
+      if(value>50){
+        x-=70;
+      }
+      return [x,y];
     }
     var linkedin = 17000;
     var facebook = 37000;
@@ -671,37 +679,28 @@ export default {
     var facebook_percent = (facebook * 100) / total;
     var twitter_percent = (twitter * 100) / total;
     var instagram_percent = (instagram * 100) / total;
-    var rayon_caption = 30;
-    // Coordinates LinkedIn
-    var linkedin_rad= convert_deg_rad(linkedin_percent);
-    var x_linkedin = 160*Math.cos(linkedin_rad);
-    var y_linkedin = 160 - 160*Math.sin(linkedin_rad);
-    // Coordinates Facebook
-    var facebook_rad= convert_deg_rad((linkedin_percent*2)+facebook_percent);
-    var x_facebook = 160*Math.cos(facebook_rad);
-    var y_facebook = 160 - 160*Math.sin(facebook_rad);
-    // Coordinates Twitter
-    var twitter_rad= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
-    var x_twitter = 160*Math.cos(twitter_rad);
-    var y_twitter = 160 - 160*Math.sin(twitter_rad);
-    // Coordinates Instagraù
-    var instagram_rad= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
-    var x_instagram = 160*Math.cos(instagram_rad);
-    var y_instagram = 160 - 160*Math.sin(instagram_rad);
+    // Coordinates 
+    var linkedin_coordinates= convert_deg_rad(linkedin_percent);
+    // var facebook_coordinates= convert_deg_rad((linkedin_percent*2));
+    // var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2));
+    // var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2));
+
+    var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
+    var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
+    var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
     return {
       stats_linkedin : compute_label(linkedin),
       stats_facebook : compute_label(facebook),
       stats_twitter : compute_label(twitter),
       stats_instagram : compute_label(instagram),
-      x_linkedin : x_linkedin +"px",
-      y_linkedin : y_linkedin +"px",
-      x_facebook : x_facebook +"px",
-      y_facebook : y_facebook +"px",
-      y_linkedin : y_linkedin +"px",
-      x_twitter : x_twitter +"px",
-      y_twitter : y_twitter +"px",
-      x_instagram : x_instagram +"px",
-      y_instagram : y_instagram +"px",
+      x_linkedin : linkedin_coordinates[0] +"px",
+      y_linkedin : linkedin_coordinates[1] +"px",
+      x_facebook : facebook_coordinates[0] +"px",
+      y_facebook : facebook_coordinates[1] +"px",
+      x_twitter : twitter__coordinates[0] +"px",
+      y_twitter : twitter__coordinates[1] +"px",
+      x_instagram : instagram_coordinates[0] +"px",
+      y_instagram : instagram_coordinates[1] +"px",
       total: 200,
       current: 10,
       perPage: 10,
@@ -852,7 +851,6 @@ export default {
           size: 3,
         };
       }
-
       axios
         .post(
           `${this.elasticsearch.API}/${this.elasticsearch.INDEX}/_search`,
@@ -1169,6 +1167,8 @@ $color_orange: #ff9b26;
 }
 .e_reputation figure .statistic_donut ul {
   position: relative;
+  // margin-top: -60px;
+  // margin-left: -30px;
 }
 .e_reputation figure .statistic_donut li {
   position: absolute;
@@ -1182,8 +1182,6 @@ $color_orange: #ff9b26;
 }
 .e_reputation figure .statistic_donut li.linkedin_caption figure{
   @include linearLinkedIn;
-  top: -30px;
-  left: -30px;
 }
 .e_reputation figure .statistic_donut li.facebook_caption figure{
   @include linearFacebook;
@@ -1261,8 +1259,8 @@ input:checked + .slider:before {
 .e_reputation,.report_social_network li {
   position: relative;
 }
-@include desktop {
-  .report_social_network {
+.report_social_network {
+  @include desktop {
     position: absolute;
     width: 100%;
     bottom: 0;
