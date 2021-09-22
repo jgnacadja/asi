@@ -662,16 +662,18 @@ export default {
     }
     function convert_deg_rad(value) {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
-      var x = 160*Math.cos(deg_rad);
-      var y = 160 - 160*Math.sin(deg_rad);
+      var x = 160*Math.cos(deg_rad) - 35;
+      var y = 160 - 160*Math.sin(deg_rad) +30;
+
       if(value>50){
-        x-=70;
+        // x-=35;
       }
+
       return [x,y];
     }
     var linkedin = 17000;
     var facebook = 37000;
-    var twitter = 10000;
+    var twitter = 30000;
     var instagram = 8000;
     var stats = [linkedin, facebook, twitter, instagram];
     var total = stats.reduce((acc, cur) => acc + cur, 0);
@@ -684,10 +686,13 @@ export default {
     // var facebook_coordinates= convert_deg_rad((linkedin_percent*2));
     // var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2));
     // var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2));
-
     var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
     var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
     var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
+
+    // var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
+    // var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
+    // var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
     return {
       stats_linkedin : compute_label(linkedin),
       stats_facebook : compute_label(facebook),
