@@ -660,7 +660,7 @@ export default {
     function convert_deg_rad(value) {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
       var x = 160*Math.cos(deg_rad) - 35;
-      var y = 160 - 160*Math.sin(deg_rad) +30;
+      var y = 160 - 160*Math.sin(deg_rad) +15;
       return [x,y];
     }
     var linkedin = 17000;
@@ -772,7 +772,7 @@ export default {
           label: "LINKEDIN",
           title: "LINKEDIN",
           value: linkedin_percent,
-          color: "#76FAC7",
+          color: "#73eabc",
           stats: compute_label(linkedin),
         },
         {
@@ -793,7 +793,7 @@ export default {
           label: "INSTAGRAM",
           title: "INSTAGRAM",
           value: instagram_percent,
-          color: "#F9F871",
+          color: "#ffdc34",
           stats: compute_label(instagram),
         },
       ],
@@ -1168,20 +1168,20 @@ $color_orange: #ff9b26;
   height:60px;
   width: 60px;
   border-radius: 50%;
-  border: solid white 5px;
+  // border: solid white 5px;
 }
-.e_reputation figure .statistic_donut li.linkedin_caption figure{
-  @include linearLinkedIn;
-}
-.e_reputation figure .statistic_donut li.facebook_caption figure{
-  @include linearFacebook;
-}
-.e_reputation figure .statistic_donut li.twitter_caption figure{
-  @include linearTwitter;
-}
-.e_reputation figure .statistic_donut li.instagram_caption figure{
-  @include linearInstagram;
-}
+// .e_reputation figure .statistic_donut li.linkedin_caption figure{
+//   @include linearLinkedIn;
+// }
+// .e_reputation figure .statistic_donut li.facebook_caption figure{
+//   @include linearFacebook;
+// }
+// .e_reputation figure .statistic_donut li.twitter_caption figure{
+//   @include linearTwitter;
+// }
+// .e_reputation figure .statistic_donut li.instagram_caption figure{
+//   @include linearInstagram;
+// }
 //toogle from w3school
 .switch {
   position: relative;
