@@ -471,7 +471,6 @@
                         <figcaption>{{stats_linkedin}}</figcaption>
                       </figure>
                     </li>
-                    <!-- <li class="facebook_caption"> -->
                     <li class="facebook_caption" :style="'top : '+y_facebook+';left: '+x_facebook">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
                         <figcaption>{{stats_facebook}}</figcaption>
@@ -664,11 +663,6 @@ export default {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
       var x = 160*Math.cos(deg_rad) - 35;
       var y = 160 - 160*Math.sin(deg_rad) +30;
-
-      if(value>50){
-        // x-=35;
-      }
-
       return [x,y];
     }
     var linkedin = 17000;
@@ -683,16 +677,9 @@ export default {
     var instagram_percent = (instagram * 100) / total;
     // Coordinates 
     var linkedin_coordinates= convert_deg_rad(linkedin_percent);
-    // var facebook_coordinates= convert_deg_rad((linkedin_percent*2));
-    // var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2));
-    // var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2));
     var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
     var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
     var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
-
-    // var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
-    // var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
-    // var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
     return {
       stats_linkedin : compute_label(linkedin),
       stats_facebook : compute_label(facebook),
