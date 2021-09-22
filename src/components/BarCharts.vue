@@ -1,7 +1,7 @@
 <template>
   <figure class="my-5 p-5 capital_social">
     <figure class="m-5">
-      <span class="legende is-flex is-align-items-center is-justify-content-space-between is-size-7">Valeur</span>
+      <span class="legende is-flex is-align-items-center is-justify-content-space-between is-size-7">Valeur {{ok}}</span>
       <ul class="pl-5 mt-2 bars">
         <li class="bar_column">
             <ul class="is-flex is-flex-direction-column-reverse">
@@ -15,48 +15,92 @@
         </li>
         <li class="bar_contents">
           <ul class="is-flex is-justify-content-space-between">
-            <li>
-              <span class="graduation_x">01</span>
+            <li v-for="i in details" :key="i">
+              <span class="graduation_x">{{i.date}}</span>
+              <span class="graduation_x_value" style="height:0%" :title="i.amount"></span>
+            </li>
+            <!-- <li>
+              <span class="graduation_x">7</span>
               <span class="graduation_x_value" style="height:80%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">02</span>
-              <span class="graduation_x_value" style="height:60%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">03</span>
-              <span class="graduation_x_value" style="height:40%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">04</span>
-              <span class="graduation_x_value" style="height:100%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">05</span>
-              <span class="graduation_x_value" style="height:67%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">06</span>
-              <span class="graduation_x_value" style="height:90%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">07</span>
-              <span class="graduation_x_value" style="height:45%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">08</span>
-              <span class="graduation_x_value" style="height:40%"></span>
-            </li>
-            <li>
-              <span class="graduation_x">09</span>
-              <span class="graduation_x_value" style="height:60%"></span>
-            </li>
+            </li> -->
           </ul>
         </li>
       </ul>
     </figure>
   </figure>
 </template>
+
+<script>
+import moment from 'moment';
+import 'moment/locale/fr';
+
+export default {
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
+  data(){
+    return  {
+      ok : "okay",
+      details: [
+          // {
+          //     "date": 2018,
+          //     "amount": "2.000.000 FCFA"
+          // },
+          // {
+          //     "date": 2019,
+          //     "amount": "2.000.000 FCFA"
+          // },
+          // {
+          //     "date": 2020,
+          //     "amount": "2.000.000 FCFA"
+          // }
+        ]
+      }
+  },
+  mounted(){
+    this.social_capital();
+  },
+  methods: {
+    social_capital(){
+      var current_year = new Date().getFullYear();
+      switch (this.details.length) {
+        case 0:
+          this.details = [
+          {
+            date : current_year,
+            amount : 0,
+          },
+          {
+            date : current_year - 1 ,
+            amount : 0,
+          },
+          {
+            date : current_year - 2,
+            amount : 0,
+          },
+          {
+            date : current_year - 3,
+            amount : 0,
+          },
+          {
+            date : current_year - 4,
+            amount : 0,
+          },
+        ]
+          break;
+      
+        default:
+          break;
+      }
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 @import "../variables.scss";

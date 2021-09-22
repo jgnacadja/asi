@@ -556,7 +556,7 @@
                   <span v-else> 0 </span>
                 </strong>
               </span>
-              <BarCharts />
+              <BarCharts :data="data._source.details" />
               <figcaption  class="p-4 has-background-white is-flex is-justify-content-space-between 
                                   is-align-items-center">
                 <aside aria-label="Valeur actuelle">
@@ -749,7 +749,10 @@ export default {
           },
           net_result: {
             total: null,
-            details: [],
+            details: [{
+              date : 2000,
+              amount : 150000000
+            }],
           },
           net_value: {
             value: null,
