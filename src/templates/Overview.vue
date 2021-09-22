@@ -462,8 +462,6 @@
                     <span class="rate_percent">+0%</span>
                   </figcaption>
                 </vc-donut>
-                x:{{x_facebook}}
-                y:{{y_facebook}}
                 <figcaption class="statistic_donut has-text-white has-text-weight-bold	">
                   <ul>
                     <li class="linkedin_caption" :style="'top : '+y_linkedin+';left: '+x_linkedin">
