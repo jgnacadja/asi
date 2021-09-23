@@ -592,10 +592,10 @@
                   <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech"/>
                   <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
                     <h4>
-                      <span v-if="hit._source.email">
-                        <a :href="'mailto:' + hit._source.email" class="has-text-black is-size-5">
-                          {{ hit._source.email }}
-                        </a>
+                      <span v-if="hit._source.name">
+                        <g-link :to="`/overview/${parseUri(hit._source.objectID)}`" class="has-text-black is-size-5">
+                            {{ hit._source.name }}
+                        </g-link>
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </h4>
@@ -603,7 +603,7 @@
                       <span>
                         <span v-if="hit._source.market">{{ hit._source.market }}</span>
                         <span v-else>{{ notAvailable }} </span>
-                      </span>
+                      </span> &nbsp;
                       <span v-if="hit._source.startup_country">{{hit._source.startup_country}}</span>
                       <span v-else>{{ notAvailable }}</span>
                     </span>
@@ -663,10 +663,10 @@ export default {
       var y = 160 - 160*Math.sin(deg_rad) +15;
       return [x,y];
     }
-    var linkedin = 0;
-    var facebook = 0;
-    var twitter = 0;
-    var instagram = 0;
+    var linkedin = 17000;
+    var facebook = 37000;
+    var twitter = 10000;
+    var instagram = 8000;
     var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
     if((linkedin==0) && (facebook==0) && (twitter==0) && (instagram==0)){
       linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
