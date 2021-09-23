@@ -664,10 +664,12 @@ export default {
     var linkedin = 17000;
     var facebook = 37000;
     var twitter = 10000;
-    var instagram = 8000;
+    var instagram = 80000;
     var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
+    var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
     if((linkedin==0) && (facebook==0) && (twitter==0) && (instagram==0)){
       linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
+      linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
     }
     else{
       var stats = [linkedin, facebook, twitter, instagram];
@@ -780,7 +782,6 @@ export default {
           label: "LINKEDIN",
           title: "LINKEDIN",
           value: linkedin_percent,
-          // value: 0,
           color: "#73eabc",
           stats: compute_label(linkedin),
         },
@@ -788,7 +789,6 @@ export default {
           label: "FACEBOOK",
           title: "FACEBOOK",
           value: facebook_percent,
-          // value: 0,
           color: "#FF00E5",
           stats: compute_label(facebook),
         },
@@ -796,7 +796,6 @@ export default {
           label: "TWITTER",
           title: "TWITTER",
           value: twitter_percent,
-          // value: 0,
           color: "#267EC3",
           stats: compute_label(twitter),
         },
@@ -804,7 +803,6 @@ export default {
           label: "INSTAGRAM",
           title: "INSTAGRAM",
           value: instagram_percent,
-          // value: 0,
           color: "#ffdc34",
           stats: compute_label(instagram),
         },
