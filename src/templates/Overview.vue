@@ -462,26 +462,26 @@
                     <span class="rate_percent">+0%</span>
                   </figcaption>
                 </vc-donut>
-                <figcaption class="statistic_donut has-text-white has-text-weight-bold	">
+                <figcaption class="statistic_donut has-text-white has-text-weight-bold" :class="link_data_exist ? 'd-block':'d-none'">
                   <ul>
                     <li class="linkedin_caption" :style="'top : '+y_linkedin+';left: '+x_linkedin">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
-                        <figcaption>{{stats_linkedin}}</figcaption>
+                        <figcaption v-if="stats_linkedin !== '0'">{{stats_linkedin}}</figcaption>
                       </figure>
                     </li>
                     <li class="facebook_caption" :style="'top : '+y_facebook+';left: '+x_facebook">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
-                        <figcaption>{{stats_facebook}}</figcaption>
+                        <figcaption v-if="stats_facebook !== '0'">{{stats_facebook}}</figcaption>
                       </figure>
                     </li>
                     <li class="twitter_caption" :style="'top : '+y_twitter+';left: '+x_twitter">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
-                        <figcaption>{{stats_twitter}}</figcaption>
+                        <figcaption v-if="stats_twitter !== '0'">{{stats_twitter}}</figcaption>
                       </figure>
                     </li>
                     <li class="instagram_caption" :style="'top : '+y_instagram+';left: '+x_instagram">
                       <figure class="is-flex is-align-items-center is-justify-content-center">
-                        <figcaption>{{stats_instagram}}</figcaption>
+                        <figcaption v-if="stats_instagram !== '0'">{{stats_instagram}}</figcaption>
                       </figure>
                     </li>
                   </ul>
@@ -663,21 +663,27 @@ export default {
       var y = 160 - 160*Math.sin(deg_rad) +15;
       return [x,y];
     }
-    var linkedin = 17000;
-    var facebook = 37000;
-    var twitter = 30000;
-    var instagram = 8000;
-    var stats = [linkedin, facebook, twitter, instagram];
-    var total = stats.reduce((acc, cur) => acc + cur, 0);
-    var linkedin_percent = (linkedin * 100) / total;
-    var facebook_percent = (facebook * 100) / total;
-    var twitter_percent = (twitter * 100) / total;
-    var instagram_percent = (instagram * 100) / total;
-    // Coordinates 
-    var linkedin_coordinates= convert_deg_rad(linkedin_percent);
-    var facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
-    var twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
-    var instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
+    var linkedin = 0;
+    var facebook = 0;
+    var twitter = 0;
+    var instagram = 0;
+    var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
+    if((linkedin==0) && (facebook==0) && (twitter==0) && (instagram==0)){
+      linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
+    }
+    else{
+      var stats = [linkedin, facebook, twitter, instagram];
+      var total = stats.reduce((acc, cur) => acc + cur, 0);
+      var linkedin_percent = (linkedin * 100) / total;
+      var facebook_percent = (facebook * 100) / total;
+      var twitter_percent = (twitter * 100) / total;
+      var instagram_percent = (instagram * 100) / total;
+      // Coordinates 
+      linkedin_coordinates= convert_deg_rad(linkedin_percent);
+      facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
+      twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
+      instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
+    }
     return {
       stats_linkedin : compute_label(linkedin),
       stats_facebook : compute_label(facebook),
@@ -698,6 +704,7 @@ export default {
       rangeAfter: 1,
       order: "",
       size: "",
+      link_data_exist: false,
       isSimple: false,
       isRounded: false,
       prevIcon: "chevron-left",
@@ -775,6 +782,7 @@ export default {
           label: "LINKEDIN",
           title: "LINKEDIN",
           value: linkedin_percent,
+          // value: 0,
           color: "#73eabc",
           stats: compute_label(linkedin),
         },
@@ -782,6 +790,7 @@ export default {
           label: "FACEBOOK",
           title: "FACEBOOK",
           value: facebook_percent,
+          // value: 0,
           color: "#FF00E5",
           stats: compute_label(facebook),
         },
@@ -789,6 +798,7 @@ export default {
           label: "TWITTER",
           title: "TWITTER",
           value: twitter_percent,
+          // value: 0,
           color: "#267EC3",
           stats: compute_label(twitter),
         },
@@ -796,6 +806,7 @@ export default {
           label: "INSTAGRAM",
           title: "INSTAGRAM",
           value: instagram_percent,
+          // value: 0,
           color: "#ffdc34",
           stats: compute_label(instagram),
         },
@@ -804,6 +815,7 @@ export default {
   },
   mounted() {
     this.fetch();
+    this.verifyLinkData();
   },
   methods: {
     parseUri(objectId) {
@@ -856,6 +868,18 @@ export default {
         .catch((error) => {});
     },
     //Donut
+    verifyLinkData(){
+      for (let index = 0; index < this.sections.length; index++) {
+        const element =  this.sections[index];
+        if(element.value !==0){
+          this.link_data_exist = true;
+          break;
+        }
+      }
+      if(this.link_data_exist===false){
+        this.sections = [{label: "Inexistant",title: "Inexistant",value: 100,color: "#ccc",stats: 100} ];
+      }
+    },
     handleSectionClick(section, event) {
       console.log(`${section.label} clicked.`);
     },
@@ -896,6 +920,12 @@ $color_orange: #ff9b26;
 }
 @mixin linearInstagram {
   background: linear-gradient(#f9f871, $color_orange);
+}
+.d-none{
+  display: none;
+}
+.d-block{
+  display: block;
 }
 .is-fullwidth {
   width: 100%;

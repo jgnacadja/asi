@@ -4,21 +4,12 @@
       <div class="is-hidden-mobile column is-3 is-marginless is-paddingless">
         <select class="select rm-raduis-select is-fullwidth" v-model="category">
           <option style="padding: 5px 0" value="">Tous les domaines</option>
-          <option
-            style="padding: 5px 0"
-            v-for="item in categories.slice(1)"
-            :key="item.key"
-          >
+          <option style="padding: 5px 0" v-for="item in categories.slice(1)" :key="item.key">
             {{ item.key }}
           </option>
         </select>
       </div>
-      <div
-        class="
-          column
-          is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
-        "
-      >
+      <div class="column is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth">
         <div style="height: 100%">
           <p class="control is-expanded mobile-input" style="height: 100%">
             <input
@@ -48,33 +39,16 @@
     <div v-if="query.length > 2 && direct !== false" class="result">
       <smooth-scrollbar class="box-result">
         <div class="is-box">
-          <div
-            class="hits"
-            v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''"
-          >
+          <div class="hits" v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''">
             <div v-if="loading">
               <b-loading :is-full-page="false" v-model="loading"></b-loading>
             </div>
-
             <ul v-else>
-              <li
-                v-if="
-                  results.length === 0 &&
-                  query.length > 2 &&
-                  !loading &&
-                  !awaitingSearch
-                "
-                class="column"
-                style="text-align: center !important"
-              >
+              <li v-if="results.length === 0 && query.length > 2 && !loading &&!awaitingSearch"
+                class="column" style="text-align: center !important">
                 <em>Aucun résultat...</em>
               </li>
-              <li
-                v-for="hit in results"
-                :key="hit._source.objectID"
-                class="custom-hr-top"
-                v-else
-              >
+              <li v-for="hit in results" :key="hit._source.objectID" class="custom-hr-top"  v-else>
                 <g-link :to="`/overview/${parseUri(hit._source.objectID)}`">
                   <div
                     class="
@@ -181,8 +155,12 @@
             </ul>
           </div>
         </div>
-      </smooth-scrollbar>
-    </div>
+      </smooth-scrollbar> 
+      <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7">
+        Ce n'est pas les résultats que vous attendiez ? &nbsp;
+        <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
+      </p>
+    </div> 
   </div>
 </template>
 
