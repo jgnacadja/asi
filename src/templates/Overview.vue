@@ -587,15 +587,13 @@
           <h3 class="is-size-4 my-5">Voir plus</h3>
           <ul class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3">
             <li v-for="hit in this.results" :key="hit" class="mb-2">
-              <a href="">
+              <g-link :to="`/overview/${parseUri(hit._source.objectID)}`" class="has-text-black is-size-5">
                 <figure class="is-flex card p-3">
                   <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech"/>
                   <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
                     <h4>
                       <span v-if="hit._source.name">
-                        <g-link :to="`/overview/${parseUri(hit._source.objectID)}`" class="has-text-black is-size-5">
                             {{ hit._source.name }}
-                        </g-link>
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </h4>
@@ -609,7 +607,7 @@
                     </span>
                   </figcaption>
                 </figure>
-              </a>
+              </g-link>
             </li>
           </ul>
         </footer>
