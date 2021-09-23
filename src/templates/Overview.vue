@@ -296,7 +296,7 @@
     <section v-else class="overview_page">
       <!-- Search bar -->
       <header class="container has-text-centered mx-auto">
-        <div class="column is-column is-8-desktop is-offset-2-desktop">
+        <div class="column is-column is-12-desktop">
           <div class="box is-shadowless is-paddinless-mobile">
             <div class="box field is-grouped">
               <TheSearch :query="data._source.name" :direct="false" />
