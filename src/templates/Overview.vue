@@ -5,7 +5,7 @@
     <section v-if="(loading && !data._id) || (!loading && !data._id)" class="overview_page">
       <!-- Search bar -->
       <div class="container has-text-centered mx-auto">
-        <div class="column is-column is-8-desktop is-offset-2-desktop">
+        <div class="column is-column is-12-desktop ">
           <div class="box is-shadowless is-paddinless-mobile">
             <div class="box field is-grouped">
               <TheSearch />
