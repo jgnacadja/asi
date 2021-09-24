@@ -587,9 +587,10 @@
           <h3 class="is-size-4 my-5">Voir plus</h3>
           <ul class="is-flex is-justify-content-space-between is-flex-wrap-wrap px-3">
             <li v-for="hit in this.results" :key="hit" class="mb-2">
-              <g-link :to="`/overview/${parseUri(hit._source.objectID)}`" class="has-text-black is-size-5">
+              <g-link :to="`/overview/${parseUri(hit._source.objectID)}`" title="Cliquez pour y accéder"
+                class="has-text-black is-size-5">
                 <figure class="is-flex card p-3">
-                  <img src="../assets/startup/startup.svg" title="Fintech" alt="Logo Fintech"/>
+                  <img src="../assets/startup/startup.svg" :title="hit._source.name" :alt="'Logo'+hit._source.name "/>
                   <figcaption class="ml-3 is-size-7 is-flex is-flex-direction-column is-justify-content-space-around">
                     <h4>
                       <span v-if="hit._source.name">
@@ -661,10 +662,10 @@ export default {
       var y = 160 - 160*Math.sin(deg_rad) +15;
       return [x,y];
     }
-    var linkedin = 17000;
-    var facebook = 37000;
-    var twitter = 10000;
-    var instagram = 80000;
+    var linkedin = 0; //17000
+    var facebook = 0; //37000
+    var twitter = 0; //10000
+    var instagram = 0; //8000
     var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
     var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
     if((linkedin==0) && (facebook==0) && (twitter==0) && (instagram==0)){
