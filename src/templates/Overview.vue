@@ -634,26 +634,14 @@ export default {
   },
   components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
-    function compute_label(value) {
-      var signe = "";
-      var k = 1000;
-      var m = 1000000;
-      var g = 1000000000;
-      if (value >= g) {
-        value /= g;
-        signe = "G";
-      } 
-      else {
-        if (value > m) {
-          value /= m;
-          signe = "M";
-        } 
-        else if (value > k) {
-          value /= k;
-          signe = "K";
+    function compute_label (num) {
+        if (num >= 1000000000) {
+            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
         }
-      }
-      return String(value) + signe;
+        else if (num >= 10000000) {
+            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        return num;
     }
     function convert_deg_rad(value) {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;

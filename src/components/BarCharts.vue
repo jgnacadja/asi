@@ -2,27 +2,19 @@
   <figure class="my-5 p-5 capital_social">
     <figure class="m-5">
       <span class="legende is-flex is-align-items-center is-justify-content-space-between is-size-7">Valeur</span>
+      <!-- <span v-for="i in net_result" :key="i"> {{i.amount*100/max_amount}} &nbsp;</span> -->
       <ul class="pl-5 mt-2 bars">
         <li class="bar_column">
             <ul class="is-flex is-flex-direction-column-reverse">
-              <li>0</li>
-              <li>200</li>
-              <li>400</li>
-              <li>600</li>
-              <li>800</li>
-              <li>1000</li>
+              <li v-for="i in amount" :key="i">{{i}}</li>
             </ul>
         </li>
         <li class="bar_contents">
           <ul class="is-flex is-justify-content-space-between">
             <li v-for="i in net_result" :key="i">
               <span class="graduation_x">{{i.date}}</span>
-              <span class="graduation_x_value" style="height:0%" :title="i.amount"></span>
+              <span class="graduation_x_value" :style="'height:'+(i.amount*100/max_amount)+'%'" :title="i.amount"></span>
             </li>
-            <!-- <li>
-              <span class="graduation_x">7</span>
-              <span class="graduation_x_value" style="height:80%"></span>
-            </li> -->
           </ul>
         </li>
       </ul>
@@ -40,86 +32,63 @@ export default {
       type: Array,
       default() {
         return [
-          {
-            date : 2017,
-            amount : 400000
-          },
-          {
-            date : 2018,
-            amount : 1000000
-          },
-          {
-            date : 2019,
-            amount : 2000000
-          },
-          {
-            date : 2020,
-            amount : 5000000
-          },
-          {
-            date : 2021,
-            amount : 1000000000000
-          },
+          // {
+          //   date : 2017,
+          //   amount : 800000
+          // },
+          // {
+          //   date : 2018,
+          //   amount : 600000
+          // },
+          // {
+          //   date : 2019,
+          //   amount : 1500000
+          // },
+          // {
+          //   date : 2020,
+          //   amount : 4000000.5
+          // },
+          // {
+          //   date : 2021,
+          //   amount : 200000
+          // },
         ];
       }
     }
   },
   data(){
     return  {
-      ok : "okay",
-      details: [
-          // {
-          //     "date": 2018,
-          //     "amount": "2.000.000 FCFA"
-          // },
-          // {
-          //     "date": 2019,
-          //     "amount": "2.000.000 FCFA"
-          // },
-          // {
-          //     "date": 2020,
-          //     "amount": "2.000.000 FCFA"
-          // }
-        ]
+      amount: [],
+      max_amount : 0,
+    }
+  },
+  methods: {
+    social_capital(){
+      var amounts=[];
+      for (let index = 0; index < this.net_result.length; index++) {
+        const element = this.net_result[index].amount;
+        amounts.push(element);
       }
+      var step=Math.ceil(Math.max(...amounts)/5)
+      this.max_amount=step*5
+      for (let index = 0; index < 5; index++) {
+        var step_value=Math.ceil(step)*index
+        this.amount.push(this.compute_label(step_value))
+      }
+    },
+    compute_label(num) {
+        if (num >= 1000000000) {
+            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
+        }
+        else if (num >= 10000000) {
+            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        return num;
+    }
   },
   mounted(){
     this.social_capital();
   },
-  methods: {
-    social_capital(){
-      var current_year = new Date().getFullYear();
-      switch (this.details.length) {
-        case 0:
-          this.details = [
-          {
-            date : current_year,
-            amount : 0,
-          },
-          {
-            date : current_year - 1 ,
-            amount : 0,
-          },
-          {
-            date : current_year - 2,
-            amount : 0,
-          },
-          {
-            date : current_year - 3,
-            amount : 0,
-          },
-          {
-            date : current_year - 4,
-            amount : 0,
-          },
-        ]
-          break;
-      
-        default:
-          break;
-      }
-    }
-  }
 }
 </script>
 
