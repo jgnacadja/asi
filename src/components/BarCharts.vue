@@ -1,7 +1,7 @@
 <template>
   <figure class="my-5 p-5 capital_social">
     <figure class="m-5">
-      <span class="legende is-flex is-align-items-center is-justify-content-space-between is-size-7">Valeur {{ok}}</span>
+      <span class="legende is-flex is-align-items-center is-justify-content-space-between is-size-7">Valeur</span>
       <ul class="pl-5 mt-2 bars">
         <li class="bar_column">
             <ul class="is-flex is-flex-direction-column-reverse">
@@ -15,7 +15,7 @@
         </li>
         <li class="bar_contents">
           <ul class="is-flex is-justify-content-space-between">
-            <li v-for="i in details" :key="i">
+            <li v-for="i in net_result" :key="i">
               <span class="graduation_x">{{i.date}}</span>
               <span class="graduation_x_value" style="height:0%" :title="i.amount"></span>
             </li>
@@ -36,10 +36,31 @@ import 'moment/locale/fr';
 
 export default {
   props: {
-    data: {
+    net_result: {
       type: Array,
       default() {
-        return [];
+        return [
+          {
+            date : 2017,
+            amount : 400000
+          },
+          {
+            date : 2018,
+            amount : 1000000
+          },
+          {
+            date : 2019,
+            amount : 2000000
+          },
+          {
+            date : 2020,
+            amount : 5000000
+          },
+          {
+            date : 2021,
+            amount : 1000000000000
+          },
+        ];
       }
     }
   },

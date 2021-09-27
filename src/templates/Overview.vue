@@ -1,5 +1,4 @@
 <template>
-
   <Layout>
     <b-loading :is-full-page="true" v-model="loading"></b-loading>
     <section v-if="(loading && !data._id) || (!loading && !data._id)" class="overview_page">
@@ -556,7 +555,7 @@
                   <span v-else> 0 </span>
                 </strong>
               </span>
-              <BarCharts :data="data._source.details" />
+              <BarCharts :net_result="data._source.details" />
               <figcaption  class="p-4 has-background-white is-flex is-justify-content-space-between 
                                   is-align-items-center">
                 <aside aria-label="Valeur actuelle">
@@ -757,10 +756,7 @@ export default {
           },
           net_result: {
             total: null,
-            details: [{
-              date : 2000,
-              amount : 150000000
-            }],
+            details: [],
           },
           net_value: {
             value: null,
