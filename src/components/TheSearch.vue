@@ -156,11 +156,11 @@
           </div>
         </div>
       </smooth-scrollbar> 
-      <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7">
+    </div> 
+      <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7 not_hope	">
         Ce n'est pas les résultats que vous attendiez ? &nbsp;
         <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
       </p>
-    </div> 
   </div>
 </template>
 
@@ -439,6 +439,14 @@ li {
 
 p input::placeholder {
   font-style: italic;
+}
+.not_hope{
+  background: $lighter;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin: 0 0 -1.25rem -1.25rem;
+  padding: 10px;
+  width: calc(100% + (1.25rem * 2));
 }
 </style>
 
