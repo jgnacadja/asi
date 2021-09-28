@@ -25,7 +25,6 @@
 <script>
 import moment from 'moment';
 import 'moment/locale/fr';
-
 export default {
   props: {
     net_result: {
@@ -65,15 +64,32 @@ export default {
   methods: {
     social_capital(){
       var amounts=[];
-      for (let index = 0; index < this.net_result.length; index++) {
-        const element = this.net_result[index].amount;
-        amounts.push(element);
+      var net_result_length=this.net_result.length;
+      if(net_result_length==0){
+        this.amount.push(0)
+        this.amount.push("-")
+        this.amount.push("-")
+        this.amount.push("-")
+        this.amount.push("-")
+        this.amount.push("-")
+        var currentdate=new Date().getFullYear();
+        this.net_result.push({date : currentdate-5,amount : 0})
+        this.net_result.push({date : currentdate-4,amount : 0})
+        this.net_result.push({date : currentdate-3,amount : 0})
+        this.net_result.push({date : currentdate-2,amount : 0})
+        this.net_result.push({date : currentdate-1,amount : 0})
       }
-      var step=Math.ceil(Math.max(...amounts)/5)
-      this.max_amount=step*5
-      for (let index = 0; index < 5; index++) {
-        var step_value=Math.ceil(step)*index
-        this.amount.push(this.compute_label(step_value))
+      else{
+        for (let index = 0; index < this.net_result.length; index++) {
+          const element = this.net_result[index].amount;
+          amounts.push(element);
+        }
+        var step=Math.ceil(Math.max(...amounts)/5)
+        this.max_amount=step*5
+        for (let index = 0; index < 5; index++) {
+          var step_value=Math.ceil(step)*index
+          this.amount.push(this.compute_label(step_value))
+        }
       }
     },
     compute_label(num) {
