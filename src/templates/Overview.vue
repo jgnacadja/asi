@@ -566,7 +566,7 @@
                         <span v-if="data._source.net_value && data._source.net_value.grow">
                           {{ data._source.net_value.grow }}%
                         </span>
-                      <span v-else> - </span>
+                        <span v-else> - </span>
                       )
                     </span>Bilan annuel
                   </p>
@@ -634,57 +634,23 @@ export default {
   },
   components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
-    function compute_label (num) {
-        if (num >= 1000000000) {
-            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
-        }
-        else if (num >= 10000000) {
-            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
-        }
-        return num;
-    }
-    function convert_deg_rad(value) {
-      var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
-      var x = 160*Math.cos(deg_rad) - 35;
-      var y = 160 - 160*Math.sin(deg_rad) +15;
-      return [x,y];
-    }
-    var linkedin = 0; //17000
-    var facebook = 0; //37000
-    var twitter = 0; //10000
-    var instagram = 0; //8000
-    var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
-    var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
-    if((linkedin==0) && (facebook==0) && (twitter==0) && (instagram==0)){
-      linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
-      linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
-    }
-    else{
-      var stats = [linkedin, facebook, twitter, instagram];
-      var total = stats.reduce((acc, cur) => acc + cur, 0);
-      var linkedin_percent = (linkedin * 100) / total;
-      var facebook_percent = (facebook * 100) / total;
-      var twitter_percent = (twitter * 100) / total;
-      var instagram_percent = (instagram * 100) / total;
-      // Coordinates 
-      linkedin_coordinates= convert_deg_rad(linkedin_percent);
-      facebook_coordinates= convert_deg_rad((linkedin_percent*2)+facebook_percent);
-      twitter__coordinates= convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
-      instagram_coordinates= convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
-    }
     return {
-      stats_linkedin : compute_label(linkedin),
-      stats_facebook : compute_label(facebook),
-      stats_twitter : compute_label(twitter),
-      stats_instagram : compute_label(instagram),
-      x_linkedin : linkedin_coordinates[0] +"px",
-      y_linkedin : linkedin_coordinates[1] +"px",
-      x_facebook : facebook_coordinates[0] +"px",
-      y_facebook : facebook_coordinates[1] +"px",
-      x_twitter : twitter__coordinates[0] +"px",
-      y_twitter : twitter__coordinates[1] +"px",
-      x_instagram : instagram_coordinates[0] +"px",
-      y_instagram : instagram_coordinates[1] +"px",
+      stats_linkedin : "0",
+      stats_facebook : "0",
+      stats_twitter : "0",
+      stats_instagram : "0",
+      linkedin_percent : 0,
+      facebook_percent : 0,
+      twitter_percent : 0,
+      instagram_percent : 0,
+      x_linkedin : "0px",
+      y_linkedin : "0px",
+      x_facebook : "0px",
+      y_facebook : "0px",
+      x_twitter : "0px",
+      y_twitter : "0px",
+      x_instagram : "0px",
+      y_instagram : "0px",
       total: 200,
       current: 10,
       perPage: 10,
@@ -750,10 +716,10 @@ export default {
             value: null,
             grow: null,
           },
-          facebook_data: null,
-          twitter_data: null,
-          instagram_data: null,
-          linkedin_data: null,
+          linkedin_data: null,//17000
+          facebook_data: null,//37000
+          twitter_data: null, //10000
+          instagram_data: null, //8000
           stats: null,
           objectID: "",
           comments: [],
@@ -766,36 +732,37 @@ export default {
         {
           label: "LINKEDIN",
           title: "LINKEDIN",
-          value: linkedin_percent,
+          value: 0,
           color: "#73eabc",
-          stats: compute_label(linkedin),
+          stats: "LINKEDIN : 0",
         },
         {
           label: "FACEBOOK",
           title: "FACEBOOK",
-          value: facebook_percent,
+          value: 0,
           color: "#FF00E5",
-          stats: compute_label(facebook),
+          stats: "FACEBOOK : 0",
         },
         {
           label: "TWITTER",
           title: "TWITTER",
-          value: twitter_percent,
+          value: 0,
           color: "#267EC3",
-          stats: compute_label(twitter),
+          stats: "TWITTER : 0",
         },
         {
           label: "INSTAGRAM",
           title: "INSTAGRAM",
-          value: instagram_percent,
+          value: 0,
           color: "#ffdc34",
-          stats: compute_label(instagram),
+          stats: "INSTAGRAM : 0",
         },
       ],
     };
   },
   mounted() {
     this.fetch();
+    this.computeLinkRate();
     this.verifyLinkData();
   },
   methods: {
@@ -849,6 +816,95 @@ export default {
         .catch((error) => {});
     },
     //Donut
+    compute_label (num) {
+        if (num >= 1000000000) {
+            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
+        }
+        else if (num >= 10000000) {
+            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        return num;
+    },
+    convert_deg_rad(value) {
+      var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
+      var x = 160*Math.cos(deg_rad) - 35;
+      var y = 160 - 160*Math.sin(deg_rad) +15;
+      return [x,y];
+    },
+    computeLinkRate(){
+      var linkedin = this.data._source.linkedin_data; //17000
+      var facebook = this.data._source.facebook_data; //37000
+      var twitter = this.data._source.twitter_data; //10000
+      var instagram = this.data._source.instagram_data; //8000
+      var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
+      var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
+      if((linkedin==0 || linkedin ==null) && (facebook==0 || facebook ==null) && 
+          (twitter==0 || twitter ==null) && (instagram==0 || instagram ==null)){
+        linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
+        linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
+      }
+      else{
+        var stats = [linkedin, facebook, twitter, instagram];
+        var total = stats.reduce((acc, cur) => acc + cur, 0);
+        var linkedin_percent = (linkedin * 100) / total;
+        var facebook_percent = (facebook * 100) / total;
+        var twitter_percent = (twitter * 100) / total;
+        var instagram_percent = (instagram * 100) / total;
+        // Coordinates 
+        linkedin_coordinates= this.convert_deg_rad(linkedin_percent);
+        facebook_coordinates= this.convert_deg_rad((linkedin_percent*2)+facebook_percent);
+        twitter__coordinates= this.convert_deg_rad(((linkedin_percent+facebook_percent)*2)+twitter_percent);
+        instagram_coordinates= this.convert_deg_rad(((linkedin_percent+facebook_percent+twitter_percent)*2)+instagram_percent);
+        // Affect each x-axis y-axis
+        this.x_linkedin = linkedin_coordinates[0] +"px";
+        this.y_linkedin = linkedin_coordinates[1] +"px";
+        this.x_facebook = facebook_coordinates[0] +"px";
+        this.y_facebook = facebook_coordinates[1] +"px";
+        this.x_twitter = twitter__coordinates[0] +"px";
+        this.y_twitter = twitter__coordinates[1] +"px";
+        this.x_instagram = instagram_coordinates[0] +"px";
+        this.y_instagram = instagram_coordinates[1] +"px";
+        //Compute again donut value
+        this.sections = [
+          {
+            label: "LINKEDIN",
+            title: "LINKEDIN",
+            value: linkedin_percent,
+            color: "#73eabc",
+            stats: this.compute_label(linkedin),
+          },
+          {
+            label: "FACEBOOK",
+            title: "FACEBOOK",
+            value: facebook_percent,
+            color: "#FF00E5",
+            stats: this.compute_label(facebook),
+          },
+          {
+            label: "TWITTER",
+            title: "TWITTER",
+            value: twitter_percent,
+            color: "#267EC3",
+            stats: this.compute_label(twitter),
+          },
+          {
+            label: "INSTAGRAM",
+            title: "INSTAGRAM",
+            value: instagram_percent,
+            color: "#ffdc34",
+            stats: this.compute_label(instagram),
+          },
+        ];
+      }
+      this.linkedin_percent = linkedin_percent;
+      this.facebook_percent = facebook_percent;
+      this.twitter_percent = twitter_percent;
+      this.instagram_percent = instagram_percent;
+      this.stats_linkedin = this.compute_label(linkedin);
+      this.stats_facebook = this.compute_label(facebook);
+      this.stats_twitter = this.compute_label(twitter);
+      this.stats_instagram = this.compute_label(instagram);    
+    },
     verifyLinkData(){
       for (let index = 0; index < this.sections.length; index++) {
         const element =  this.sections[index];
