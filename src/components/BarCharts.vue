@@ -49,7 +49,7 @@ export default {
           // },
           // {
           //   date : 2021,
-          //   amount : 200000
+          //   amount : 600000
           // },
         ];
       }
@@ -112,6 +112,17 @@ export default {
 @import "../variables.scss";
 $graduate_height:50px;
 //Chart design
+
+.capital_social figure{
+  @media screen and (max-width: 339px) {
+    margin: 20px !important;
+  }
+}
+.financial_informations ul.pl-5.mt-2.bars {
+  @media screen and (max-width: 555px)  {
+    padding: 0 !important;
+  }
+}
 .financial_informations .bars{
   position: relative;
 }
@@ -131,6 +142,9 @@ $graduate_height:50px;
 }
 .financial_informations .bar_column li::after {
   width: 90%;
+  @media screen and (max-width: 817px)  {
+    width: 80%;
+  }
 }
 .financial_informations .bar_column li:first-child::after {
   border-style: solid;
@@ -141,6 +155,12 @@ $graduate_height:50px;
   position: absolute;
   top: 18px;
   right: 3rem;
+  @media screen and (max-width: 817px)  {
+    right: 1rem;
+  }
+  @media screen and (max-width: 555px)  {
+    width: calc(90% - 4rem);
+  }
   height: calc(100% - 25px);
 }
 .financial_informations .bar_contents ul{
@@ -158,6 +178,9 @@ $graduate_height:50px;
 .financial_informations .bar_contents li span.graduation_x{
   bottom: -30px;
   position: absolute;
+  @media screen and (max-width: 471px){
+    transform: rotate(46deg);
+  }
 }
 .financial_informations .bar_contents li span.graduation_x_value{
   background: white;

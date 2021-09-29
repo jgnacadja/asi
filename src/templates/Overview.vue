@@ -338,7 +338,7 @@
                   </figure>
                 </h3>
                 <ul class="pt-5 is-size-7">
-                  <li class="columns is-justify-content-space-between">
+                  <li class="is-flex columns is-justify-content-space-between">
                     <div class="column">Date de création</div>
                     <div class="column has-text-right">
                       <strong>
@@ -347,14 +347,14 @@
                       </strong>
                     </div>
                   </li>
-                  <li class="columns is-justify-content-space-between">
+                  <li class="is-flex columns is-justify-content-space-between">
                     <div class="column">Siège social</div>
                     <div class="column has-text-right">
                       <span v-if="data._source.address">{{data._source.address}}</span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
                   </li>
-                  <li class="columns is-justify-content-space-between">
+                  <li class="is-flex columns is-justify-content-space-between">
                     <div class="column">Email</div>
                     <div class="column has-text-right">
                       <strong>
@@ -367,7 +367,7 @@
                       </strong>
                     </div>
                   </li>
-                  <li class="columns is-justify-content-space-between">
+                  <li class="is-flex columns is-justify-content-space-between">
                     <div class="column">Site web</div>
                     <div class="column has-text-right">
                       <strong>
@@ -521,7 +521,7 @@
                       <span v-else>{{ notAvailable }}</span>
                     </div>
                   </li>
-                  <li class="columns is-align-items-center mt-2 mx-6">
+                  <li class="is-flex columns is-align-items-center mt-2 mx-6">
                     <div class="column">
                       <span class="instagram"></span> INSTAGRAM
                     </div>
@@ -547,9 +547,9 @@
                   <figcaption class="has-text-weight-normal"> Performance financière</figcaption>
                 </figure>
               </h3>
-              <span class="is-flex is-justify-content-space-between">
+              <span class="is-flex is-flex-wrap-wrap is-justify-content-space-between is-align-items-center">
                 Capital social
-                <strong class="is-size-5 has-text-weight-bold">
+                <strong class="is-size-5 has-text-weight-bold pl-1">
                   <span v-if="data._source.share_capital">{{data._source.share_capital}}
                   </span>
                   <span v-else> 0 </span>
@@ -946,6 +946,11 @@ export default {
 @import "~bulma/sass/utilities/mixins";
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
+.overview_page{
+  @media (max-width: 1024px) {
+    overflow-x: hidden;
+  }
+}
 @mixin linearLinkedIn {
   background: linear-gradient(#76fac7, #00d5d9);
 }
@@ -1220,11 +1225,6 @@ $color_orange: #ff9b26;
   background: gray;
   height: 7px;
 }
-.e_reputation header figure {
-  @media screen and (max-width: 366px) {
-    flex-direction: column-reverse;
-  }
-}
 .e_reputation figure .statistic_donut ul {
   position: relative;
   // margin-top: -60px;
@@ -1311,6 +1311,16 @@ input:checked + .slider:before {
   @include touch {
     height: 400px;
   }
+  @media screen and (max-width: 420px)  {
+    height: 300px !important;
+  }
+  @media screen and (max-width: 413px)  {
+    height: 350px !important;
+    padding-top: 0 !important;
+  }
+  @media screen and (max-width: 346px)  {
+    height: 300px !important;
+  }
 }
 .charts .rate_percent {
   color: $color_orange;
@@ -1318,6 +1328,9 @@ input:checked + .slider:before {
 // Report social network
 .e_reputation,.report_social_network li {
   position: relative;
+  @media screen and (max-width: 467px)  {
+    margin:0 !important;
+  }
 }
 .report_social_network {
   @include desktop {
@@ -1364,6 +1377,13 @@ input:checked + .slider:before {
 .financial_informations .capital_social {
   color: white;
   background: linear-gradient(#3a416f, #141727);
+  @media (max-width: 510px){
+    padding: 1.5rem 0 !important;
+  }
+  @media (max-width: 331px) {
+    margin-left: -1.5rem;
+    width: calc(100% + (1.5rem*2));
+  }
 }
 .financial_informations .legende {
   width: 100%;

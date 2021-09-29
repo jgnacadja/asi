@@ -17,6 +17,24 @@ body{
 .charts .cdc-legend{
     display: none;
 }
+.cdc{
+    @media (max-width: 600px) {
+      width: 350px !important;
+      padding-bottom: 350px !important;
+    }
+    @media (max-width: 474px) {
+      width: 300px !important;
+      padding-bottom: 300px !important;
+    }
+    @media (max-width: 419px) and (min-width: 414px) {
+      width: 250px !important;
+      padding-bottom: 250px !important;
+    }
+    @media (max-width: 346px){
+      width: 250px !important;
+      padding-bottom: 250px !important;
+    }
+  }
 // formattage slide
 .vueperslides--touchable{
     display: none;
