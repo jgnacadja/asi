@@ -12,15 +12,8 @@
       <div class="column is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth">
         <div style="height: 100%">
           <p class="control is-expanded mobile-input" style="height: 100%">
-            <input
-              id="search"
-              class="input rm-raduis-input is-borderless"
-              type="search"
-              placeholder="Accéder à une startup"
-              v-model="query"
-              autocomplete="off"
-              style="height: 100%"
-            />
+            <input id="search" type="search" placeholder="Accéder à une startup" autocomplete="off" 
+                    v-model="query" style="height: 100%" class="input rm-raduis-input is-borderless"/>
           </p>
         </div>
       </div>
@@ -50,14 +43,7 @@
               </li>
               <li v-for="hit in results" :key="hit._source.objectID" class="custom-hr-top"  v-else>
                 <g-link :to="`/overview/${parseUri(hit._source.objectID)}`">
-                  <div
-                    class="
-                      columns
-                      post-item
-                      is-marginless is-paddingless is-mobile
-                      has-text-black
-                    "
-                  >
+                  <div class="columns post-item is-marginless is-paddingless is-mobile has-text-black">
                     <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
@@ -65,35 +51,14 @@
                                 fit="inside"
                               />
                             </div> -->
-                    <div
-                      class="
-                        column
-                        is-10-tablet is-12-mobile
-                        has-text-left has-text-weight-bold
-                        is-size-7-mobile
-                      "
-                    >
+                    <div class="column is-10-tablet is-12-mobile has-text-left has-text-weight-bold is-size-7-mobile">
                       {{ hit._source.name }}
-
                       <br />
-                      <small
-                        class="
-                          post-author
-                          has-text-primary
-                          is-size-7-mobile
-                          has-text-weight-light
-                        "
-                        v-if="hit._source.market !== 'Indefini'"
-                      >
+                      <small class="post-author has-text-primary is-size-7-mobile has-text-weight-light"
+                        v-if="hit._source.market !== 'Indefini'">
                         {{ hit._source.market }}
                       </small>
-                      <small
-                        class="
-                          post-location
-                          is-size-7-mobile
-                          has-text-weight-light
-                        "
-                      >
+                      <small class="post-location is-size-7-mobile has-text-weight-light">
                         <b-icon pack="fa" icon="map-marker" size="is-small" />
                         {{ hit._source.startup_country }}
                       </small>
@@ -156,11 +121,11 @@
           </div>
         </div>
       </smooth-scrollbar> 
-    </div> 
       <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7 not_hope	">
         Ce n'est pas les résultats que vous attendiez ? &nbsp;
         <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
       </p>
+    </div> 
   </div>
 </template>
 
