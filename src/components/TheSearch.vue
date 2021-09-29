@@ -64,7 +64,6 @@
                       </small>
                       <!-- <hr> -->
                     </div>
-
                     <!-- <div class="column is-2-tablet is-4-mobile">
                       <div
                         class="
@@ -121,11 +120,14 @@
           </div>
         </div>
       </smooth-scrollbar> 
-      <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7 not_hope	">
+      <p v-if="query.length > 2 && direct !== false" 
+        class="is-flex is-flex-wrap-wrap is-align-items-flex-end is-justify-content-right is-size-7 not_hope_contents">
         Ce n'est pas les résultats que vous attendiez ? &nbsp;
         <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
       </p>
     </div> 
+    <p v-if="query.length > 2 && direct !== false" class="not_hope">
+    </p>
   </div>
 </template>
 
@@ -270,22 +272,18 @@ export default {
 li {
   list-style-type: none;
 }
-
 .result {
   padding-top: 1rem;
   border-top: 1px solid #dedede;
 }
-
 .custom-size {
   width: 12%;
 }
-
 @media screen and (min-width: 1024px) {
   .result {
     margin-right: 1rem;
   }
 }
-
 @media screen and (max-width: 767px) {
   .custom-size-mobile {
     font-size: 0.5rem;
@@ -295,7 +293,6 @@ li {
     width: 25% !important;
   }
 }
-
 .select {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
@@ -328,89 +325,78 @@ li {
   -webkit-transition: 0.5s; /* For Safari 3.1 to 6.0 */
   transition: 0.5s;
 }
-
 .select:hover {
   background: #f5f5f5;
 }
-
-.select::after,
-.select::before {
+.select::after,.select::before {
   color: red !important;
   border-color: #485fc7 !important;
 }
-
 .rm-raduis-select {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
-
 .rm-raduis-input {
   border-radius: 0px;
 }
-
 .is-borderless {
   border: transparent;
   box-shadow: none;
 }
-
 .rm-raduis-search {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
   background: #ff9b26;
 }
-
 .post-vote {
   margin-top: -1rem;
 }
-
 @media (max-width: 768px) {
   .post-vote {
     margin-top: 0rem;
   }
-
   .custom-hr {
     border-bottom: 1px solid #c4c4c4;
     margin-bottom: 1rem;
   }
-
   .custom-hr-top {
     margin-top: -1rem;
   }
-
   .custom-hr-bottom {
     margin-bottom: -1.2rem;
   }
 }
-
 .custom-hr {
   border-bottom: 1px solid #c4c4c4;
   margin-bottom: 1rem;
 }
-
-.is-paddingless,
-.is-marginless {
+.is-paddingless,.is-marginless {
   padding: 0 !important;
 }
-
 .is-fullwidth {
   width: 100%;
 }
-
 @media (max-width: 768px) {
   .mobile-input {
     margin-left: 0.6rem;
   }
 }
-
 p input::placeholder {
   font-style: italic;
+}
+.box-result {
+  padding-bottom: 20px;
+}
+.not_hope_contents {
+  margin-bottom: -35px;
 }
 .not_hope{
   background: $lighter;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   margin: 0 0 -1.25rem -1.25rem;
-  padding: 10px;
+  height: 50px;
+  padding: 10px 1.25rem 10px 1.25rem;
   width: calc(100% + (1.25rem * 2));
 }
 </style>
