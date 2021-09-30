@@ -610,6 +610,9 @@
               </g-link>
             </li>
           </ul>
+          <p class="mt-5 is-flex is-flex-wrap-wrap is-align-items-flex-end is-justify-content-right is-size-7 ">
+            <g-link class="has-text-black has-text-link" to="/issue/">Faire une suggestion</g-link>
+          </p>
         </footer>
       </section>
     </section>
