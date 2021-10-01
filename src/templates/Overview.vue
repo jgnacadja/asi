@@ -816,7 +816,7 @@ export default {
         .then((response) => {
           this.results = response.data.hits.hits;
         })
-        .catch((error) => {});
+        .catch((error) => {console.log(error)});
     },
     //Donut
     compute_label (num) {
@@ -841,18 +841,16 @@ export default {
       var instagram = this.data._source.instagram_data; //8000
       var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
       var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
-      if((linkedin==0 || linkedin ==null) && (facebook==0 || facebook ==null) && 
-          (twitter==0 || twitter ==null) && (instagram==0 || instagram ==null)){
-        linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
-        linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
-      }
-      else{
+      linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
+      linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
+      if((linkedin!==0 && linkedin !==null) || (facebook!==0 && facebook !==null) && 
+          (twitter!==0 && twitter !==null) || (instagram!==0 && instagram !==null)){
         var stats = [linkedin, facebook, twitter, instagram];
         var total = stats.reduce((acc, cur) => acc + cur, 0);
-        var linkedin_percent = (linkedin * 100) / total;
-        var facebook_percent = (facebook * 100) / total;
-        var twitter_percent = (twitter * 100) / total;
-        var instagram_percent = (instagram * 100) / total;
+        linkedin_percent = (linkedin * 100) / total;
+        facebook_percent = (facebook * 100) / total;
+        twitter_percent = (twitter * 100) / total;
+        instagram_percent = (instagram * 100) / total;
         // Coordinates 
         linkedin_coordinates= this.convert_deg_rad(linkedin_percent);
         facebook_coordinates= this.convert_deg_rad((linkedin_percent*2)+facebook_percent);
@@ -909,7 +907,7 @@ export default {
       this.stats_instagram = this.compute_label(instagram);    
     },
     verifyLinkData(){
-      for (let index = 0; index < this.sections.length; index++) {
+      for (let index in this.sections) {
         const element =  this.sections[index];
         if(element.value !==0){
           this.link_data_exist = true;
