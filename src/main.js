@@ -12,14 +12,6 @@ import Axios from "axios";
 import Donut from 'vue-css-donut-chart';
 import 'vue-css-donut-chart/dist/vcdonut.css';
 
-// Require Froala Editor js file.
-require('froala-editor/js/froala_editor.pkgd.min.js')
-
-// Require Froala Editor css files.
-require('froala-editor/css/froala_editor.pkgd.min.css')
-require('froala-editor/css/froala_style.min.css')
-// Import and use Vue Froala lib.
-import VueFroala from 'vue-froala-wysiwyg'
 const fontsCss = require("./assets/css/fonts.css");
 
 export default function(Vue, { router, head, isClient }) {
@@ -74,8 +66,5 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(SmoothScrollbar);
   //GRAPHIC
   Vue.use(Donut);
-
-  Vue.use(VueFroala)
-
 
 }

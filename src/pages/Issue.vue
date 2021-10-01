@@ -8,16 +8,14 @@
           <strong>Attention !!!</strong> Nous examinons toutes les modifications. Par conséquent, la mise à jour des résultats de recherche peut prendre un certain temps.
         </p>
         <form class="mt-4 px-3 py-5 modify_request">
-              <froala :tag="'textarea'" :config="config" v-model="model">Init text</froala>
-
         </form>
     </section>
   </Layout>
 </template>
 <script>
-import VueFroala from 'vue-froala-wysiwyg';
+
 export default {
-  components: { VueFroala
+  components: {
   },
   metaInfo: {
     title: "Suggérer une modification",
@@ -28,14 +26,6 @@ export default {
       },
     ],
   },
-  data () {
-    return {
-      config: {
-        placeholderText: 'Edit Your Content Here!',
-      },
-      model: 'Edit Your Content Here!'
-    }
-  }
 };
 </script>
 <style lang="scss">
@@ -43,12 +33,6 @@ export default {
 @import "~bulma/sass/utilities/initial-variables";
 @import "~bulma/sass/utilities/derived-variables";
 @import "~bulma/sass/utilities/mixins";
-a#fr-logo {
-    display: none;
-}
-.fr-box.fr-basic .fr-element{
-  height: 50vh;
-}
 .modify_request {
      border: 1px solid gray;
 }
