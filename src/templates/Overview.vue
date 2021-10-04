@@ -358,10 +358,10 @@
                     <div class="column">Email</div>
                     <div class="column has-text-right">
                       <strong>
-                        <span v-if="data._source.email"
-                          ><a :href="'mailto:' + data._source.email" class="has-text-black">
+                        <span v-if="data._source.email">
+                          <a :href="'mailto:' + data._source.email" class="has-text-black">
                             {{ data._source.email }}
-                            </a>
+                          </a>
                         </span>
                         <span v-else>{{ notAvailable }}</span>
                       </strong>
@@ -947,6 +947,10 @@ export default {
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
 .overview_page{
+  @media (min-width: 1024px){
+    width: 80vw;
+    margin: auto;
+  }
   @media (max-width: 1024px) {
     overflow-x: hidden;
   }
