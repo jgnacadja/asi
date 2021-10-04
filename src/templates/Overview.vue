@@ -423,7 +423,7 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else class="mt-5 mb-6 no_comment">Aucun commentaire</section>
+                <section v-else class="mt-5 mb-6 no_comment">Aucun commentaire disponible</section>
               </article>
             </section>
             <section class="card contents_group e_reputation mt-5 p-5">
@@ -575,7 +575,7 @@
                   <span v-if="data._source.net_result && data._source.net_result.total">
                     {{ data._source.net_result.total }}
                   </span>
-                  <span v-else> 0 </span>
+                  <span v-else> 0 FCFA</span>
                 </span>
               </figcaption>
             </article>
@@ -610,9 +610,6 @@
               </g-link>
             </li>
           </ul>
-          <p class="mt-5 is-flex is-flex-wrap-wrap is-align-items-flex-end is-justify-content-right is-size-7 ">
-            <g-link class="has-text-black has-text-link" to="/issue/">Faire une suggestion</g-link>
-          </p>
         </footer>
       </section>
     </section>
