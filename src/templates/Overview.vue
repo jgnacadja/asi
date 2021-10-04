@@ -614,6 +614,9 @@
           </ul>
         </footer>
       </section>
+      <footer class="share_options">
+        <img src="../assets/social_networks/share.svg" title="Informations générales" alt="" />
+      </footer>
     </section>
   </Layout>
 </template>
@@ -947,6 +950,7 @@ export default {
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
 .overview_page{
+  padding-bottom: 50px;
   @media (min-width: 1024px){
     width: 80vw;
     margin: auto;
@@ -1419,5 +1423,14 @@ input:checked + .slider:before {
 }
 .see_more ul li figure:hover {
   background: #f5fbff;
+}
+.share_options{
+  position: fixed;
+  bottom: 40px;
+  right: 0;
+  width: 150px;
+  @media (min-width: 1024px){
+    right: 9vw;
+  }
 }
 </style>
