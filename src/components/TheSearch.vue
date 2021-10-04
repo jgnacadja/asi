@@ -4,31 +4,16 @@
       <div class="is-hidden-mobile column is-3 is-marginless is-paddingless">
         <select class="select rm-raduis-select is-fullwidth" v-model="category">
           <option style="padding: 5px 0" value="">Tous les domaines</option>
-          <option
-            style="padding: 5px 0"
-            v-for="item in categories.slice(1)"
-            :key="item.key"
-          >
+          <option style="padding: 5px 0" v-for="item in categories.slice(1)" :key="item.key">
             {{ item.key }}
           </option>
         </select>
       </div>
-      <div
-        class="
-          column
-          is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth
-        "
-      >
-        <div>
-          <p class="control is-expanded mobile-input">
-            <input
-              id="search"
-              class="input rm-raduis-input is-borderless"
-              type="search"
-              placeholder="Accéder à une startup"
-              v-model="query"
-              autocomplete="off"
-            />
+      <div class="column is-12-mobile is-9-touch is-marginless is-paddingless is-fullwidth">
+        <div style="height: 100%">
+          <p class="control is-expanded mobile-input" style="height: 100%">
+            <input id="search" type="search" placeholder="Accéder à une startup" autocomplete="off" 
+                    v-model="query" style="height: 100%" class="input rm-raduis-input is-borderless"/>
           </p>
         </div>
       </div>
@@ -44,45 +29,21 @@
           </span>
         </p> -->
     </form>
-    <div v-if="query.length > 2" class="result">
+    <div v-if="query.length > 2 && direct !== false" class="result">
       <smooth-scrollbar class="box-result">
         <div class="is-box">
-          <div
-            class="hits"
-            v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''"
-          >
+          <div class="hits" v-bind:style="results.length === 0 ? 'height:3.2rem;' : ''">
             <div v-if="loading">
               <b-loading :is-full-page="false" v-model="loading"></b-loading>
             </div>
-
             <ul v-else>
-              <li
-                v-if="
-                  results.length === 0 &&
-                  query.length > 2 &&
-                  !loading &&
-                  !awaitingSearch
-                "
-                class="column"
-                style="text-align: center !important"
-              >
+              <li v-if="results.length === 0 && query.length > 2 && !loading &&!awaitingSearch"
+                class="column" style="text-align: center !important">
                 <em>Aucun résultat...</em>
               </li>
-              <li
-                v-for="hit in results"
-                :key="hit._source.objectID"
-                class="custom-hr-top"
-                v-else
-              >
-                <g-link :to="parseUri(hit._source.objectID)">
-                  <div
-                    class="
-                      columns
-                      post-item
-                      is-marginless is-paddingless is-mobile
-                      has-text-black
-                    "
-                  >
+              <li v-for="hit in results" :key="hit._source.objectID" class="custom-hr-top"  v-else>
+                <g-link :to="`/overview/${parseUri(hit._source.objectID)}`">
+                  <div class="columns post-item is-marginless is-paddingless is-mobile has-text-black">
                     <!-- <div class="column is-2 post-cover">
                               <g-image
                                 class="post-coverImage"
@@ -90,41 +51,19 @@
                                 fit="inside"
                               />
                             </div> -->
-                    <div
-                      class="
-                        column
-                        is-10-tablet is-12-mobile
-                        has-text-left has-text-weight-bold
-                        is-size-7-mobile
-                      "
-                    >
+                    <div class="column is-10-tablet is-12-mobile has-text-left has-text-weight-bold is-size-7-mobile">
                       {{ hit._source.name }}
-
                       <br />
-                      <small
-                        class="
-                          post-author
-                          has-text-primary
-                          is-size-7-mobile
-                          has-text-weight-light
-                        "
-                        v-if="hit._source.market !== 'Indefini'"
-                      >
+                      <small class="post-author has-text-primary is-size-7-mobile has-text-weight-light"
+                        v-if="hit._source.market !== 'Indefini'">
                         {{ hit._source.market }}
                       </small>
-                      <small
-                        class="
-                          post-location
-                          is-size-7-mobile
-                          has-text-weight-light
-                        "
-                      >
+                      <small class="post-location is-size-7-mobile has-text-weight-light">
                         <b-icon pack="fa" icon="map-marker" size="is-small" />
                         {{ hit._source.startup_country }}
                       </small>
                       <!-- <hr> -->
                     </div>
-
                     <!-- <div class="column is-2-tablet is-4-mobile">
                       <div
                         class="
@@ -180,22 +119,37 @@
             </ul>
           </div>
         </div>
-      </smooth-scrollbar>
-    </div>
+      </smooth-scrollbar> 
+      <p v-if="query.length > 2 && direct !== false" 
+        class="is-flex is-flex-wrap-wrap is-align-items-flex-end is-justify-content-right is-size-7 not_hope_contents">
+        Ce n'est pas les résultats que vous attendiez ? &nbsp;
+        <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
+      </p>
+    </div> 
+    <p v-if="query.length > 2 && direct !== false" class="not_hope">
+    </p>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    query: {
+      type: String,
+      default: "",
+    },
+    direct: {
+      type: String,
+      default: true,
+    },
+  },
   data() {
     return {
-      baseUrl: "https://asi.dev.rintio.com/detail/",
       elasticsearch: {
         API: "https://elasticsearch.dev.rintio.com",
         INDEX: "asi",
       },
       attribute: "market.keyword",
-      query: "",
       category: "",
       categories: [],
       results: [],
@@ -209,7 +163,7 @@ export default {
   methods: {
     parseUri(objectId) {
       const parseId = escape(objectId);
-      return `${this.baseUrl}${parseId}`;
+      return parseId;
     },
     // make an axios request to the server with the current search query
     search() {
@@ -292,6 +246,7 @@ export default {
     // watch for change in the query string and recall the search method
     query: function () {
       if (!this.awaitingSearch) {
+        this.direct = true;
         setTimeout(() => {
           if (this.query.length > 2) this.search();
           this.awaitingSearch = false;
@@ -317,22 +272,18 @@ export default {
 li {
   list-style-type: none;
 }
-
 .result {
   padding-top: 1rem;
   border-top: 1px solid #dedede;
 }
-
 .custom-size {
   width: 12%;
 }
-
 @media screen and (min-width: 1024px) {
   .result {
     margin-right: 1rem;
   }
 }
-
 @media screen and (max-width: 767px) {
   .custom-size-mobile {
     font-size: 0.5rem;
@@ -342,7 +293,6 @@ li {
     width: 25% !important;
   }
 }
-
 .select {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
@@ -375,82 +325,79 @@ li {
   -webkit-transition: 0.5s; /* For Safari 3.1 to 6.0 */
   transition: 0.5s;
 }
-
 .select:hover {
   background: #f5f5f5;
 }
-
-.select::after,
-.select::before {
+.select::after,.select::before {
   color: red !important;
   border-color: #485fc7 !important;
 }
-
 .rm-raduis-select {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
-
 .rm-raduis-input {
   border-radius: 0px;
 }
-
 .is-borderless {
   border: transparent;
   box-shadow: none;
 }
-
 .rm-raduis-search {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
   background: #ff9b26;
 }
-
 .post-vote {
   margin-top: -1rem;
 }
-
 @media (max-width: 768px) {
   .post-vote {
     margin-top: 0rem;
   }
-
   .custom-hr {
     border-bottom: 1px solid #c4c4c4;
     margin-bottom: 1rem;
   }
-
   .custom-hr-top {
     margin-top: -1rem;
   }
-
   .custom-hr-bottom {
     margin-bottom: -1.2rem;
   }
 }
-
 .custom-hr {
   border-bottom: 1px solid #c4c4c4;
   margin-bottom: 1rem;
 }
-
-.is-paddingless,
-.is-marginless {
+.is-paddingless,.is-marginless {
   padding: 0 !important;
 }
-
 .is-fullwidth {
   width: 100%;
 }
-
 @media (max-width: 768px) {
   .mobile-input {
     margin-left: 0.6rem;
   }
 }
-
 p input::placeholder {
   font-style: italic;
+}
+.box-result {
+  padding-bottom: 20px;
+}
+.not_hope_contents {
+  margin-bottom: -35px;
+}
+.not_hope{
+  background: $lighter;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin: 0 0 -1.25rem -1.25rem;
+  height: 50px;
+  padding: 10px 1.25rem 10px 1.25rem;
+  width: calc(100% + (1.25rem * 2));
 }
 </style>
 
