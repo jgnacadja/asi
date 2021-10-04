@@ -423,7 +423,9 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else class="mt-5 mb-6 no_comment">Aucun commentaire disponible</section>
+                <section v-else class="mt-5 mb-6 no_comment has-background-grey-light is-italic" >
+                  Aucun commentaire disponible
+                </section>
               </article>
             </section>
             <section class="card contents_group e_reputation mt-5 p-5">
