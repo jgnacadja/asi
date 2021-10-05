@@ -495,8 +495,8 @@
                       <span class="linkedin"></span> LINKEDIN
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.linkedin_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.linkedin_data }}
+                      <span v-if="data._source.linkedin_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.linkedin_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -506,8 +506,8 @@
                       <span class="facebook"></span> FACEBOOK
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.facebook_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.facebook_data }}
+                      <span v-if="data._source.facebook_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.facebook_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -517,8 +517,8 @@
                       <span class="twitter"></span> TWITTER
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.twitter_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.twitter_data }}
+                      <span v-if="data._source.twitter_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.twitter_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -528,8 +528,8 @@
                       <span class="instagram"></span> INSTAGRAM
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.instagram_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.instagram_data }}
+                      <span v-if="data._source.instagram_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.instagram_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -615,7 +615,7 @@
         </footer>
       </section>
       <footer class="share_options">
-        <img src="../assets/social_networks/share.svg" title="Informations générales" alt="" />
+        <img src="../assets/social_networks/share.svg" title="Liens de partage" alt="" />
       </footer>
     </section>
   </Layout>
@@ -721,10 +721,10 @@ export default {
             value: null,
             grow: null,
           },
-          linkedin_data: null,//17000
-          facebook_data: null,//37000
-          twitter_data: null, //10000
-          instagram_data: null, //8000
+          linkedin_data: {},//17000
+          facebook_data: {},//37000
+          twitter_data: {}, //10000
+          instagram_data: {}, //8000
           stats: null,
           objectID: "",
           comments: [],
@@ -767,8 +767,6 @@ export default {
   },
   mounted() {
     this.fetch();
-    this.computeLinkRate();
-    this.verifyLinkData();
   },
   methods: {
     parseUri(objectId) {
@@ -788,6 +786,8 @@ export default {
           this.loading = false;
           this.data = response.data;
           this.fetchAlternatives();
+          this.computeLinkRate();
+          this.verifyLinkData();
         })
         .catch((error) => {
           this.loading = false;
@@ -825,9 +825,14 @@ export default {
         if (num >= 1000000000) {
             return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
         }
-        else if (num >= 10000000) {
-            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
-        }
+        else {
+          if (num >= 10000000) {
+              return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
+          }
+          else if (num >= 1000) {
+              return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+          }
+        } 
         return num;
     },
     convert_deg_rad(value) {
@@ -837,15 +842,15 @@ export default {
       return [x,y];
     },
     computeLinkRate(){
-      var linkedin = this.data._source.linkedin_data; //17000
-      var facebook = this.data._source.facebook_data; //37000
-      var twitter = this.data._source.twitter_data; //10000
-      var instagram = this.data._source.instagram_data; //8000
+      var linkedin = this.data._source.linkedin_data.followers ; //17000
+      var facebook = this.data._source.facebook_data.followers; //37000
+      var twitter = this.data._source.twitter_data.followers; //10000
+      var instagram = this.data._source.instagram_data.followers; //8000
       var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
       var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
       linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
       linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
-      if((linkedin!==0 && linkedin !==null) || (facebook!==0 && facebook !==null) && 
+      if((linkedin!==0 && linkedin !==null) || (facebook!==0 && facebook !==null) || 
           (twitter!==0 && twitter !==null) || (instagram!==0 && instagram !==null)){
         var stats = [linkedin, facebook, twitter, instagram];
         var total = stats.reduce((acc, cur) => acc + cur, 0);
@@ -924,7 +929,7 @@ export default {
       console.log(`${section.label} clicked.`);
     },
     handleSectionMouseOver(section, event) {
-      section.label = section.title + " (" + section.value + ")";
+      section.label = section.title + " (" + section.stats + ")";
     },
   },
   filters: {
@@ -1347,9 +1352,12 @@ input:checked + .slider:before {
     bottom: 0;
   }
 }
+.report_social_network li div{
+  position: relative;
+}
 .report_social_network .rate {
   right: 0;
-  top: 0;
+  bottom: 0;
   position: absolute;
   color: $color_orange;
 }
