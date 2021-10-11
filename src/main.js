@@ -11,7 +11,7 @@ import SmoothScrollbar from "vue-smooth-scrollbar";
 import Axios from "axios";
 import Donut from 'vue-css-donut-chart';
 import 'vue-css-donut-chart/dist/vcdonut.css';
-
+import VueSocialSharing from 'vue-social-sharing';
 const fontsCss = require("./assets/css/fonts.css");
 
 export default function(Vue, { router, head, isClient }) {
@@ -66,5 +66,6 @@ export default function(Vue, { router, head, isClient }) {
   Vue.use(SmoothScrollbar);
   //GRAPHIC
   Vue.use(Donut);
+  Vue.use(VueSocialSharing);
 
 }

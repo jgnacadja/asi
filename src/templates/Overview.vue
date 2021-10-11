@@ -614,8 +614,40 @@
           </ul>
         </footer>
       </section>
-      <footer class="share_options">
-        <img src="../assets/social_networks/share.svg" title="Liens de partage" alt="" />
+      <footer class="share_options" >
+        <ul class="list_options p-2 " :class="share_open ?'d-block' :'d-none'">
+          <li >
+            <ShareNetwork
+                network="LinkedIn"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market"
+              > <span class="has-text-black">LinkedIn</span>
+            </ShareNetwork>
+          </li>
+          <li>
+            <ShareNetwork
+                network="facebook"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market"
+              ><span class="has-text-black">Facebook</span>
+            </ShareNetwork>
+          </li>
+          <li>
+            <ShareNetwork
+                network="Twitter"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market"
+              ><span class="has-text-black">Twitter</span>
+            </ShareNetwork>
+          </li>
+        </ul>
+        <img src="../assets/social_networks/share.svg" title="Liens de partage" alt="" @click="openCloseShareOption"/>
       </footer>
     </section>
   </Layout>
@@ -640,6 +672,8 @@ export default {
   components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
     return {
+      share_open: false,
+      url: "",
       stats_linkedin : "0",
       stats_facebook : "0",
       stats_twitter : "0",
@@ -931,6 +965,10 @@ export default {
     handleSectionMouseOver(section, event) {
       section.label = section.title + " (" + section.stats + ")";
     },
+    openCloseShareOption(){
+      this.share_open = !this.share_open
+      this.url = window.location.href
+    }
   },
   filters: {
     // Filter definitions
@@ -1440,5 +1478,8 @@ input:checked + .slider:before {
   @media (min-width: 1024px){
     right: 9vw;
   }
+}
+.share_options .list_options{
+  background: wheat;
 }
 </style>
