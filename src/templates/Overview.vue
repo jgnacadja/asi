@@ -615,15 +615,17 @@
         </footer>
       </section>
       <footer class="share_options" >
-        <ul class="list_options p-2 " :class="share_open ?'d-block' :'d-none'">
+        <ul class="has-text-centered is-size-4	p-2" :class="share_open ?'d-block' :'d-none'">
           <li >
             <ShareNetwork
                 network="LinkedIn"
                 :url="url"
                 :title="data._source.name"
                 :description="data._source.goal"
-                :hashtags="data._source.market"
-              > <span class="has-text-black">LinkedIn</span>
+                :hashtags="data._source.market">
+               <span class="icon">
+                <i class="fab fa-linkedin" title="Partager sur LinkedIn"></i>
+              </span>
             </ShareNetwork>
           </li>
           <li>
@@ -632,8 +634,10 @@
                 :url="url"
                 :title="data._source.name"
                 :description="data._source.goal"
-                :hashtags="data._source.market"
-              ><span class="has-text-black">Facebook</span>
+                :hashtags="data._source.market">
+              <span class="icon">
+                <i class="fab fa-facebook" title="Partager sur Facebook"></i>
+              </span>
             </ShareNetwork>
           </li>
           <li>
@@ -642,8 +646,10 @@
                 :url="url"
                 :title="data._source.name"
                 :description="data._source.goal"
-                :hashtags="data._source.market"
-              ><span class="has-text-black">Twitter</span>
+                :hashtags="data._source.market">
+               <span class="icon">
+                <i class="fab fa-twitter" title="Partager sur Twitter"></i>
+              </span>
             </ShareNetwork>
           </li>
         </ul>
@@ -1478,8 +1484,5 @@ input:checked + .slider:before {
   @media (min-width: 1024px){
     right: 9vw;
   }
-}
-.share_options .list_options{
-  background: wheat;
 }
 </style>
