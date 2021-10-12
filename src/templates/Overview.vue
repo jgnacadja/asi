@@ -1501,9 +1501,14 @@ input:checked + .slider:before {
   animation-name: example;
   animation-duration: 0.5s;
 }
-
 @keyframes example {
-  from {transform: translateY(110px)}
-  to {transform: translateY(0)}
+  from  {
+    opacity : 0;
+    bottom : 40px
+  }
+  to    {
+    bottom: 180px;
+    opacity : 1
+  }
 }
 </style>
