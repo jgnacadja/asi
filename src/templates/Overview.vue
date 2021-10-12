@@ -615,7 +615,7 @@
         </footer>
       </section>
       <footer class="share_options" >
-        <ul class="has-text-centered is-size-4	p-2" :class="share_open ?'d-block' :'d-none'">
+        <ul class="has-text-centered is-size-4	p-2" :class="share_open ?'d-block showit' :'d-none'">
           <li >
             <ShareNetwork
                 network="LinkedIn"
@@ -661,6 +661,7 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import BarCharts from "~/components/BarCharts.vue";
+// import SocialNetwork from "~/components/SocialNetwork.vue";
 import "vueperslides/dist/vueperslides.css";
 import moment from "moment";
 import "moment/locale/fr";
@@ -675,6 +676,7 @@ export default {
       },
     ],
   },
+  // components: { VueperSlides, VueperSlide, BarCharts, TheSearch,SocialNetwork },
   components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
     return {
@@ -1484,5 +1486,24 @@ input:checked + .slider:before {
   @media (min-width: 1024px){
     right: 9vw;
   }
+}
+.share_options img{
+  z-index: 1;
+  position: absolute;
+  bottom: 40px;
+}
+.share_options .showit{
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  z-index: 0;
+  bottom: 180px;
+  animation-name: example;
+  animation-duration: 0.5s;
+}
+
+@keyframes example {
+  from {transform: translateY(110px)}
+  to {transform: translateY(0)}
 }
 </style>
