@@ -423,7 +423,7 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else class="mt-5 mb-6 no_comment has-background-grey-light is-italic" >
+                <section v-else class="mt-5 mb-6 p-2 no_comment is-italic" >
                   Aucun commentaire disponible
                 </section>
               </article>
@@ -1214,7 +1214,14 @@ $color_orange: #ff9b26;
   border: none;
 }
 //comments
+.discussions{
+  @include mobile(){
+    margin-bottom: 1.5rem !important;
+  }
+}
 .discussions .no_comment{
+  background: #fafafa;
+  min-height: 10vh;
   @include desktop{
     height: 200px;
   }
