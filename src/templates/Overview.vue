@@ -294,7 +294,7 @@
     </section>
     <section v-else class="overview_page">
       <!-- Search bar -->
-      <header class="container has-text-centered mx-auto">
+      <header class="search_bar_container has-text-centered mx-auto px-6">
         <div class="column is-column is-12-desktop">
           <div class="box is-shadowless is-paddinless-mobile">
             <div class="box field is-grouped">
@@ -656,7 +656,6 @@
             </ShareNetwork>
           </li>
         </ul>
-        
       </footer>
     </section>
   </Layout>
@@ -1137,7 +1136,13 @@ $color_orange: #ff9b26;
   height: 25px;
 }
 //main content
-.main_content {
+.search_bar_container{
+  @include tablet {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+.search_bar_container,.main_content{
   @media screen and (max-width: 413px) {
     padding-left: 10px !important;
     padding-right: 10px !important;
