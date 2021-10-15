@@ -152,10 +152,10 @@
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
-                <label class="switch">
+                <!-- <label class="switch">
                   <input type="checkbox" />
                   <span class="slider round"></span>
-                </label>
+                </label> -->
               </header>
               <figure class="charts mt-4">
                 <p>
@@ -436,10 +436,10 @@
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
-                <label class="switch">
+                <!-- <label class="switch">
                   <input type="checkbox" />
                   <span class="slider round"></span>
-                </label>
+                </label> -->
               </header>
               <figure class="charts is-flex is-flex-direction-column-reverse is-justify-content-center is-align-items-center">
                 <vc-donut 
@@ -615,7 +615,10 @@
         </footer>
       </section>
       <footer class="share_options" >
-        <ul class="has-text-centered is-size-4	p-2" :class="share_open ?'d-block showit' :'d-none'">
+        <span class="icon share_tools is-flex is-justify-content-center is-align-items-center p-4" @click="openCloseShareOption">
+          <i class="fas fa-share-alt has-text-white" title="Liens de partage"></i>
+        </span>
+        <ul class="has-text-right is-size-4 p-2" :class="share_open ?'d-block showit' :'d-none'">
           <li >
             <ShareNetwork
                 network="LinkedIn"
@@ -653,7 +656,7 @@
             </ShareNetwork>
           </li>
         </ul>
-        <img src="../assets/social_networks/share.svg" title="Liens de partage" alt="" @click="openCloseShareOption"/>
+        
       </footer>
     </section>
   </Layout>
@@ -1490,31 +1493,44 @@ input:checked + .slider:before {
   bottom: 40px;
   right: 0;
   width: 150px;
-  @media (min-width: 1024px){
-    right: 9vw;
-  }
 }
-.share_options img{
+.share_options .share_tools{
+  background: orange;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
   z-index: 1;
   position: absolute;
-  bottom: 40px;
+  bottom: -25px;
+  right: 15px;
 }
 .share_options .showit{
   position: absolute;
   width: 150px;
-  text-align: center;
   z-index: 0;
-  bottom: 180px;
+  bottom: 0px;
+  padding-right: 20px !important;
   animation-name: example;
   animation-duration: 0.5s;
+}
+.share_options .showit .icon{
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+.share_options a:hover{
+  color: #485fc7 !important;
+}
+.share_options .icon:hover{
+  transform: scale(1.15);
+  color: #485fc7 !important;
 }
 @keyframes example {
   from  {
     opacity : 0;
-    bottom : 40px
+    bottom : -25px
   }
   to    {
-    bottom: 180px;
+    bottom: 0px;
     opacity : 1
   }
 }
