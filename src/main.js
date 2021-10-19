@@ -36,11 +36,6 @@ export default function(Vue, { router, head, isClient }) {
     href: "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
   });
 
-  // pixel twitter
-  head.script.push({
-    src: "pixel-twitter.js",
-  });
-
   // Import Klaro Cookie Consent
   head.script.push({
     src: "config.js",
@@ -57,9 +52,6 @@ export default function(Vue, { router, head, isClient }) {
 
   // Register VueDisqus
   Vue.use(VueDisqus);
-
-  //http requests via axios
-  Vue.use(Axios);
 
   Vue.use(InfiniteLoading);
 
