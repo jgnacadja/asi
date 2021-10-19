@@ -414,7 +414,13 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else>
+                <section v-else class="comments_no_found is-flex is-align-items-center is-justify-content-center">
+                  <figure class="is-flex  is-flex-direction-column is-align-items-center">
+                    <img src="../assets/data-management 1.png" title="Aucune donnée disponible" alt=""/>
+                    <figcaption class="p-5">Aucune donnée disponible</figcaption>
+                  </figure>
+                </section>
+                <section class="no_comment_sorry d-none">
                   <span class="d-none">Aucun commentaire disponible</span>
                   <ul class="comments_history mt-5">
                     <li class="mb-5">
@@ -1280,8 +1286,18 @@ $color_orange: #ff9b26;
   border: solid 1px #dbdbdb;
   cursor : default;
 }
-.pagination_comments:hover{
-  border-color : #b5b5b5;
+.discussions .comments_no_found{
+  background: rgba(239, 248, 255, 0.6);
+  min-height : 300px;
+  margin-top: 5vh;
+}
+.discussions .no_comment_sorry{
+  position: relative;
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
 }
 .comments_history article {
   background: #eff8ff99;
