@@ -95,51 +95,42 @@
                   <ul class="comments_history mt-5">
                     <li class="mb-5">
                       <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search" />
+                        <figure class="ml-4 mr-2 p-0">
+                          <p class="image is-64x64">
+                            <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                          </p>
                         </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
+                        <aside class="is-size-7">
+                          <strong class="columns column is-one-fifth mb-0">
+                            <b-skeleton :animated="animated"></b-skeleton>
+                          </strong>
+                          <p class="columns column is-four-fifths ">
+                            <b-skeleton :animated="animated" height="30px"></b-skeleton>
+                          </p>
+                        </aside>
                       </article>
                     </li>
                     <li class="mb-5">
                       <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
+                        <figure class="ml-4 mr-2 p-0">
+                          <p class="image is-64x64">
+                            <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                          </p>
                         </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
+                        <aside class="is-size-7">
+                          <strong class="columns column is-one-fifth mb-0">
+                            <b-skeleton :animated="animated"></b-skeleton>
+                          </strong>
+                          <p class="columns column is-four-fifths ">
+                            <b-skeleton :animated="animated" height="30px"></b-skeleton>
+                          </p>
+                        </aside>
                       </article>
                     </li>
                   </ul>
-                  <b-pagination
-                    aria-previous-label="Previous page"
-                    :total="total"
-                    v-model="current"
-                    :range-before="rangeBefore"
-                    :range-after="rangeAfter"
-                    :order="order"
-                    :size="size"
-                    :simple="isSimple"
-                    :rounded="isRounded"
-                    :per-page="perPage"
-                    :icon-prev="prevIcon"
-                    :icon-next="nextIcon"
-                    aria-next-label="Next page"
-                    aria-page-label="Page"
-                    aria-current-label="Current page"
-                  >
-                  </b-pagination>
+                  <ul class="is-flex is-justify-content-center">
+                    <li class="pagination_comments p-2 px-5">1 </li> 
+                  </ul>
                 </section>
               </article>
             </section>
@@ -423,8 +414,56 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else class="mt-5 mb-6 p-2 no_comment is-italic" >
-                  Aucun commentaire disponible
+                <section v-else>
+                  <span class="d-none">Aucun commentaire disponible</span>
+                  <ul class="comments_history mt-5">
+                    <li class="mb-5">
+                      <article class="is-flex p-5">
+                        <figure class="mr-3">
+                          <img src="../assets/comments/author.svg" alt="Search" />
+                        </figure>
+                        <p class="is-size-7 has-text-justified">
+                          <strong>John Joe </strong> <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Viverra ullamcorper sapien lectus non proin nisl
+                          sed in neque. Non posuere parturient cras nascetur
+                          tortor nisi, turpis in.
+                        </p>
+                      </article>
+                    </li>
+                    <li class="mb-5">
+                      <article class="is-flex p-5">
+                        <figure class="mr-3">
+                          <img src="../assets/comments/author.svg" alt="Search"/>
+                        </figure>
+                        <p class="is-size-7 has-text-justified">
+                          <strong>John Joe </strong> <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Viverra ullamcorper sapien lectus non proin nisl
+                          sed in neque. Non posuere parturient cras nascetur
+                          tortor nisi, turpis in.
+                        </p>
+                      </article>
+                    </li>
+                  </ul>
+                  <b-pagination
+                    aria-previous-label="Previous page"
+                    :total="total"
+                    v-model="current"
+                    :range-before="rangeBefore"
+                    :range-after="rangeAfter"
+                    :order="order"
+                    :size="size"
+                    :simple="isSimple"
+                    :rounded="isRounded"
+                    :per-page="perPage"
+                    :icon-prev="prevIcon"
+                    :icon-next="nextIcon"
+                    aria-next-label="Next page"
+                    aria-page-label="Page"
+                    aria-current-label="Current page"
+                  >
+                  </b-pagination>
                 </section>
               </article>
             </section>
@@ -866,18 +905,18 @@ export default {
     },
     //Donut
     compute_label (num) {
-        if (num >= 1000000000) {
-            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
+      if (num >= 1000000000) {
+          return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
+      }
+      else {
+        if (num >= 10000000) {
+            return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
         }
-        else {
-          if (num >= 10000000) {
-              return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
-          }
-          else if (num >= 1000) {
-              return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-          }
-        } 
-        return num;
+        else if (num >= 1000) {
+            return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        }
+      } 
+      return num;
     },
     convert_deg_rad(value) {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
@@ -1234,6 +1273,16 @@ $color_orange: #ff9b26;
     height: 200px;
   }
 }
+.comments_history aside{
+  width: 100%;
+}
+.pagination_comments{
+  border: solid 1px #dbdbdb;
+  cursor : default;
+}
+.pagination_comments:hover{
+  border-color : #b5b5b5;
+}
 .comments_history article {
   background: #eff8ff99;
   border-radius: 10px;
@@ -1312,20 +1361,7 @@ $color_orange: #ff9b26;
   height:60px;
   width: 60px;
   border-radius: 50%;
-  // border: solid white 5px;
 }
-// .e_reputation figure .statistic_donut li.linkedin_caption figure{
-//   @include linearLinkedIn;
-// }
-// .e_reputation figure .statistic_donut li.facebook_caption figure{
-//   @include linearFacebook;
-// }
-// .e_reputation figure .statistic_donut li.twitter_caption figure{
-//   @include linearTwitter;
-// }
-// .e_reputation figure .statistic_donut li.instagram_caption figure{
-//   @include linearInstagram;
-// }
 //toogle from w3school
 .switch {
   position: relative;
