@@ -420,57 +420,6 @@
                     <figcaption class="p-5">Aucune donnée disponible</figcaption>
                   </figure>
                 </section>
-                <section class="no_comment_sorry d-none">
-                  <span class="d-none">Aucun commentaire disponible</span>
-                  <ul class="comments_history mt-5">
-                    <li class="mb-5">
-                      <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search" />
-                        </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
-                      </article>
-                    </li>
-                    <li class="mb-5">
-                      <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
-                        </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
-                      </article>
-                    </li>
-                  </ul>
-                  <b-pagination
-                    aria-previous-label="Previous page"
-                    :total="total"
-                    v-model="current"
-                    :range-before="rangeBefore"
-                    :range-after="rangeAfter"
-                    :order="order"
-                    :size="size"
-                    :simple="isSimple"
-                    :rounded="isRounded"
-                    :per-page="perPage"
-                    :icon-prev="prevIcon"
-                    :icon-next="nextIcon"
-                    aria-next-label="Next page"
-                    aria-page-label="Page"
-                    aria-current-label="Current page"
-                  >
-                  </b-pagination>
-                </section>
               </article>
             </section>
             <section class="card contents_group e_reputation mt-5 p-5">
