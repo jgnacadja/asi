@@ -11,7 +11,7 @@ import SmoothScrollbar from "vue-smooth-scrollbar";
 import Axios from "axios";
 import Donut from 'vue-css-donut-chart';
 import 'vue-css-donut-chart/dist/vcdonut.css';
-
+import VueSocialSharing from 'vue-social-sharing';
 const fontsCss = require("./assets/css/fonts.css");
 
 export default function(Vue, { router, head, isClient }) {
@@ -36,11 +36,6 @@ export default function(Vue, { router, head, isClient }) {
     href: "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
   });
 
-  // pixel twitter
-  head.script.push({
-    src: "pixel-twitter.js",
-  });
-
   // Import Klaro Cookie Consent
   head.script.push({
     src: "config.js",
@@ -58,13 +53,11 @@ export default function(Vue, { router, head, isClient }) {
   // Register VueDisqus
   Vue.use(VueDisqus);
 
-  //http requests via axios
-  Vue.use(Axios);
-
   Vue.use(InfiniteLoading);
 
   Vue.use(SmoothScrollbar);
   //GRAPHIC
   Vue.use(Donut);
+  Vue.use(VueSocialSharing);
 
 }

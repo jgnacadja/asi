@@ -95,51 +95,42 @@
                   <ul class="comments_history mt-5">
                     <li class="mb-5">
                       <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search" />
+                        <figure class="ml-4 mr-2 p-0">
+                          <p class="image is-64x64">
+                            <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                          </p>
                         </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
+                        <aside class="is-size-7">
+                          <strong class="columns column is-one-fifth mb-0">
+                            <b-skeleton :animated="animated"></b-skeleton>
+                          </strong>
+                          <p class="columns column is-four-fifths ">
+                            <b-skeleton :animated="animated" height="30px"></b-skeleton>
+                          </p>
+                        </aside>
                       </article>
                     </li>
                     <li class="mb-5">
                       <article class="is-flex p-5">
-                        <figure class="mr-3">
-                          <img src="../assets/comments/author.svg" alt="Search"/>
+                        <figure class="ml-4 mr-2 p-0">
+                          <p class="image is-64x64">
+                            <b-skeleton :animated="animated" circle width="64px" height="64px"></b-skeleton>
+                          </p>
                         </figure>
-                        <p class="is-size-7 has-text-justified">
-                          <strong>John Joe </strong> <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Viverra ullamcorper sapien lectus non proin nisl
-                          sed in neque. Non posuere parturient cras nascetur
-                          tortor nisi, turpis in.
-                        </p>
+                        <aside class="is-size-7">
+                          <strong class="columns column is-one-fifth mb-0">
+                            <b-skeleton :animated="animated"></b-skeleton>
+                          </strong>
+                          <p class="columns column is-four-fifths ">
+                            <b-skeleton :animated="animated" height="30px"></b-skeleton>
+                          </p>
+                        </aside>
                       </article>
                     </li>
                   </ul>
-                  <b-pagination
-                    aria-previous-label="Previous page"
-                    :total="total"
-                    v-model="current"
-                    :range-before="rangeBefore"
-                    :range-after="rangeAfter"
-                    :order="order"
-                    :size="size"
-                    :simple="isSimple"
-                    :rounded="isRounded"
-                    :per-page="perPage"
-                    :icon-prev="prevIcon"
-                    :icon-next="nextIcon"
-                    aria-next-label="Next page"
-                    aria-page-label="Page"
-                    aria-current-label="Current page"
-                  >
-                  </b-pagination>
+                  <ul class="is-flex is-justify-content-center">
+                    <li class="pagination_comments p-2 px-5">1 </li> 
+                  </ul>
                 </section>
               </article>
             </section>
@@ -152,10 +143,10 @@
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
-                <label class="switch">
+                <!-- <label class="switch">
                   <input type="checkbox" />
                   <span class="slider round"></span>
-                </label>
+                </label> -->
               </header>
               <figure class="charts mt-4">
                 <p>
@@ -294,7 +285,7 @@
     </section>
     <section v-else class="overview_page">
       <!-- Search bar -->
-      <header class="container has-text-centered mx-auto">
+      <header class="search_bar_container has-text-centered mx-auto px-6">
         <div class="column is-column is-12-desktop">
           <div class="box is-shadowless is-paddinless-mobile">
             <div class="box field is-grouped">
@@ -358,10 +349,10 @@
                     <div class="column">Email</div>
                     <div class="column has-text-right">
                       <strong>
-                        <span v-if="data._source.email"
-                          ><a :href="'mailto:' + data._source.email" class="has-text-black">
+                        <span v-if="data._source.email">
+                          <a :href="'mailto:' + data._source.email" class="has-text-black">
                             {{ data._source.email }}
-                            </a>
+                          </a>
                         </span>
                         <span v-else>{{ notAvailable }}</span>
                       </strong>
@@ -423,7 +414,12 @@
                   >
                   </b-pagination>
                 </section>
-                <section v-else class="mt-5 mb-6 no_comment">Aucun commentaire</section>
+                <section v-else class="comments_no_found is-flex is-align-items-center is-justify-content-center">
+                  <figure class="is-flex  is-flex-direction-column is-align-items-center">
+                    <img src="../assets/data-management 1.png" title="Aucune donnée disponible" alt=""/>
+                    <figcaption class="p-5">Aucune donnée disponible</figcaption>
+                  </figure>
+                </section>
               </article>
             </section>
             <section class="card contents_group e_reputation mt-5 p-5">
@@ -434,10 +430,10 @@
                   </span>
                   <figcaption>E-reputation</figcaption>
                 </figure>
-                <label class="switch">
+                <!-- <label class="switch">
                   <input type="checkbox" />
                   <span class="slider round"></span>
-                </label>
+                </label> -->
               </header>
               <figure class="charts is-flex is-flex-direction-column-reverse is-justify-content-center is-align-items-center">
                 <vc-donut 
@@ -493,8 +489,8 @@
                       <span class="linkedin"></span> LINKEDIN
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.linkedin_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.linkedin_data }}
+                      <span v-if="data._source.linkedin_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.linkedin_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -504,8 +500,8 @@
                       <span class="facebook"></span> FACEBOOK
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.facebook_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.facebook_data }}
+                      <span v-if="data._source.facebook_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.facebook_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -515,8 +511,8 @@
                       <span class="twitter"></span> TWITTER
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.twitter_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.twitter_data }}
+                      <span v-if="data._source.twitter_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.twitter_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -526,8 +522,8 @@
                       <span class="instagram"></span> INSTAGRAM
                     </div>
                     <div class="column has-text-centered">
-                      <span v-if="data._source.instagram_data" class="rate mr-5 pr-5 has-text-right">
-                        {{ data._source.instagram_data }}
+                      <span v-if="data._source.instagram_data.followers" class="rate mr-5 pr-5 has-text-right">
+                        {{ data._source.instagram_data.followers }}
                       </span>
                       <span v-else>{{ notAvailable }}</span>
                     </div>
@@ -575,7 +571,7 @@
                   <span v-if="data._source.net_result && data._source.net_result.total">
                     {{ data._source.net_result.total }}
                   </span>
-                  <span v-else> 0 </span>
+                  <span v-else> 0 FCFA</span>
                 </span>
               </figcaption>
             </article>
@@ -610,17 +606,58 @@
               </g-link>
             </li>
           </ul>
-          <p class="mt-5 is-flex is-flex-wrap-wrap is-align-items-flex-end is-justify-content-right is-size-7 ">
-            <g-link class="has-text-black has-text-link" to="/issue/">Faire une suggestion</g-link>
-          </p>
         </footer>
       </section>
+      <footer class="share_options" >
+        <span class="icon share_tools is-flex is-justify-content-center is-align-items-center p-4" @click="openCloseShareOption">
+          <i class="fas fa-share-alt has-text-white" title="Liens de partage"></i>
+        </span>
+        <ul class="has-text-right is-size-4 p-2" :class="share_open ?'d-block showit' :'d-none'">
+          <li >
+            <ShareNetwork
+                network="LinkedIn"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market">
+               <span class="icon">
+                <i class="fab fa-linkedin" title="Partager sur LinkedIn"></i>
+              </span>
+            </ShareNetwork>
+          </li>
+          <li>
+            <ShareNetwork
+                network="facebook"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market">
+              <span class="icon">
+                <i class="fab fa-facebook" title="Partager sur Facebook"></i>
+              </span>
+            </ShareNetwork>
+          </li>
+          <li>
+            <ShareNetwork
+                network="Twitter"
+                :url="url"
+                :title="data._source.name"
+                :description="data._source.goal"
+                :hashtags="data._source.market">
+               <span class="icon">
+                <i class="fab fa-twitter" title="Partager sur Twitter"></i>
+              </span>
+            </ShareNetwork>
+          </li>
+        </ul>
+      </footer>
     </section>
   </Layout>
 </template>
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import BarCharts from "~/components/BarCharts.vue";
+// import SocialNetwork from "~/components/SocialNetwork.vue";
 import "vueperslides/dist/vueperslides.css";
 import moment from "moment";
 import "moment/locale/fr";
@@ -635,9 +672,12 @@ export default {
       },
     ],
   },
+  // components: { VueperSlides, VueperSlide, BarCharts, TheSearch,SocialNetwork },
   components: { VueperSlides, VueperSlide, BarCharts, TheSearch },
   data() {
     return {
+      share_open: false,
+      url: "",
       stats_linkedin : "0",
       stats_facebook : "0",
       stats_twitter : "0",
@@ -719,10 +759,10 @@ export default {
             value: null,
             grow: null,
           },
-          linkedin_data: null,//17000
-          facebook_data: null,//37000
-          twitter_data: null, //10000
-          instagram_data: null, //8000
+          linkedin_data: {},//17000
+          facebook_data: {},//37000
+          twitter_data: {}, //10000
+          instagram_data: {}, //8000
           stats: null,
           objectID: "",
           comments: [],
@@ -765,8 +805,6 @@ export default {
   },
   mounted() {
     this.fetch();
-    this.computeLinkRate();
-    this.verifyLinkData();
   },
   methods: {
     parseUri(objectId) {
@@ -786,6 +824,8 @@ export default {
           this.loading = false;
           this.data = response.data;
           this.fetchAlternatives();
+          this.computeLinkRate();
+          this.verifyLinkData();
         })
         .catch((error) => {
           this.loading = false;
@@ -820,13 +860,18 @@ export default {
     },
     //Donut
     compute_label (num) {
-        if (num >= 1000000000) {
-            return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
-        }
-        else if (num >= 10000000) {
+      if (num >= 1000000000) {
+          return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'Md';
+      }
+      else {
+        if (num >= 10000000) {
             return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
         }
-        return num;
+        else if (num >= 1000) {
+            return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        }
+      } 
+      return num;
     },
     convert_deg_rad(value) {
       var deg_rad = 1.57 - (1.8* value * 2*3.14) / 360;
@@ -835,15 +880,15 @@ export default {
       return [x,y];
     },
     computeLinkRate(){
-      var linkedin = this.data._source.linkedin_data; //17000
-      var facebook = this.data._source.facebook_data; //37000
-      var twitter = this.data._source.twitter_data; //10000
-      var instagram = this.data._source.instagram_data; //8000
+      var linkedin = this.data._source.linkedin_data.followers ; //17000
+      var facebook = this.data._source.facebook_data.followers; //37000
+      var twitter = this.data._source.twitter_data.followers; //10000
+      var instagram = this.data._source.instagram_data.followers; //8000
       var linkedin_coordinates,facebook_coordinates,twitter__coordinates,instagram_coordinates;
       var linkedin_percent,facebook_percent,twitter_percent,instagram_percent;
       linkedin_coordinates=facebook_coordinates=twitter__coordinates=instagram_coordinates = [0,0];
       linkedin_percent=facebook_percent=twitter_percent=instagram_percent=0;
-      if((linkedin!==0 && linkedin !==null) || (facebook!==0 && facebook !==null) && 
+      if((linkedin!==0 && linkedin !==null) || (facebook!==0 && facebook !==null) || 
           (twitter!==0 && twitter !==null) || (instagram!==0 && instagram !==null)){
         var stats = [linkedin, facebook, twitter, instagram];
         var total = stats.reduce((acc, cur) => acc + cur, 0);
@@ -922,8 +967,12 @@ export default {
       console.log(`${section.label} clicked.`);
     },
     handleSectionMouseOver(section, event) {
-      section.label = section.title + " (" + section.value + ")";
+      section.label = section.title + " (" + section.stats + ")";
     },
+    openCloseShareOption(){
+      this.share_open = !this.share_open
+      this.url = window.location.href
+    }
   },
   filters: {
     // Filter definitions
@@ -948,6 +997,11 @@ export default {
 $color_primary: #267ec3;
 $color_orange: #ff9b26;
 .overview_page{
+  padding-bottom: 50px;
+  @media (min-width: 1024px){
+    width: 80vw;
+    margin: auto;
+  }
   @media (max-width: 1024px) {
     overflow-x: hidden;
   }
@@ -1076,7 +1130,13 @@ $color_orange: #ff9b26;
   height: 25px;
 }
 //main content
-.main_content {
+.search_bar_container{
+  @include tablet {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+.search_bar_container,.main_content{
   @media screen and (max-width: 413px) {
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -1156,10 +1216,37 @@ $color_orange: #ff9b26;
   border: none;
 }
 //comments
+.discussions{
+  @include mobile(){
+    margin-bottom: 1.5rem !important;
+  }
+}
 .discussions .no_comment{
+  background: #fafafa;
+  min-height: 10vh;
   @include desktop{
     height: 200px;
   }
+}
+.comments_history aside{
+  width: 100%;
+}
+.pagination_comments{
+  border: solid 1px #dbdbdb;
+  cursor : default;
+}
+.discussions .comments_no_found{
+  background: rgba(239, 248, 255, 0.6);
+  min-height : 300px;
+  margin-top: 5vh;
+}
+.discussions .no_comment_sorry{
+  position: relative;
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
 }
 .comments_history article {
   background: #eff8ff99;
@@ -1239,20 +1326,7 @@ $color_orange: #ff9b26;
   height:60px;
   width: 60px;
   border-radius: 50%;
-  // border: solid white 5px;
 }
-// .e_reputation figure .statistic_donut li.linkedin_caption figure{
-//   @include linearLinkedIn;
-// }
-// .e_reputation figure .statistic_donut li.facebook_caption figure{
-//   @include linearFacebook;
-// }
-// .e_reputation figure .statistic_donut li.twitter_caption figure{
-//   @include linearTwitter;
-// }
-// .e_reputation figure .statistic_donut li.instagram_caption figure{
-//   @include linearInstagram;
-// }
 //toogle from w3school
 .switch {
   position: relative;
@@ -1340,9 +1414,12 @@ input:checked + .slider:before {
     bottom: 0;
   }
 }
+.report_social_network li div{
+  position: relative;
+}
 .report_social_network .rate {
   right: 0;
-  top: 0;
+  bottom: 0;
   position: absolute;
   color: $color_orange;
 }
@@ -1416,5 +1493,51 @@ input:checked + .slider:before {
 }
 .see_more ul li figure:hover {
   background: #f5fbff;
+}
+.share_options{
+  position: fixed;
+  bottom: 40px;
+  right: 0;
+  width: 150px;
+}
+.share_options .share_tools{
+  background: orange;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  bottom: -25px;
+  right: 15px;
+}
+.share_options .showit{
+  position: absolute;
+  width: 150px;
+  z-index: 0;
+  bottom: 0px;
+  padding-right: 20px !important;
+  animation-name: example;
+  animation-duration: 0.5s;
+}
+.share_options .showit .icon{
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+.share_options a:hover{
+  color: #485fc7 !important;
+}
+.share_options .icon:hover{
+  transform: scale(1.15);
+  color: #485fc7 !important;
+}
+@keyframes example {
+  from  {
+    opacity : 0;
+    bottom : -25px
+  }
+  to    {
+    bottom: 0px;
+    opacity : 1
+  }
 }
 </style>
