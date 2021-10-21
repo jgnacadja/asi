@@ -21,7 +21,9 @@
         <section class="is-flex is-flex-direction-column is-justify-content-center format_select pr-3  mb-2">
           <select class="p-3">
             <option>Selectionner votre profession</option>
-            <option></option>
+            <option>CEO</option>
+            <option>Employé</option>
+            <option>Manager</option>
           </select>
         </section>
         <input class="p-3 mb-2" type="text" placeholder="Objet">
