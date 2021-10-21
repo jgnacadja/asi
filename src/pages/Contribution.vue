@@ -55,18 +55,34 @@ export default {
   $color_primary: #267ec3;
   $color_orange: #ff9b26;
   .contribution{
-    height: 75vh;
-    max-height: 75vh;
+    @include desktop{
+      height: 75vh;
+      max-height: 75vh;
+    }
+    @include touch{
+      flex-direction: column !important;
+      align-items: center;
+      width: 80vw;
+      margin: auto;
+    }
   }
   .description_how_to_do{
-    width: 50vw;
-    height: 50vh;
+    @include desktop{
+      width: 50vw;
+      height: 50vh;
+    }
     & .title{
       color: $color_primary;
+       @include touch{
+        width: 100% !important;
+      }
     }
     & .contributor_figure{
       height: 30vh;
       margin-top: 8vh;
+      @include touch{
+        display: none;
+      }
       & , &::before{
         background: rgba(38, 126, 195, 0.1);
       }
@@ -95,7 +111,13 @@ export default {
   form.form_contributor {
     background: white;
     position: relative;
-    width: 50vw;
+    @include desktop{
+      width: 50vw;
+    }
+    @include touch{
+      width: 80vw;
+      margin-left: 0 !important;
+    }
     & input, & .format_select, & select, & textarea {
       background: #F5F5F5;
       color: #888888;
