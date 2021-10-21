@@ -9,13 +9,7 @@
             </figure>
           </g-link>
           <g-link class="has-text-white" to="/comment-ca-marche">
-            <b-icon
-              class="is-hidden-desktop"
-              type="is-white"
-              pack="fa"
-              icon="question-circle"
-              size="is-large"
-            />
+            <b-icon class="is-hidden-desktop" type="is-white" pack="fa" icon="question-circle" size="is-large" />
           </g-link>
         </div>
         <div id="navbarMenu" class="navbar-menu">
@@ -34,9 +28,16 @@
 
 <style scoped lang="scss">
 @import "../variables.scss";
-
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/derived-variables";
+@import "~bulma/sass/utilities/mixins";
 .navbar-brand {
   justify-content: space-around;
   align-items: center;
+  @include touch{
+    width: 80vw;
+    margin: auto;
+    justify-content: space-between;
+  }
 }
 </style>
