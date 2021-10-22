@@ -22,15 +22,17 @@
         <input v-model="email" name="email" id="email" type="email" placeholder="Email" required
           class="p-3  mb-2">
         <section class="is-flex is-flex-direction-column is-justify-content-center format_select mb-2">
-          <select class="p-3" v-model="profession">
-            <option>Selectionner votre profession</option>
-            <option>CEO</option>
-            <option>Employé</option>
-            <option>Manager</option>
+          <select class="p-3" v-model="profession" id="profession" name="profession" placeholder="Profession" required>
+            <option value="Selectionner votre profession">Selectionner votre profession</option>
+            <option value="CEO">CEO</option>
+            <option value="Employé">Employé</option>
+            <option value="Manager">Manager</option>
           </select>
         </section>
-        <input class="p-3 mb-2 object" type="text" placeholder="Objet" required>
-        <textarea  v-model="message" name="message" id="message" placeholder="Message" 
+        <input type="text"/>
+        <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object" 
+                placeholder="Objet" required>
+        <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
           class="p-5 mb-2 yoursuggestion" required></textarea>
         <button class="button p-5 mb-2">Envoyer</button>
         <span id="result"></span>
@@ -58,6 +60,7 @@ export default {
       profession : "Selectionner votre profession",
       object: null,
       message: null,
+      themessage: null,
     };
   },
   methods: {
