@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import emailjs from "emailjs-com";
 export default {
   metaInfo: {
     title: "Contribution",
@@ -44,6 +45,36 @@ export default {
         content: "Faites nous part de vos remarques ou suggestions.",
       },
     ],
+  },
+  data() {
+    return {
+      name: null,
+      email: null,
+      object: null,
+      message: null,
+    };
+  },
+  methods: {
+    sendEmail: (e) => {
+      emailjs
+        .sendForm(
+          "service_kcg1fpl",
+          "template_q2ewdb3",
+          e.target,
+          "user_Y2KIJGmvuqmYVVqo9JBO8"
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.status, result.text);
+            document.getElementById("result").innerHTML ="<span style='color:green'>Votre message a été envoyé.</span>";
+            document.getElementById("form").reset();
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            document.getElementById("result").innerHTML = "<span style='color:red'>Problème de connection, vérifiez votre connexion.</span>";
+          }
+        );
+    },
   },
 };
 </script>
@@ -154,7 +185,6 @@ export default {
       border-radius: 4px;
       border: 1px solid #dbdbdb;
       max-height: 89px;
-      min-height: 69px;
       @include desktop{
         height: 13%;
       }
@@ -163,6 +193,7 @@ export default {
       }
       @include touch{
         height: 7vh;
+        min-height: 69px;
         margin-bottom: 10px  !important;
       }
     }
