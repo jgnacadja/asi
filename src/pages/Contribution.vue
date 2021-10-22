@@ -15,20 +15,25 @@
           </span>
         </figure>
       </section>
-      <form class="is-flex is-flex-direction-column is-align-items-center p-5 ml-5 form_contributor">
-        <input class="p-3 mb-2" type="text" placeholder="Nom complet">
-        <input class="p-3  mb-2" type="email" placeholder="Email">
+      <form @submit.prevent="sendEmail"
+        class="is-flex is-flex-direction-column is-align-items-center p-5 ml-5 form_contributor" id="form">
+        <input v-model="name" name="name"  id="name"  type="text" placeholder="Nom complet" required
+          class="p-3 mb-2">
+        <input v-model="email" name="email" id="email" type="email" placeholder="Email" required
+          class="p-3  mb-2">
         <section class="is-flex is-flex-direction-column is-justify-content-center format_select mb-2">
-          <select class="p-3">
+          <select class="p-3" v-model="profession">
             <option>Selectionner votre profession</option>
             <option>CEO</option>
             <option>Employé</option>
             <option>Manager</option>
           </select>
         </section>
-        <input class="p-3 mb-2" type="text" placeholder="Objet">
-        <textarea class="p-5 mb-2 yoursuggestion" placeholder="Message"></textarea>
+        <input class="p-3 mb-2 object" type="text" placeholder="Objet" required>
+        <textarea  v-model="message" name="message" id="message" placeholder="Message" 
+          class="p-5 mb-2 yoursuggestion" required></textarea>
         <button class="button p-5 mb-2">Envoyer</button>
+        <span id="result"></span>
       </form>
     </section>
   </Layout>
@@ -50,6 +55,7 @@ export default {
     return {
       name: null,
       email: null,
+      profession : "Selectionner votre profession",
       object: null,
       message: null,
     };
@@ -75,6 +81,9 @@ export default {
           }
         );
     },
+  },
+  mounted : () =>{
+    
   },
 };
 </script>
