@@ -29,7 +29,6 @@
             <option value="Manager">Manager</option>
           </select>
         </section>
-        <input type="text"/>
         <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object" 
                 placeholder="Objet" required>
         <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
