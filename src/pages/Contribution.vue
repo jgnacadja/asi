@@ -32,7 +32,7 @@
         <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object"
                 placeholder="Objet" required>
         <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
-          class="p-5 mb-2 yoursuggestion" required></textarea>
+          class="p-5 px-3 mb-2 yoursuggestion" required></textarea>
         <button class="button p-5 mb-2" :class="loader ? 'is-loading' : ''">Envoyer</button>
         <span id="result"></span>
       </form>
@@ -64,9 +64,9 @@ export default {
     };
   },
   methods: {
-    sendEmail: (e) => {
-      let vm = this;
-      vm.loader = true
+    sendEmail: function (e) {
+      var vm =this;
+      vm.loader= true
       emailjs
         .sendForm(
           "service_dwyfsrs",
@@ -79,6 +79,7 @@ export default {
             console.log("SUCCESS!", result.status, result.text);
             document.getElementById("result").innerHTML ="<span style='color:green'>Votre message a été envoyé.</span>";
             document.getElementById("form").reset();
+            vm.loader= false
           },
           (error) => {
             console.log("FAILED...", error);
