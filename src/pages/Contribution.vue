@@ -22,18 +22,18 @@
         <input v-model="email" name="email" id="email" type="email" placeholder="Email" required
           class="p-3  mb-2">
         <section class="is-flex is-flex-direction-column is-justify-content-center format_select mb-2">
-          <select class="p-3" v-model="profession" id="profession" name="profession" placeholder="Profession" required>
+          <select class="p-3" v-model="profession" id="profession" name="profession"  placeholder="Profession" required>
             <option value="Selectionner votre profession">Selectionner votre profession</option>
             <option value="CEO">CEO</option>
             <option value="Employé">Employé</option>
             <option value="Manager">Manager</option>
           </select>
         </section>
-        <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object" 
+        <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object"
                 placeholder="Objet" required>
         <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
           class="p-5 mb-2 yoursuggestion" required></textarea>
-        <button class="button p-5 mb-2">Envoyer</button>
+        <button class="button p-5 mb-2" :class="loader ? 'is-loading' : ''">Envoyer</button>
         <span id="result"></span>
       </form>
     </section>
@@ -60,16 +60,19 @@ export default {
       object: null,
       message: null,
       themessage: null,
+      loader :  false,
     };
   },
   methods: {
     sendEmail: (e) => {
+      let vm = this;
+      vm.loader = true
       emailjs
         .sendForm(
-          "service_kcg1fpl",
-          "template_q2ewdb3",
+          "service_dwyfsrs",
+          "template_xw6pcdo",
           e.target,
-          "user_Y2KIJGmvuqmYVVqo9JBO8"
+          "user_MXWdoD0LyXWFrrt1IixF0"
         )
         .then(
           (result) => {
@@ -231,5 +234,8 @@ export default {
       background: $color_orange;
       color: white;
     }
+  }
+  .d-none{
+    display: none !important;
   }
 </style>
