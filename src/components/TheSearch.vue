@@ -158,7 +158,7 @@
       </smooth-scrollbar> 
       <p class="is-flex is-align-items-flex-end is-justify-content-flex-end is-size-7">
         Ce n'est pas les résultats que vous attendiez ? &nbsp;
-        <g-link class="has-text-black has-text-link" to="/mentions-legales/">En savoir plus</g-link>
+        <g-link class="has-text-black has-text-link" to="/contribution/">Contribuez</g-link>
       </p>
     </div> 
   </div>
