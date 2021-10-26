@@ -30,7 +30,7 @@
         <input class="p-3 mb-2 object box" type="text" v-model="object" id="object" name="object"
                 placeholder="Objet" required>
         <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
-          class="p-5 px-3 mb-2 yoursuggestion box" required></textarea>
+          class="py-5 px-3 mb-2 yoursuggestion box" required></textarea>
         <button class="button p-5 mb-2" :class="loader ? 'is-loading' : ''">Envoyer</button>
         <span id="result"></span>
       </form>
