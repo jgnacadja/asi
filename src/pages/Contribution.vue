@@ -4,24 +4,22 @@
       <section class="is-flex is-flex-direction-column is-justify-content-space-between description_how_to_do pt-5">
         <h1 class="m-0 is-size-3 title">Faites nous part de vos remarques ou suggestions.</h1>
         <p class="is-size-6 mt-3 mb-5 description">
-          Avez-vous remarqué des informations incohérentes ou presque manquante ? 
-          Ajouter sa pierre à l'édifice en nous envoyant un mail 
+          Avez-vous remarqué des informations incohérentes ou manquantes ? 
+          Ajoutez votre pierre à l'édifice en nous envoyant un mail 
+          <g-link class="has-text-black has-text-link is-size-7" to="/mentions-legales/">En savoir plus</g-link>
         </p>
         <figure class="contributor_figure has-text-centered"> 
           <img src="../assets/contribution/contributor.png" title="Une erreur ? Un avis ? N'hésitez pas et signaler le nous 😊" 
               alt="Faites nous part de vos remarques ou suggestions" class="contributor"/>
-          <span class="contribution_decoration">
-            <img src="../assets/contribution/contribution_decoration.svg" alt=""/>
-          </span>
         </figure>
       </section>
       <form @submit.prevent="sendEmail"
         class="is-flex is-flex-direction-column is-align-items-center p-5 ml-5 form_contributor" id="form">
         <input v-model="name" name="name"  id="name"  type="text" placeholder="Nom complet" required
-          class="p-3 mb-2">
+          class="p-3 mb-2 box">
         <input v-model="email" name="email" id="email" type="email" placeholder="Email" required
-          class="p-3  mb-2">
-        <section class="is-flex is-flex-direction-column is-justify-content-center format_select mb-2">
+          class="p-3  mb-2 box">
+        <section class="is-flex is-flex-direction-column is-justify-content-center format_select mb-2 box">
           <select class="p-3" v-model="profession" id="profession" name="profession"  placeholder="Profession" required>
             <option value="Selectionner votre profession">Selectionner votre profession</option>
             <option value="CEO">CEO</option>
@@ -29,10 +27,10 @@
             <option value="Manager">Manager</option>
           </select>
         </section>
-        <input class="p-3 mb-2 object" type="text" v-model="object" id="object" name="object"
+        <input class="p-3 mb-2 object box" type="text" v-model="object" id="object" name="object"
                 placeholder="Objet" required>
         <textarea  v-model="message"  name="message" id="message" placeholder="Message" 
-          class="p-5 px-3 mb-2 yoursuggestion" required></textarea>
+          class="p-5 px-3 mb-2 yoursuggestion box" required></textarea>
         <button class="button p-5 mb-2" :class="loader ? 'is-loading' : ''">Envoyer</button>
         <span id="result"></span>
       </form>
@@ -144,28 +142,9 @@ export default {
       @include touch{
         display: none;
       }
-      & , &::before{
-        background: rgba(38, 126, 195, 0.1);
-      }
-      &::before{
-        content : "";
-        display: block;
-        position: absolute;
-        height: 30vh;
-        margin-left: calc((960px - 100vw) / 2);
-        width: calc((100vw - 960px) / 2);
-      }
       & .contributor{
         margin-top: -10vh;
         height: 40vh;
-      }
-      & .contribution_decoration{
-        display: block;
-        margin-top: -7vh;
-        text-align: left;
-        & img{
-          height: 10vh;
-        }
       }
     }
     & p{
@@ -178,10 +157,9 @@ export default {
     }
   }
   form.form_contributor {
-    background: white;
     position: relative;
     @include desktop{
-      width: 50vw;
+      width: 50vw !important;
     }
     @include tablet{
       width: 80vw;
@@ -191,14 +169,14 @@ export default {
       margin-left: 0 !important;
     }
     & input, & .format_select, & select, & textarea {
-      background: #F5F5F5;
       color: #888888;
       outline: none;
+      border: none;
       width: 100%;
     }
     & input, & .format_select,& textarea {
       border-radius: 4px;
-      border: 1px solid #dbdbdb;
+      // border: 1px solid #dbdbdb;
       max-height: 89px;
       @include desktop{
         height: 13%;
@@ -216,7 +194,7 @@ export default {
       & select {
         border: none;
         width: 98%;
-        color: #888888;
+        background: none;
       }
     }
     & .yoursuggestion{
