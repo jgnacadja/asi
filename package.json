@@ -33,6 +33,7 @@
     "vue-infinite-loading": "^2.4.5",
     "vue-markdown": "^2.2.4",
     "vue-smooth-scrollbar": "^0.1.2",
+    "vue-social-sharing": "^3.0.8",
     "vueperslides": "^2.15.2"
   },
   "devDependencies": {
