@@ -46,7 +46,7 @@
     "gridsome-plugin-htaccess": "^0.2.1",
     "jest": "^27.1.0",
     "jest-transform-stub": "^2.0.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^10",
     "vue-jest": "^3.0.7",
     "webpack-bundle-analyzer": "^4.4.2"
